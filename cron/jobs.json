@@ -81,6 +81,34 @@
       },
       "deleteAfterRun": false,
       "state": {}
+    },
+    {
+      "id": "d4374917-f4dc-431f-a314-50d8bb89abeb",
+      "agentId": "dj",
+      "sessionKey": "agent:dj:dashboard:eaa9de04-2302-4d8e-9a8a-3ae8c6541f74",
+      "name": "sync-openclaw-config-hourly",
+      "description": "Commit and push openclaw config changes to GitHub every hour",
+      "enabled": true,
+      "createdAtMs": 1778867105450,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "UTC",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the openclaw config sync script:\n\nbash /home/node/.openclaw/workspace/scripts/sync-openclaw-config.sh\n\nReport the output.",
+        "timeoutSeconds": 120,
+        "model": "kiro/claude-haiku-4.5",
+        "lightContext": true
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {}
     }
   ]
 }
