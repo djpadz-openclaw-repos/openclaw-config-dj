@@ -1,0 +1,544 @@
+{
+  "logging": {
+    "consoleLevel": "debug",
+    "level": "debug",
+    "file": "/home/node/.openclaw/logs/openclaw-debug.log",
+    "maxFileBytes": 52428800
+  },
+  "gateway": {
+    "remote": {
+      "url": "wss://dj.gw.oc.ctb.padz.net"
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    },
+    "mode": "local",
+    "port": 18789,
+    "bind": "lan",
+    "auth": {
+      "mode": "token",
+      "rateLimit": {
+        "maxAttempts": 10,
+        "windowMs": 60000,
+        "lockoutMs": 300000,
+        "exemptLoopback": true
+      }
+    },
+    "trustedProxies": [
+      "10.0.0.0/8"
+    ],
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789",
+        "https://dj.gw.oc.ctb.padz.net"
+      ],
+      "enabled": true
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kiro": {
+        "baseUrl": "http://kiro-gateway.kiro-gateway.svc.cluster.local:9000",
+        "apiKey": "${KIRO_GATEWAY_TOKEN}",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "auto-kiro",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3E-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-3.7-sonnet",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3E-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-haiku-4.5",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1E-7,
+              "cacheWrite": 0.000001
+            },
+            "contextWindow": 120000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-opus-4.6",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5E-7,
+              "cacheWrite": 0.000005
+            },
+            "contextWindow": 900000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-sonnet-4.6",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3E-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 900000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-3.2",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 1.4E-7,
+              "output": 2.8E-7,
+              "cacheRead": 1.4E-8,
+              "cacheWrite": 1.4E-7
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "glm-5",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1E-7,
+              "cacheWrite": 0.000001
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimax-m2.1",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 5E-7,
+              "output": 0.0000015,
+              "cacheRead": 5E-8,
+              "cacheWrite": 5E-7
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimax-m2.5",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 5E-7,
+              "output": 0.0000015,
+              "cacheRead": 5E-8,
+              "cacheWrite": 5E-7
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3-coder-next",
+            "name": "Claude model via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 1.5E-7,
+              "output": 8E-7,
+              "cacheRead": 1.5E-8,
+              "cacheWrite": 1.5E-7
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "bootstrapMaxChars": 32000,
+      "model": {
+        "primary": "kiro/claude-haiku-4.5"
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "heartbeat": {
+        "every": "30m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      }
+    },
+    "list": [
+      {
+        "id": "dj",
+        "default": true,
+        "name": "Gizmo",
+	"tools": { "deny": ["bundle-mcp"] },
+        "identity": {
+          "name": "gizmo",
+          "avatar": "avatars/gizmo.png",
+          "emoji": "🦊"
+        }
+      },
+      {
+        "id": "coder",
+        "model": "kiro/claude-opus-4.6",
+	"tools": { "deny": [] },
+        "name": "coder",
+        "identity": {
+          "name": "coder",
+          "emoji": "📝"
+        }
+      }
+    ]
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "reset": {
+      "mode": "idle",
+      "idleMinutes": 240
+    },
+    "maintenance": {
+      "mode": "enforce",
+      "pruneAfter": "7d"
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.7",
+    "lastTouchedAt": "2026-05-13T18:19:47.636Z"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "brave",
+        "enabled": true
+      }
+    },
+    "links": {
+      "enabled": true
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "webhookUrl": "https://dj.gw.oc.ctb.padz.net/telegram-webhook",
+      "webhookSecret": "225adab941b1cae28dba4b767e6344d7944fbd1bec9fc0b3a8529b45a8120f3a",
+      "webhookPath": "/telegram-webhook",
+      "webhookHost": "0.0.0.0",
+      "webhookPort": 18790,
+      "dmPolicy": "allowlist",
+      "botToken": "${TELEGRAM_TOKEN}",
+      "allowFrom": [
+        8623402151
+      ],
+      "groupPolicy": "disabled",
+      "streaming": {
+        "mode": "partial"
+      }
+    }
+  },
+  "skills": {
+    "entries": {
+      "apple-notes": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": true
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "bluebubbles": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "notion": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": true
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": true,
+        "env": {
+          "SHERPA_ONNX_RUNTIME_DIR": "/shared/tools/sherpa-onnx/runtime",
+          "SHERPA_ONNX_MODEL_DIR": "/shared/tools/sherpa-onnx/models/kokoro-multi-lang-v1_0",
+          "SHERPA_ONNX_MODEL_FILE": "model.onnx"
+        }
+      },
+      "slack": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      }
+    }
+  },
+  "canvasHost": {
+    "enabled": false
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-08T15:37:14.956Z",
+    "lastRunVersion": "2026.5.7",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "plugins": {
+    "bundledDiscovery": "compat",
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "brave": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "mode": "web"
+          }
+        }
+      },
+      "memory-core": {
+        "enabled": false
+      },
+      "hindsight-openclaw": {
+        "enabled": true,
+        "hooks": {
+          "allowConversationAccess": true
+        },
+        "config": {
+          "hindsightApiUrl": "http://hindsight:8888",
+          "dynamicBankGranularity": [
+            "user"
+          ]
+        }
+      }
+    },
+    "slots": {
+      "memory": "hindsight-openclaw"
+    }
+  },
+  "commands": {
+    "ownerAllowFrom": [
+      "telegram:8623402151"
+    ],
+    "allowFrom": {
+      "*": [
+        "telegram:8623402151"
+      ]
+    }
+  },
+  "messages": {
+    "groupChat": {
+      "visibleReplies": "automatic"
+    },
+    "tts": {
+      "provider": "azure-speech",
+      "providers": {
+        "azure-speech": {
+          "apiKey": "${AZURE_TTS_TOKEN}",
+          "region": "${AZURE_TTS_REGION}",
+          "voice": "en-US-JennyNeural",
+          "lang": "en-US"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "servers": {
+      "github": {
+        "enabled": false,
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-remote",
+          "https://api.githubcopilot.com/mcp/",
+          "--header",
+          "Authorization: Bearer ${GITHUB_PAT}"
+        ]
+      },
+      "next-devtools": {
+        "enabled": false,
+        "command": "npx",
+        "args": [
+          "-y",
+          "next-devtools-mcp@latest"
+        ]
+      },
+      "playwright": {
+        "enabled": false,
+        "command": "npx",
+        "args": [
+          "-y",
+          "@playwright/mcp@latest"
+        ]
+      },
+      "arborxr": {
+        "enabled": false,
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-remote",
+          "https://api.xrdm.app/mcp",
+          "--header",
+          "Authorization: Bearer ${ARBORXR_PAT}"
+        ]
+      }
+    }
+  }
+}

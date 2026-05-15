@@ -1,0 +1,90 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "auto-kiro",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-3.7-sonnet",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-haiku-4.5",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-opus-4.5",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-opus-4.6",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-sonnet-4",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "claude-sonnet-4.6",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "deepseek-3.2",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "glm-5",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "minimax-m2.1",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "minimax-m2.5",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    },
+    {
+      "id": "qwen3-coder-next",
+      "object": "model",
+      "created": 1777156938,
+      "owned_by": "anthropic",
+      "description": "Claude model via Kiro API"
+    }
+  ],
+  "retrieved_at": "2026-04-25T22:41:00Z"
+}
