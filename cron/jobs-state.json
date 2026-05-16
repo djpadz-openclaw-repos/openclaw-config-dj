@@ -16,46 +16,46 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1778889785954,
+      "updatedAtMs": 1778893337822,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1778891400000,
-        "lastRunAtMs": 1778889600011,
+        "nextRunAtMs": 1778895000000,
+        "lastRunAtMs": 1778893200031,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 185943,
+        "lastDurationMs": 137791,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
-      "updatedAtMs": 1778879092366,
+      "updatedAtMs": 1778889941116,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778889801607,
-        "lastRunAtMs": 1778879007317,
+        "nextRunAtMs": 1778900601607,
+        "lastRunAtMs": 1778889834370,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 85049,
+        "lastDurationMs": 106746,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1778886222931,
+      "updatedAtMs": 1778889832327,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778889691923,
-        "lastRunAtMs": 1778886178820,
+        "nextRunAtMs": 1778893291923,
+        "lastRunAtMs": 1778889788016,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 44111,
+        "lastDurationMs": 44311,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "runningAtMs": 1778889788009
+        "runningAtMs": 1778893339860
       }
     }
   }
