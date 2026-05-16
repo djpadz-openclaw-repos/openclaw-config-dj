@@ -16,14 +16,14 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1778897026855,
+      "updatedAtMs": 1778900748116,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1778898600000,
-        "lastRunAtMs": 1778896800028,
+        "nextRunAtMs": 1778902200000,
+        "lastRunAtMs": 1778900400043,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 226827,
+        "lastDurationMs": 348073,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
@@ -40,22 +40,23 @@
         "lastDurationMs": 106746,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
-        "consecutiveSkipped": 0
+        "consecutiveSkipped": 0,
+        "runningAtMs": 1778900750150
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1778893383562,
+      "updatedAtMs": 1778897069444,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778896891923,
-        "lastRunAtMs": 1778893339869,
+        "nextRunAtMs": 1778900491923,
+        "lastRunAtMs": 1778897028925,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 43693,
+        "lastDurationMs": 40519,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "runningAtMs": 1778897028917
+        "runningAtMs": 1778900750150
       }
     }
   }
