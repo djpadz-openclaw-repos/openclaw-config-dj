@@ -2,7 +2,7 @@
   "version": 1,
   "jobs": {
     "e8c10b17-70a7-4507-a721-d15cfe22935e": {
-      "updatedAtMs": 1778839277009,
+      "updatedAtMs": 1778906520696,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 3 * * *\",\"tz\":\"America/Los_Angeles\"}}",
       "state": {
         "nextRunAtMs": 1778925600000,
@@ -16,21 +16,21 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1778904135288,
+      "updatedAtMs": 1778911402701,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1778905800000,
-        "lastRunAtMs": 1778904000030,
+        "nextRunAtMs": 1778913000000,
+        "lastRunAtMs": 1778911200015,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 135258,
+        "lastDurationMs": 202686,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
-      "updatedAtMs": 1778900870386,
+      "updatedAtMs": 1778906512238,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
         "nextRunAtMs": 1778911401607,
@@ -40,22 +40,41 @@
         "lastDurationMs": 120223,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
-        "consecutiveSkipped": 0
+        "consecutiveSkipped": 0,
+        "runningAtMs": 1778911404756
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1778900912527,
+      "updatedAtMs": 1778907723450,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778904091923,
-        "lastRunAtMs": 1778900870386,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 42141,
+        "nextRunAtMs": 1778911291923,
+        "lastRunAtMs": 1778907694611,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 28839,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
-        "runningAtMs": 1778904137327
+        "lastDiagnostics": {
+          "summary": "Blocked hostname or private/internal/special-use IP address",
+          "entries": [
+            {
+              "ts": 1778907723448,
+              "source": "tool",
+              "severity": "error",
+              "message": "Blocked hostname or private/internal/special-use IP address"
+            },
+            {
+              "ts": 1778907723449,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "Blocked hostname or private/internal/special-use IP address"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "Blocked hostname or private/internal/special-use IP address",
+        "runningAtMs": 1778911404756
       }
     }
   }

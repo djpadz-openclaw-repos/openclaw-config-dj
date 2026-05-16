@@ -60,7 +60,7 @@
             "cost": {
               "input": 0.000003,
               "output": 0.000015,
-              "cacheRead": 3E-7,
+              "cacheRead": 3e-7,
               "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
@@ -78,7 +78,7 @@
             "cost": {
               "input": 0.000003,
               "output": 0.000015,
-              "cacheRead": 3E-7,
+              "cacheRead": 3e-7,
               "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
@@ -96,7 +96,7 @@
             "cost": {
               "input": 0.000001,
               "output": 0.000005,
-              "cacheRead": 1E-7,
+              "cacheRead": 1e-7,
               "cacheWrite": 0.000001
             },
             "contextWindow": 120000,
@@ -114,7 +114,7 @@
             "cost": {
               "input": 0.000005,
               "output": 0.000025,
-              "cacheRead": 5E-7,
+              "cacheRead": 5e-7,
               "cacheWrite": 0.000005
             },
             "contextWindow": 900000,
@@ -132,7 +132,7 @@
             "cost": {
               "input": 0.000003,
               "output": 0.000015,
-              "cacheRead": 3E-7,
+              "cacheRead": 3e-7,
               "cacheWrite": 0.000003
             },
             "contextWindow": 900000,
@@ -148,10 +148,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.4E-7,
-              "output": 2.8E-7,
-              "cacheRead": 1.4E-8,
-              "cacheWrite": 1.4E-7
+              "input": 1.4e-7,
+              "output": 2.8e-7,
+              "cacheRead": 1.4e-8,
+              "cacheWrite": 1.4e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -168,7 +168,7 @@
             "cost": {
               "input": 0.000001,
               "output": 0.000005,
-              "cacheRead": 1E-7,
+              "cacheRead": 1e-7,
               "cacheWrite": 0.000001
             },
             "contextWindow": 200000,
@@ -184,10 +184,10 @@
               "image"
             ],
             "cost": {
-              "input": 5E-7,
+              "input": 5e-7,
               "output": 0.0000015,
-              "cacheRead": 5E-8,
-              "cacheWrite": 5E-7
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -202,10 +202,10 @@
               "image"
             ],
             "cost": {
-              "input": 5E-7,
+              "input": 5e-7,
               "output": 0.0000015,
-              "cacheRead": 5E-8,
-              "cacheWrite": 5E-7
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -220,10 +220,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.5E-7,
-              "output": 8E-7,
-              "cacheRead": 1.5E-8,
-              "cacheWrite": 1.5E-7
+              "input": 1.5e-7,
+              "output": 8e-7,
+              "cacheRead": 1.5e-8,
+              "cacheWrite": 1.5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -254,7 +254,11 @@
         "id": "dj",
         "default": true,
         "name": "Gizmo",
-	"tools": { "deny": ["bundle-mcp"] },
+        "tools": {
+          "deny": [
+            "bundle-mcp"
+          ]
+        },
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
@@ -264,7 +268,9 @@
       {
         "id": "coder",
         "model": "kiro/claude-opus-4.6",
-	"tools": { "deny": [] },
+        "tools": {
+          "deny": []
+        },
         "name": "coder",
         "identity": {
           "name": "coder",
@@ -285,8 +291,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-13T18:19:47.636Z"
+    "lastTouchedVersion": "2026.5.12",
+    "lastTouchedAt": "2026-05-16T04:54:26.585Z"
   },
   "tools": {
     "profile": "coding",
@@ -316,7 +322,8 @@
       "groupPolicy": "disabled",
       "streaming": {
         "mode": "partial"
-      }
+      },
+      "configWrites": true
     }
   },
   "skills": {
@@ -430,12 +437,9 @@
       }
     }
   },
-  "canvasHost": {
-    "enabled": false
-  },
   "wizard": {
-    "lastRunAt": "2026-05-08T15:37:14.956Z",
-    "lastRunVersion": "2026.5.7",
+    "lastRunAt": "2026-05-16T04:54:19.877Z",
+    "lastRunVersion": "2026.5.12",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -467,6 +471,14 @@
             "user"
           ]
         }
+      },
+      "canvas": {
+        "config": {
+          "host": {
+            "enabled": false
+          }
+        },
+        "enabled": true
       }
     },
     "slots": {
