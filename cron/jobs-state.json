@@ -16,65 +16,47 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1778911402701,
+      "updatedAtMs": 1778914972957,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1778913000000,
-        "lastRunAtMs": 1778911200015,
+        "nextRunAtMs": 1778916600000,
+        "lastRunAtMs": 1778914800022,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 202686,
+        "lastDurationMs": 172935,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested"
+      }
+    },
+    "6959c6ee-0888-4cc4-bfad-3769120644ce": {
+      "updatedAtMs": 1778911498131,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
+      "state": {
+        "nextRunAtMs": 1778922201607,
+        "lastRunAtMs": 1778911404760,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 93371,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0
       }
     },
-    "6959c6ee-0888-4cc4-bfad-3769120644ce": {
-      "updatedAtMs": 1778906512238,
-      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
+    "d4374917-f4dc-431f-a314-50d8bb89abeb": {
+      "updatedAtMs": 1778911556434,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778911401607,
-        "lastRunAtMs": 1778900750163,
+        "nextRunAtMs": 1778914891923,
+        "lastRunAtMs": 1778911498131,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 120223,
+        "lastDurationMs": 58303,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "runningAtMs": 1778911404756
-      }
-    },
-    "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1778907723450,
-      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
-      "state": {
-        "nextRunAtMs": 1778911291923,
-        "lastRunAtMs": 1778907694611,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 28839,
-        "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastDiagnostics": {
-          "summary": "Blocked hostname or private/internal/special-use IP address",
-          "entries": [
-            {
-              "ts": 1778907723448,
-              "source": "tool",
-              "severity": "error",
-              "message": "Blocked hostname or private/internal/special-use IP address"
-            },
-            {
-              "ts": 1778907723449,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Blocked hostname or private/internal/special-use IP address"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "Blocked hostname or private/internal/special-use IP address",
-        "runningAtMs": 1778911404756
+        "runningAtMs": 1778914975019
       }
     }
   }

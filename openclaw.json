@@ -291,8 +291,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.5.12",
-    "lastTouchedAt": "2026-05-16T04:54:26.585Z"
+    "lastTouchedVersion": "2026.5.16-beta.1",
+    "lastTouchedAt": "2026-05-16T06:59:18.480Z"
   },
   "tools": {
     "profile": "coding",
@@ -434,6 +434,9 @@
       },
       "openai-whisper-api": {
         "enabled": false
+      },
+      "memory-distiller": {
+        "enabled": true
       }
     }
   },
@@ -444,7 +447,12 @@
     "lastRunMode": "local"
   },
   "plugins": {
-    "bundledDiscovery": "compat",
+    "allow": [
+      "telegram",
+      "brave",
+      "hindsight-openclaw",
+      "canvas"
+    ],
     "entries": {
       "telegram": {
         "enabled": true
@@ -483,7 +491,8 @@
     },
     "slots": {
       "memory": "hindsight-openclaw"
-    }
+    },
+    "bundledDiscovery": "compat"
   },
   "commands": {
     "ownerAllowFrom": [
