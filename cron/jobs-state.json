@@ -17,37 +17,18 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779023403216,
+      "updatedAtMs": 1779026515268,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779024600000,
-        "lastRunAtMs": 1779022800023,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 603193,
+        "nextRunAtMs": 1779028200000,
+        "lastRunAtMs": 1779026400033,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 115235,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "⚠️ 📝 Edit: `in ~/.openclaw/workspace/utr_monitor.sh` failed",
-        "lastDiagnostics": {
-          "summary": "⚠️ 📝 Edit: `in ~/.openclaw/workspace/utr_monitor.sh` failed",
-          "entries": [
-            {
-              "ts": 1779023403214,
-              "source": "tool",
-              "severity": "error",
-              "message": "⚠️ 📝 Edit: `in ~/.openclaw/workspace/utr_monitor.sh` failed"
-            },
-            {
-              "ts": 1779023403215,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ 📝 Edit: `in ~/.openclaw/workspace/utr_monitor.sh` failed"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ 📝 Edit: `in ~/.openclaw/workspace/utr_monitor.sh` failed"
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -66,19 +47,19 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779019412489,
+      "updatedAtMs": 1779023457974,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779022891923,
-        "lastRunAtMs": 1779019378404,
+        "nextRunAtMs": 1779026491923,
+        "lastRunAtMs": 1779023405454,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 34085,
+        "lastDurationMs": 52520,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779023405375
+        "runningAtMs": 1779026517349
       }
     }
   }
