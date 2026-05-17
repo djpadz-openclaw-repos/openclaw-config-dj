@@ -17,21 +17,18 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779055352466,
+      "updatedAtMs": 1779058899119,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779057000000,
-        "lastRunAtMs": 1779055200004,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 152462,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 1,
+        "nextRunAtMs": 1779060600000,
+        "lastRunAtMs": 1779058800053,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 99066,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "cron: job interrupted by gateway restart",
-        "lastDelivered": false,
-        "lastDeliveryError": "cron: job interrupted by gateway restart"
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -50,19 +47,19 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779051737267,
+      "updatedAtMs": 1779055511960,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779055472630,
-        "lastRunAtMs": 1779051709458,
+        "nextRunAtMs": 1779058891923,
+        "lastRunAtMs": 1779055472666,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 27809,
+        "lastDurationMs": 39294,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779055472639
+        "runningAtMs": 1779058901170
       }
     }
   }
