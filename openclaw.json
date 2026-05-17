@@ -254,14 +254,23 @@
     },
     "list": [
       {
-        "id": "dj",
-        "default": true,
+        "id": "main",
         "name": "Gizmo",
         "tools": {
           "deny": [
             "bundle-mcp"
           ]
         },
+        "identity": {
+          "name": "gizmo",
+          "avatar": "avatars/gizmo.png",
+          "emoji": "🦊"
+        }
+      },
+      {
+        "id": "dj",
+        "default": true,
+        "name": "Gizmo",
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",

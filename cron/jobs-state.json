@@ -17,29 +17,32 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779051707404,
+      "updatedAtMs": 1779055352466,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779053400000,
-        "lastRunAtMs": 1779051600041,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 107363,
-        "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "nextRunAtMs": 1779057000000,
+        "lastRunAtMs": 1779055200004,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 152462,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastError": "cron: job interrupted by gateway restart",
+        "lastDelivered": false,
+        "lastDeliveryError": "cron: job interrupted by gateway restart"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
-      "updatedAtMs": 1779041053602,
+      "updatedAtMs": 1779051841945,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779051801607,
-        "lastRunAtMs": 1779041001630,
+        "nextRunAtMs": 1779062601607,
+        "lastRunAtMs": 1779051801624,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 51972,
+        "lastDurationMs": 40321,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
@@ -47,19 +50,19 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779048196011,
+      "updatedAtMs": 1779051737267,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779051691923,
-        "lastRunAtMs": 1779048138050,
+        "nextRunAtMs": 1779055472630,
+        "lastRunAtMs": 1779051709458,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 57961,
+        "lastDurationMs": 27809,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779051709450
+        "runningAtMs": 1779055472639
       }
     }
   }
