@@ -45,7 +45,9 @@
     "providers": {
       "kiro": {
         "baseUrl": "http://kiro-gateway.kiro-gateway.svc.cluster.local:9000",
-	"request": { "allowPrivateNetwork": true },
+        "request": {
+          "allowPrivateNetwork": true
+        },
         "apiKey": "${KIRO_GATEWAY_TOKEN}",
         "api": "anthropic-messages",
         "models": [
@@ -292,8 +294,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.5.16-beta.3",
-    "lastTouchedAt": "2026-05-17T00:11:12.671Z"
+    "lastTouchedVersion": "2026.5.12",
+    "lastTouchedAt": "2026-05-17T03:53:49.503Z"
   },
   "tools": {
     "profile": "coding",
@@ -326,7 +328,7 @@
       },
       "configWrites": true,
       "groupAllowFrom": [
-        "8623402151"
+        8623402151
       ]
     }
   },
@@ -566,6 +568,11 @@
           "@playwright/mcp@latest"
         ]
       }
+    }
+  },
+  "ui": {
+    "assistant": {
+      "name": "Gizmo"
     }
   }
 }

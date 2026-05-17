@@ -17,14 +17,14 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1778986912522,
+      "updatedAtMs": 1778990493541,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1778988600000,
-        "lastRunAtMs": 1778986800017,
+        "nextRunAtMs": 1778992200000,
+        "lastRunAtMs": 1778990400024,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 112505,
+        "lastDurationMs": 93517,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
@@ -32,14 +32,14 @@
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
-      "updatedAtMs": 1778976315994,
+      "updatedAtMs": 1778987050457,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 */3 * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778987001607,
-        "lastRunAtMs": 1778976239025,
+        "nextRunAtMs": 1778997801607,
+        "lastRunAtMs": 1778987001636,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 76969,
+        "lastDurationMs": 48821,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
@@ -47,37 +47,19 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1778983307394,
+      "updatedAtMs": 1778986954404,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1778986891923,
-        "lastRunAtMs": 1778983291933,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 15461,
+        "nextRunAtMs": 1778990491923,
+        "lastRunAtMs": 1778986914637,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 39767,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 2,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDiagnostics": {
-          "summary": "Blocked hostname or private/internal/special-use IP address",
-          "entries": [
-            {
-              "ts": 1778983307390,
-              "source": "tool",
-              "severity": "error",
-              "message": "Blocked hostname or private/internal/special-use IP address"
-            },
-            {
-              "ts": 1778983307393,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "Blocked hostname or private/internal/special-use IP address"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "Blocked hostname or private/internal/special-use IP address",
-        "runningAtMs": 1778986914627
+        "runningAtMs": 1778990496787
       }
     }
   }
