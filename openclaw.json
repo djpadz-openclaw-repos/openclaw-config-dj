@@ -1,7 +1,5 @@
 {
   "logging": {
-    "consoleLevel": "debug",
-    "level": "debug",
     "file": "/home/node/.openclaw/logs/openclaw-debug.log",
     "maxFileBytes": 52428800
   },
@@ -22,7 +20,7 @@
     "auth": {
       "mode": "token",
       "rateLimit": {
-        "maxAttempts": 100000,
+        "maxAttempts": 10,
         "windowMs": 60000,
         "lockoutMs": 300000,
         "exemptLoopback": true

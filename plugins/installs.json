@@ -5,7 +5,7 @@
   "compatRegistryVersion": "f495518e4bb408b5b516ec1add5c2c1850580753e490d00c996d690c24523e34",
   "migrationVersion": 1,
   "policyHash": "2e338749753c94234efa59cc01e1bbf0b0d77436d447ea904eb264eea0c459ed",
-  "generatedAtMs": 1779049079756,
+  "generatedAtMs": 1779081374007,
   "refreshReason": "migration",
   "installRecords": {
     "brave": {
