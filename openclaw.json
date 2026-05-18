@@ -22,7 +22,7 @@
     "auth": {
       "mode": "token",
       "rateLimit": {
-        "maxAttempts": 10,
+        "maxAttempts": 100000,
         "windowMs": 60000,
         "lockoutMs": 300000,
         "exemptLoopback": true
