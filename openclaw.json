@@ -471,6 +471,7 @@
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
           "dynamicBankGranularity": [
+		  "agent","channel",
             "user"
           ]
         }
