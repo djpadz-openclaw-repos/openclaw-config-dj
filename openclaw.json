@@ -1,14 +1,4 @@
 {
-  "logging": {
-    "consoleLevel": "debug",
-    "level": "debug",
-    "file": "/home/node/.openclaw/logs/openclaw-debug.log",
-    "maxFileBytes": 52428800
-  },
-  "logging": {
-    "file": "/home/node/.openclaw/logs/openclaw-debug.log",
-    "maxFileBytes": 52428800
-  },
   "gateway": {
     "remote": {
       "url": "wss://dj.gw.oc.ctb.padz.net"
