@@ -59,7 +59,7 @@
       "sessionKey": "agent:dj:cron:e8c10b17-70a7-4507-a721-d15cfe22935e",
       "name": "cleanup-old-subagent-sessions",
       "description": "Delete subagent tasks and sessions older than 3 hours with succeeded status",
-      "enabled": true,
+      "enabled": false,
       "createdAtMs": 1778621216812,
       "schedule": {
         "kind": "cron",
