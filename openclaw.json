@@ -1,4 +1,8 @@
 {
+  "logging": {
+    "level": "trace",
+    "file": "~/.openclaw/logs/openclaw-debug.log"
+  },
   "gateway": {
     "remote": {
       "url": "wss://dj.gw.oc.ctb.padz.net"
@@ -15,6 +19,7 @@
     "bind": "lan",
     "auth": {
       "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}",
       "rateLimit": {
         "maxAttempts": 10,
         "windowMs": 60000,
@@ -32,7 +37,8 @@
         "https://dj.gw.oc.ctb.padz.net"
       ],
       "enabled": true
-    }
+    },
+    "allowRealIpFallback": true
   },
   "models": {
     "mode": "merge",
@@ -232,6 +238,7 @@
   "agents": {
     "defaults": {
       "bootstrapMaxChars": 32000,
+      "contextInjection": "continuation-skip",
       "model": {
         "primary": "kiro/claude-haiku-4.5"
       },
@@ -260,7 +267,7 @@
     ]
   },
   "session": {
-    "dmScope": "per-channel-peer",
+    "dmScope": "per-agent",
     "reset": {
       "mode": "idle",
       "idleMinutes": 240
@@ -271,8 +278,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.5.12",
-    "lastTouchedAt": "2026-05-17T18:57:55.576Z"
+    "lastTouchedVersion": "2026.5.18",
+    "lastTouchedAt": "2026-05-18T23:58:16.222Z"
   },
   "tools": {
     "profile": "coding",
@@ -420,12 +427,15 @@
       },
       "memory-distiller": {
         "enabled": true
+      },
+      "obsidian": {
+        "enabled": false
       }
     }
   },
   "wizard": {
-    "lastRunAt": "2026-05-17T00:11:11.752Z",
-    "lastRunVersion": "2026.5.16-beta.3",
+    "lastRunAt": "2026-05-18T23:58:15.699Z",
+    "lastRunVersion": "2026.5.18",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -461,7 +471,8 @@
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
           "dynamicBankGranularity": [
-		  "agent","channel",
+            "agent",
+            "channel",
             "user"
           ]
         }
@@ -536,21 +547,12 @@
       }
     }
   },
-  "mcp": {
-    "servers": {
-      "playwright": {
-        "enabled": false,
-        "command": "npx",
-        "args": [
-          "-y",
-          "@playwright/mcp@latest"
-        ]
-      }
-    }
-  },
   "ui": {
     "assistant": {
       "name": "Gizmo"
     }
+  },
+  "browser": {
+    "enabled": true
   }
 }
