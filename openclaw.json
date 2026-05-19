@@ -267,7 +267,7 @@
     ]
   },
   "session": {
-    "dmScope": "per-agent",
+    "dmScope": "main",
     "reset": {
       "mode": "idle",
       "idleMinutes": 240
@@ -279,7 +279,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.5.18",
-    "lastTouchedAt": "2026-05-18T23:58:16.222Z"
+    "lastTouchedAt": "2026-05-19T00:04:00.000Z"
   },
   "tools": {
     "profile": "coding",

@@ -268,6 +268,25 @@ Both are necessary. Deleting files without cleaning the database leaves orphaned
 - Device ID derivation bug fixed: was using wrong hash algorithm
 - Use NSLog() for system logging (not print) for iOS simulator debugging
 
+## macOS & iOS App Message Bug (May 19, 2026)
+
+**Problem:** Messages sent from macOS and iOS apps appear in chat, then disappear.
+
+**Root Cause:** Gateway response routing bug
+- Apps send `chat.send` through node connection ✓
+- Gateway receives request through node connection ✓
+- Gateway processes message ✓
+- **BUT:** Gateway routes response back through `channel=webchat` instead of node connection ✗
+- App waits for response on node connection, times out, clears message
+
+**Evidence:**
+- Gateway logs show: `channel=webchat` for message that came through node connection
+- Both iOS (`IOSGatewayChatTransport.swift`) and macOS apps use `gateway.request(method: "chat.send", ...)`
+- Node connection works fine for system commands (`system.which`)
+- Issue is response routing, not request sending
+
+**Fix Location:** Gateway code that handles node request → response mapping. When a node sends a request, the response must be routed back through the same node connection, not through webchat.
+
 ## Basic Facts
 
 - **Name:** Dj (lowercase j)
