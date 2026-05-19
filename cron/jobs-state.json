@@ -17,14 +17,14 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779224490838,
+      "updatedAtMs": 1779228150965,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779226200000,
-        "lastRunAtMs": 1779224400033,
+        "nextRunAtMs": 1779229800000,
+        "lastRunAtMs": 1779228000019,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 90805,
+        "lastDurationMs": 150946,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
@@ -46,19 +46,19 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779220930315,
+      "updatedAtMs": 1779224547004,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779224491923,
-        "lastRunAtMs": 1779220894379,
+        "nextRunAtMs": 1779228091923,
+        "lastRunAtMs": 1779224491950,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 35936,
+        "lastDurationMs": 55054,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779224491938
+        "runningAtMs": 1779228152994
       }
     }
   }
