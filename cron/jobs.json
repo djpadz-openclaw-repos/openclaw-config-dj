@@ -129,13 +129,13 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run this command:\n\npython3 /home/node/.openclaw/workspace/scripts/check-airplane-tour.py\n\nIf the script produces output, report it exactly as-is. If it produces no output (silent), do not send anything — just exit silently.",
+        "message": "Run the airplane tour monitor:\n\npython3 /home/node/.openclaw/workspace/scripts/check-airplane-tour.py\n\nThe script handles all output and Telegram notifications directly. Do not report anything.",
         "model": "kiro/claude-haiku-4.5",
         "timeoutSeconds": 60,
         "lightContext": true
       },
       "delivery": {
-        "mode": "announce",
+        "mode": "none",
         "channel": "telegram",
         "to": "8623402151",
         "bestEffort": false
