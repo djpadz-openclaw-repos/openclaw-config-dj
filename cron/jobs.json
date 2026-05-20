@@ -110,6 +110,36 @@
       },
       "deleteAfterRun": false,
       "state": {}
+    },
+    {
+      "id": "bcd13b32-8208-40da-9e21-6db6c192e610",
+      "agentId": "dj",
+      "sessionKey": "agent:dj:dashboard:0a559294-1b97-457d-85bf-32ee92ce57c7",
+      "name": "Airplane Live Tour Monitor",
+      "description": "Check airplanelivetour.com hourly for new tour dates/cities",
+      "enabled": true,
+      "createdAtMs": 1779255630175,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "America/Los_Angeles",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check https://www.airplanelivetour.com/ for new tour cities or dates. Compare the current page content against the baseline. If there are any new cities, tour dates, or location announcements, alert me immediately with the specific changes. If nothing new, just confirm the check completed.",
+        "model": "kiro/claude-haiku-4.5",
+        "timeoutSeconds": 30,
+        "lightContext": true
+      },
+      "delivery": {
+        "mode": "announce",
+        "bestEffort": false
+      },
+      "deleteAfterRun": false,
+      "state": {}
     }
   ]
 }
