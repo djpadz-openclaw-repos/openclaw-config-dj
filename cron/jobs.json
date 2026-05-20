@@ -129,7 +129,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run this command and report the output exactly as-is:\n\npython3 /home/node/.openclaw/workspace/scripts/check-airplane-tour.py\n\nDo not ask questions or offer options. Just run it and report what it says.",
+        "message": "Run this command:\n\npython3 /home/node/.openclaw/workspace/scripts/check-airplane-tour.py\n\nIf the script produces output, report it exactly as-is. If it produces no output (silent), do not send anything — just exit silently.",
         "model": "kiro/claude-haiku-4.5",
         "timeoutSeconds": 60,
         "lightContext": true
