@@ -129,13 +129,15 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Check https://www.airplanelivetour.com/ for new tour cities or dates. Compare the current page content against the baseline. If there are any new cities, tour dates, or location announcements, alert me immediately with the specific changes. If nothing new, just confirm the check completed.",
+        "message": "Run this command and report the output exactly as-is:\n\npython3 /home/node/.openclaw/workspace/scripts/check-airplane-tour.py\n\nDo not ask questions or offer options. Just run it and report what it says.",
         "model": "kiro/claude-haiku-4.5",
-        "timeoutSeconds": 30,
+        "timeoutSeconds": 60,
         "lightContext": true
       },
       "delivery": {
         "mode": "announce",
+        "channel": "telegram",
+        "to": "8623402151",
         "bestEffort": false
       },
       "deleteAfterRun": false,

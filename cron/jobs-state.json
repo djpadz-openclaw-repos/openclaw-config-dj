@@ -17,14 +17,14 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779264212672,
+      "updatedAtMs": 1779267821618,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779265800000,
-        "lastRunAtMs": 1779264000042,
+        "nextRunAtMs": 1779269400000,
+        "lastRunAtMs": 1779267600029,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 212630,
+        "lastDurationMs": 221589,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
@@ -46,48 +46,36 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779260619169,
+      "updatedAtMs": 1779264267618,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779264091923,
-        "lastRunAtMs": 1779260572710,
+        "nextRunAtMs": 1779267691923,
+        "lastRunAtMs": 1779264214728,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 46459,
+        "lastDurationMs": 52890,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779264214721
+        "runningAtMs": 1779267823679
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779260651505,
+      "updatedAtMs": 1779265557753,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779264163383,
-        "lastRunAtMs": 1779260619169,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 32336,
-        "lastDiagnostics": {
-          "summary": "cron: job execution timed out (last phase: model-call-started)",
-          "entries": [
-            {
-              "ts": 1779260651505,
-              "source": "cron-setup",
-              "severity": "error",
-              "message": "cron: job execution timed out (last phase: model-call-started)"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "cron: job execution timed out (last phase: model-call-started)",
-        "lastErrorReason": "timeout",
-        "lastDeliveryStatus": "unknown",
-        "lastFailureNotificationDeliveryStatus": "unknown",
-        "consecutiveErrors": 2,
+        "nextRunAtMs": 1779267763383,
+        "lastRunAtMs": 1779265524488,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 33265,
+        "lastDeliveryStatus": "delivered",
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "runningAtMs": 1779264214721
+        "lastDelivered": true,
+        "runningAtMs": 1779267823679
       }
     }
   }
