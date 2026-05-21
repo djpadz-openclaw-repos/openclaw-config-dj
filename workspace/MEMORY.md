@@ -27,6 +27,41 @@ This includes:
 
 Do NOT do coding work with Haiku. Opus is required for complex reasoning tasks. Dj has explicitly stated this is frustrating to repeat, so this must be automatic going forward.
 
+## Best Practices for Storing Memories
+
+**Structure:**
+- Use clear headers (`##`) to group related memories by topic
+- Keep entries concise and actionable — distill lessons, don't dump transcripts
+- Include "why" alongside "what" so future-me understands the reasoning
+- Date-stamp temporal entries (decisions, fixes, status changes)
+- Reference external files for lengthy details rather than inlining everything
+
+**What to store:**
+- Decisions and their rationale
+- Behavioral rules and commitments (with specific examples)
+- Infrastructure facts that are hard to rediscover (URLs, credentials locations, port numbers)
+- Patterns that failed and why (prevents repeat mistakes)
+- Key technical learnings from debugging sessions
+- Relationship/personal context that affects interactions
+
+**What NOT to store:**
+- Raw session transcripts or play-by-play logs (use daily memory files for that)
+- Temporary state that will be stale in a week (unless date-stamped with expiry intent)
+- Information already captured in skill files or project docs (just reference them)
+- Secrets/credentials in plaintext (reference 1Password vault locations instead)
+
+**Maintenance:**
+- Prune stale entries during heartbeat memory reviews
+- Consolidate related entries that have grown scattered
+- Move completed project details to project-specific files when they get long
+- Keep critical rules (like the Opus rule) near the top where they can't be missed
+- When a section grows past ~20 lines, consider whether it belongs in its own file
+
+**Timing:**
+- Write immediately when something important happens — don't defer
+- Commitments without memory are just talk (see Behavioral Commitments section)
+- Assume context will truncate; capture decisions as they're made
+
 ## Dj's Background & Philosophy
 
 - #6 on original iTools team at Apple (~6 months under Steve Jobs)
