@@ -422,7 +422,11 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 
 **nvi Environment:** Added to diagnostic tool config.py (May 21, 2026)
 
-**Appointment 41214 (May 21, 2026):** Missing report for Extraocular Motility test (125545). Test has no artifacts at all (no report, no video, no JSON). Root cause: report server never processed this test — either device failed to capture valid data or report server silently failed.
+**Appointment 41214 (May 21, 2026):** Missing report for Extraocular Motility test (125545). Root cause: portal API returned 503 during PDF footer rendering (video link lookup), causing unrecoverable exception and dead-lettering the message. Report server was also hitting CosmosDB 425 "Data not found" errors causing retry loops before the fatal 503. Resubmitted message at 22:53 UTC and report generated successfully.
+
+**Service Bus message format for nvi-report queue:** `{"blob_filename": "<appointment_id>/<test_id>/<filename>"}` — e.g. `{"blob_filename": "41214/125545/both_eom.json"}`
+
+**Service Bus details:** Namespace `herucon`, resource group `Controlled_Environments`, queue `nvi-report`. Use `RootManageSharedAccessKey` for connection string. Python: use `/home/linuxbrew/.linuxbrew/bin/python3` with `azure-servicebus` package.
 
 ## Key Technical Patterns
 
