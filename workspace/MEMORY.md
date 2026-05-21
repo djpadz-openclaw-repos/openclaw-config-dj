@@ -416,6 +416,14 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 - API tools (memory_search, memory_list, memory_get) handle agent-scoping automatically
 - As we scale to multiple agents on the same Qdrant service, this isolation prevents cross-contamination
 
+## Heru Portal Diagnostics
+
+**VF Tests (May 21, 2026):** Do NOT generate videos. Diagnostic tool may flag VF tests as "video missing" — this is a false positive. Only Cover Test, Extraocular Motility, and Pupil tests generate videos.
+
+**nvi Environment:** Added to diagnostic tool config.py (May 21, 2026)
+
+**Appointment 41214 (May 21, 2026):** Missing report for Extraocular Motility test (125545). Test has no artifacts at all (no report, no video, no JSON). Root cause: report server never processed this test — either device failed to capture valid data or report server silently failed.
+
 ## Key Technical Patterns
 
 **Playwright/E2E in OpenClaw pods:**
