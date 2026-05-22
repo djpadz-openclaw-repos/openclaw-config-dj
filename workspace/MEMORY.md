@@ -11,6 +11,16 @@
 
 **SESSION STARTUP:** Read this file first thing in every main session. The CRITICAL rule below must be internalized before any work begins.
 
+## Project-Specific Memory Index
+
+When working on a project, read its MEMORY.md file first:
+- **CarPlay Gizmo:** `projects/carplay-gizmo/MEMORY.md` (build workflow, recent fixes, message bug)
+- **Email Automation:** `projects/email-automation/MEMORY.md` (features, Kiro endpoints, deployments)
+- **Heru Portal:** `projects/heru/MEMORY.md` (diagnostics, service bus, VF tests)
+- **Media Automation:** `projects/media-automation/MEMORY.md` (Sonarr/Radarr, Telegram webhook)
+
+These files are loaded on-demand to keep main context lean.
+
 ## CRITICAL: Coding Tasks Always Use Opus
 
 **RULE: For ALL coding work, spawn a subagent with model="kiro/claude-opus-4.6"**
@@ -129,29 +139,6 @@ Search is a means to an end, not the end itself. Raw results without analysis = 
 
 **Example of what TO do:** Dj says "we're moving to containerd," I immediately write that decision to memory so it survives truncation.
 
-## Email Automation: Move Detection & Rule Learning (May 4, 2026)
-
-**Feature:** When user manually moves a message from INBOX to another folder, the system should:
-1. Detect the move (via IMAP monitoring)
-2. Analyze the message properties (sender, subject, etc.)
-3. Build/suggest a rule based on that move
-
-**Heuristics for rule creation:**
-- **Generic sender** (noreply@, billing@, support@, etc.) → Create rule based on sender address
-  - Example: Move from noreply@amazon.com → rule: `if contains(email.sender, "noreply@amazon.com") then move("@Amazon")`
-- **Complicated sender** (personal names, etc.) → Extract keywords from subject and create rule based on sender domain + subject keywords
-  - Example: Move from john@example.com with subject "Project Alpha Update" → rule: `if contains(email.sender_domain, "example.com") and contains(email.subject, "Project Alpha") then move("@Projects")`
-
-**Implementation approach:**
-- Monitor IMAP for message moves (track messages leaving INBOX)
-- Detect destination folder
-- Extract message metadata (sender, subject, etc.)
-- Apply heuristics to determine rule pattern
-- Auto-create rule in database
-- Possibly use Kiro for intelligent keyword extraction from subject
-
-**Status:** Not yet implemented
-
 ## Subagent Cleanup Fix (May 15, 2026)
 
 **Problem:** Control UI was showing 6-10 stale subagent sessions in the dropdown, even though the API showed only 1 active session.
@@ -192,135 +179,7 @@ Both are necessary. Deleting files without cleaning the database leaves orphaned
 - **Email Automation Tool:** https://email-automation.oc.ctb.padz.net (Go backend + Next.js frontend, Kubernetes deployment)
 - **Container Registry:** registry.container-registry.svc.cluster.local:32000 (Kubernetes DNS name for pushing/pulling images — ALWAYS use this, not localhost or ClusterIP)
 
-## Email Automation Fixes (May 3, 2026)
 
-**Session Summary - Multiple Features Implemented & Deployed:**
-
-### 1. User Registration with Password Support ✅
-- `POST /auth/register/passkey` now accepts username and password
-- Passwords are hashed with bcrypt before storage
-- Tested and working: Created users testuser1-8 successfully
-- Commit: 75adec0 ("Update registration endpoint to accept and hash passwords")
-
-### 2. WebAuthn Passkey Authentication ✅
-- `POST /auth/passkey/enroll/begin` — Starts WebAuthn registration ceremony
-- `POST /auth/passkey/enroll/finish` — Completes enrollment
-- `POST /auth/passkey/authenticate/begin` — Starts authentication
-- `POST /auth/passkey/authenticate/complete` — Completes authentication
-- All endpoints are public (no auth required)
-- Tested: Enrollment begin returns valid WebAuthn challenge
-- **Fixed:** BackupEligible flag inconsistency (commit 1ca53c1)
-  - Added backup_eligible and backup_state columns to passkeys table
-  - Updated PasskeyRecord and Passkey models to store/retrieve backup flags
-  - Migration: 003_passkey_backup_flags.up.sql
-  - Note: Existing passkeys need re-enrollment after this fix
-
-### 3. Kiro AI Rule Translation Endpoints ✅ FULLY WORKING
-- `POST /api/kiro/translate/english-to-lua` — Converts English descriptions to Lua rules
-- `POST /api/kiro/translate/lua-to-english` — Converts Lua rules to English descriptions
-- Endpoints are registered and responding correctly with proper Lua code
-- Uses Anthropic Claude API via Kiro gateway at http://10.152.183.204:9000/v1/messages
-- Commit: 5d151c4 ("Add /api/kiro endpoint for rule translation")
-- Commit: 8136253 ("Fix: use Bearer token authentication for Kiro API endpoint")
-- Commit: d09f9ab ("Fix: append /v1/messages path to Kiro API URL and update postgres password in secrets")
-- Commit: ee187c4 ("Fix: parse text content block from Kiro API response (skip thinking blocks)")
-- **Fixed:** Empty response issue — Anthropic API returns multiple content blocks (thinking + text). Code now iterates through blocks to find the text block instead of just taking the first one.
-- Status: Endpoints deployed and fully working (returning proper Lua code)
-
-### 4. Database Schema Fixes ✅
-- Added missing `totp_secret` and `totp_enabled` columns to users table
-- Made `tenant_id` column nullable
-- Added `backup_eligible` and `backup_state` columns to passkeys table
-- All migrations properly applied
-- Fixed postgres password in secrets (was using placeholder "CHANGE_ME", now using actual password: 87cb60e125b0a344f3b7ce41f25225c7)
-
-### 5. Deployment Fixes ✅
-- Fixed Docker image name in k8s/api.yaml (was using old image name)
-- Commit: aacc1e1 ("Fix: correct Docker image name in api.yaml deployment")
-- Docker image rebuilt and pushed to registry multiple times
-- Kubernetes deployment rolled out successfully (2/2 replicas ready)
-- All pods now connecting to postgres successfully
-
-**Final Status:**
-- User registration: ✅ WORKING (username + password)
-- Passkey enrollment: ✅ WORKING (endpoints responding, backup flags now stored)
-- Passkey authentication: ✅ FIXED (BackupEligible flag inconsistency resolved)
-- Kiro translation endpoints: ✅ FULLY WORKING (returning proper Lua code)
-- All endpoints deployed and responding
-- All pods healthy and running
-
-**Test Results:**
-- User registration: Created testuser1-8 successfully
-- Kiro English→Lua: Returns proper Lua code (e.g., "Move emails from John to the Archive folder" → proper Lua rule)
-- All endpoints responding with correct status codes
-
-**Commits in this session:**
-- 75adec0: Update registration endpoint to accept and hash passwords
-- 5d151c4: Add /api/kiro endpoint for rule translation
-- aacc1e1: Fix: correct Docker image name in api.yaml deployment
-- 1ca53c1: Fix: handle BackupEligible flag inconsistency in passkey validation
-- 8136253: Fix: use Bearer token authentication for Kiro API endpoint
-- ed587de: Add Kiro API configuration (URL and API key) to Kubernetes secrets
-- d09f9ab: Fix: append /v1/messages path to Kiro API URL and update postgres password in secrets
-- ee187c4: Fix: parse text content block from Kiro API response (skip thinking blocks)
-
-**Key Learnings:**
-- Kiro gateway is an Anthropic-compatible API gateway at http://10.152.183.204:9000
-- Endpoints must use the full path: /v1/messages (not just the base URL)
-- Authentication uses x-api-key header (not Bearer token)
-- Postgres password was stored in the actual Kubernetes secret (87cb60e125b0a344f3b7ce41f25225c7), not the placeholder in YAML
-- BackupEligible flag must be stored in database for passkey authentication to work correctly
-- Anthropic API returns multiple content blocks (thinking + text) — must iterate to find the text block, not just take the first one
-
-## CarPlay Gizmo Build Workflow
-
-**Status (May 15, 2026):** Reconciled and cleaned up duplicate directories. Only `carplay-gizmo` remains, now in projects/ directory.
-
-**Build machine:** djs-macbook-air.tail1916d.ts.net (Tailscale address)
-**Source location:** ~/Desktop/carplay-gizmo
-**Workspace location:** /home/node/.openclaw/workspace/projects/carplay-gizmo
-
-**Cleanup performed (May 15, 2026):**
-- Found two directories: carplay-gizmo and carplay-gizmo-local
-- carplay-gizmo: newer version with session management features (ChatSession.swift, SessionManager.swift, SessionListView.swift)
-- carplay-gizmo-local: stale copy from earlier development (missing session management code)
-- Committed uncommitted changes in carplay-gizmo (0aaff34)
-- Deleted carplay-gizmo-local as it was redundant
-- Moved carplay-gizmo from workspace root to projects/carplay-gizmo for consistency
-- Result: Single canonical source at /home/node/.openclaw/workspace/projects/carplay-gizmo
-
-**Deployment workflow:**
-1. Commit changes locally
-2. Push to GitHub
-3. SSH into djs-macbook-air.tail1916d.ts.net
-4. Pull changes in ~/Desktop/carplay-gizmo
-5. Run xcodebuild to compile
-
-**Recent fixes (Apr 18-19):**
-- Fixed streaming response handling: sessions.send returns async via events, not direct response
-- Modified OpenClawClient to track pending sessions.send requests separately
-- Response data extracted from event's "data" field, not "choices"
-- Device ID derivation bug fixed: was using wrong hash algorithm
-- Use NSLog() for system logging (not print) for iOS simulator debugging
-
-## macOS & iOS App Message Bug (May 19, 2026)
-
-**Problem:** Messages sent from macOS and iOS apps appear in chat, then disappear.
-
-**Root Cause:** Gateway response routing bug
-- Apps send `chat.send` through node connection ✓
-- Gateway receives request through node connection ✓
-- Gateway processes message ✓
-- **BUT:** Gateway routes response back through `channel=webchat` instead of node connection ✗
-- App waits for response on node connection, times out, clears message
-
-**Evidence:**
-- Gateway logs show: `channel=webchat` for message that came through node connection
-- Both iOS (`IOSGatewayChatTransport.swift`) and macOS apps use `gateway.request(method: "chat.send", ...)`
-- Node connection works fine for system commands (`system.which`)
-- Issue is response routing, not request sending
-
-**Fix Location:** Gateway code that handles node request → response mapping. When a node sends a request, the response must be routed back through the same node connection, not through webchat.
 
 ## Basic Facts
 
@@ -334,64 +193,7 @@ Both are necessary. Deleting files without cleaning the database leaves orphaned
 
 See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1Password, shared calendars, infrastructure, media server, grocery app, GitHub orgs, trip planning.
 
-## Media Automation (Sonarr/Radarr Notifier)
 
-**Setup (May 9, 2026):**
-- Created new repo: https://github.com/djpadz-openclaw-gh/media-automation
-- Archived old repo: djpadz-openclaw-repos/email-automation (was mixing email + media automation)
-- Docker image built and pushed to registry: `registry.container-registry.svc.cluster.local:32000/media-automation:latest`
-- Kubernetes CronJobs deployed in `media-automation` namespace
-  - Sonarr/Radarr notifiers run every 15 minutes
-  - Use ConfigMap for URLs and chat ID
-  - Use Secret for API tokens (Sonarr API key, Radarr API key, Telegram bot token)
-  - Use PVC for state files (sonarr_notified.json, radarr_notified.json)
-  - Mount state at `/app/state`
-
-**Kubernetes Resources:**
-- Namespace: `media-automation`
-- ConfigMap: `media-automation-config` (SONARR_URL, RADARR_URL, TELEGRAM_CHAT_ID, OP_VAULT)
-- Secret: `media-automation-secrets` (API tokens)
-- PVC: `media-automation-state` (1Gi, microk8s-hostpath)
-- CronJobs:
-  - `sonarr-notifier` (schedule: `*/15 * * * *`, runs notify_sonarr.py)
-  - `radarr-notifier` (schedule: `*/15 * * * *`, runs notify_radarr.py)
-  - `utr-monitor` (schedule: `*/30 * * * *`, runs monitor_utr.py) — NEW (May 10)
-
-**API Keys (stored in Secret):**
-- Sonarr: 3893c3cf4e7146eca1e0fb2668e3f196
-- Radarr: 1292da26fe62424a9e82fcad6c5fd388
-- Telegram bot: 8629480213:AAGoHm6UXRhgfmo-UdIt6Kcdpzi1dE8HU5I
-
-**Status:** All notifiers deployed and running. Sonarr/Radarr check every 15 min.
-
-**Recent Fixes (May 10, 2026):**
-- Removed Tailscale sidecar (was causing pods to hang indefinitely)
-- Fixed secret/configmap references (TELEGRAM_CHAT_ID moved to ConfigMap)
-- Added `ttlSecondsAfterFinished: 300` (completed jobs auto-delete after 5 minutes)
-- All pods now complete cleanly and exit
-
-## Telegram Webhook Setup (May 10, 2026)
-
-**Status:** ✅ Working
-
-**What was done:**
-- Configured Telegram channel for webhook mode (push notifications instead of polling)
-- Added `/telegram-webhook` path to Kubernetes Ingress to route to port 18790
-- Set `webhookHost: 0.0.0.0` to listen on all interfaces
-- Webhook URL: `https://dj.gw.oc.ctb.padz.net/telegram-webhook`
-- Webhook secret: `d21ea770ac52573a492f35828f2c01e66d9f0d1dcbe213b1c68956f13b5c0d7f`
-
-**Key learnings:**
-- Webhook listener runs on port 18790 (separate from main gateway port 18789)
-- Ingress must explicitly route the webhook path to the correct port
-- Webhook registration with Telegram can timeout if not configured correctly
-- Once working, webhook is more efficient than polling
-
-**Hindsight verification (May 10, 2026):**
-- Hindsight service is healthy and connected
-- hindsight-openclaw plugin is enabled and loaded in Gateway
-- Plugin automatically captures memories from conversations via hooks
-- Verified working and ready for use
 
 ## Infrastructure & Automation
 
@@ -416,17 +218,7 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 - API tools (memory_search, memory_list, memory_get) handle agent-scoping automatically
 - As we scale to multiple agents on the same Qdrant service, this isolation prevents cross-contamination
 
-## Heru Portal Diagnostics
 
-**VF Tests (May 21, 2026):** Do NOT generate videos. Diagnostic tool may flag VF tests as "video missing" — this is a false positive. Only Cover Test, Extraocular Motility, and Pupil tests generate videos.
-
-**nvi Environment:** Added to diagnostic tool config.py (May 21, 2026)
-
-**Appointment 41214 (May 21, 2026):** Missing report for Extraocular Motility test (125545). Root cause: portal API returned 503 during PDF footer rendering (video link lookup), causing unrecoverable exception and dead-lettering the message. Report server was also hitting CosmosDB 425 "Data not found" errors causing retry loops before the fatal 503. Resubmitted message at 22:53 UTC and report generated successfully.
-
-**Service Bus message format for nvi-report queue:** `{"blob_filename": "<appointment_id>/<test_id>/<filename>"}` — e.g. `{"blob_filename": "41214/125545/both_eom.json"}`
-
-**Service Bus details:** Namespace `herucon`, resource group `Controlled_Environments`, queue `nvi-report`. Use `RootManageSharedAccessKey` for connection string. Python: use `/home/linuxbrew/.linuxbrew/bin/python3` with `azure-servicebus` package.
 
 ## Key Technical Patterns
 
