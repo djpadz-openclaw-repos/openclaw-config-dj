@@ -17,31 +17,31 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779458526255,
+      "updatedAtMs": 1779462127804,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779460200000,
-        "lastRunAtMs": 1779458400035,
+        "nextRunAtMs": 1779463800000,
+        "lastRunAtMs": 1779462000029,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 126220,
+        "lastDurationMs": 127775,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "EmbeddedAttemptSessionTakeoverError: session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/a80bb77c-7022-49b2-b25c-d324cd51c3c9.jsonl",
+        "lastError": "EmbeddedAttemptSessionTakeoverError: session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/5a819fa2-7355-4e6b-9b3e-aa96e6aaeaad.jsonl",
         "lastDiagnostics": {
-          "summary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/a80bb77c-7022-49b2-b25c-d324cd51c3c9.jsonl",
+          "summary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/5a819fa2-7355-4e6b-9b3e-aa96e6aaeaad.jsonl",
           "entries": [
             {
-              "ts": 1779458526254,
+              "ts": 1779462127804,
               "source": "agent-run",
               "severity": "error",
-              "message": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/a80bb77c-7022-49b2-b25c-d324cd51c3c9.jsonl"
+              "message": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/5a819fa2-7355-4e6b-9b3e-aa96e6aaeaad.jsonl"
             }
           ]
         },
-        "lastDiagnosticSummary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/a80bb77c-7022-49b2-b25c-d324cd51c3c9.jsonl"
+        "lastDiagnosticSummary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/5a819fa2-7355-4e6b-9b3e-aa96e6aaeaad.jsonl"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -59,30 +59,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779454950691,
+      "updatedAtMs": 1779458568772,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779458491923,
-        "lastRunAtMs": 1779454908076,
+        "nextRunAtMs": 1779462091923,
+        "lastRunAtMs": 1779458528307,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 42615,
+        "lastDurationMs": 40465,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779458528301
+        "runningAtMs": 1779462129857
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779454983330,
+      "updatedAtMs": 1779458589284,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779458563383,
-        "lastRunAtMs": 1779454963409,
+        "nextRunAtMs": 1779462163383,
+        "lastRunAtMs": 1779458570837,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19921,
+        "lastDurationMs": 18447,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
