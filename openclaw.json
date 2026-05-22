@@ -251,7 +251,8 @@
       },
       "compaction": {
         "mode": "safeguard"
-      }
+      },
+      "userTimezone": "America/Los_Angeles"
     },
     "list": [
       {
@@ -532,6 +533,12 @@
     }
   },
   "messages": {
+    "queue": {
+      "mode": "steer",
+      "debounceMs": 500,
+      "cap": 20,
+      "drop": "summarize"
+    },
     "groupChat": {
       "visibleReplies": "automatic"
     },
