@@ -17,31 +17,18 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779422491869,
+      "updatedAtMs": 1779426146494,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779424200000,
-        "lastRunAtMs": 1779422400014,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 91855,
+        "nextRunAtMs": 1779427800000,
+        "lastRunAtMs": 1779426000035,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 146459,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "EmbeddedAttemptSessionTakeoverError: session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/3de6dcc7-c483-44a1-8603-f3443d8a3657.jsonl",
-        "lastDiagnostics": {
-          "summary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/3de6dcc7-c483-44a1-8603-f3443d8a3657.jsonl",
-          "entries": [
-            {
-              "ts": 1779422491868,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/3de6dcc7-c483-44a1-8603-f3443d8a3657.jsonl"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "session file changed while embedded prompt lock was released: /home/node/.openclaw/agents/dj/sessions/3de6dcc7-c483-44a1-8603-f3443d8a3657.jsonl"
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -59,30 +46,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779419030045,
+      "updatedAtMs": 1779422566081,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779422491923,
-        "lastRunAtMs": 1779418988426,
+        "nextRunAtMs": 1779426091923,
+        "lastRunAtMs": 1779422494002,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 41619,
+        "lastDurationMs": 72079,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779422493942
+        "runningAtMs": 1779426148583
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779419053275,
+      "updatedAtMs": 1779422587485,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779422563383,
-        "lastRunAtMs": 1779419030045,
+        "nextRunAtMs": 1779426163383,
+        "lastRunAtMs": 1779422568127,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 23230,
+        "lastDurationMs": 19358,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
