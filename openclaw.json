@@ -1,6 +1,6 @@
 {
   "logging": {
-    "level": "trace",
+    "level": "debug",
     "file": "~/.openclaw/logs/openclaw-debug.log"
   },
   "gateway": {
