@@ -31,30 +31,57 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779570133988,
+      "updatedAtMs": 1779573738617,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779573691923,
-        "lastRunAtMs": 1779570091964,
+        "nextRunAtMs": 1779577291923,
+        "lastRunAtMs": 1779573691950,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 42024,
+        "lastDurationMs": 46667,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779573691937
+        "lastDiagnostics": {
+          "summary": "{\"detail\":\"Streaming failed after 3 attempts. Unknown error.\"}",
+          "entries": [
+            {
+              "ts": 1779573738614,
+              "source": "tool",
+              "severity": "warn",
+              "message": "{\"detail\":\"Streaming failed after 3 attempts. Unknown error.\"}"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "{\"detail\":\"Streaming failed after 3 attempts. Unknown error.\"}",
+        "runningAtMs": 1779577321772
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779570183622,
+      "updatedAtMs": 1779573785954,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779573763383,
-        "lastRunAtMs": 1779570163397,
+        "nextRunAtMs": 1779577363383,
+        "lastRunAtMs": 1779573763445,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 20225,
+        "lastDurationMs": 22509,
+        "lastDeliveryStatus": "not-requested",
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
+      }
+    },
+    "8b29572e-6ac4-4109-b808-f2ad58130277": {
+      "updatedAtMs": 1779577319696,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"every\",\"everyMs\":300000,\"anchorMs\":1779576390158}}",
+      "state": {
+        "nextRunAtMs": 1779577590243,
+        "lastRunAtMs": 1779577290243,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 29453,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
