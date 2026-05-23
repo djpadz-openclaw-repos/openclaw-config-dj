@@ -32,9 +32,7 @@
     ],
     "controlUi": {
       "allowedOrigins": [
-        "http://localhost:18789",
-        "http://127.0.0.1:18789",
-        "https://dj.gw.oc.ctb.padz.net"
+	"*"
       ],
       "enabled": true
     },
@@ -61,10 +59,10 @@
               "image"
             ],
             "cost": {
-              "input": 0.000003,
-              "output": 0.000015,
-              "cacheRead": 3e-7,
-              "cacheWrite": 0.000003
+              "input": 3e-06,
+              "output": 1.5e-05,
+              "cacheRead": 3e-07,
+              "cacheWrite": 3e-06
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -79,10 +77,10 @@
               "image"
             ],
             "cost": {
-              "input": 0.000001,
-              "output": 0.000005,
-              "cacheRead": 1e-7,
-              "cacheWrite": 0.000001
+              "input": 1e-06,
+              "output": 5e-06,
+              "cacheRead": 1e-07,
+              "cacheWrite": 1e-06
             },
             "contextWindow": 120000,
             "maxTokens": 8192
@@ -97,10 +95,10 @@
               "image"
             ],
             "cost": {
-              "input": 0.000005,
-              "output": 0.000025,
-              "cacheRead": 5e-7,
-              "cacheWrite": 0.000005
+              "input": 5e-06,
+              "output": 2.5e-05,
+              "cacheRead": 5e-07,
+              "cacheWrite": 5e-06
             },
             "contextWindow": 900000,
             "maxTokens": 8192
@@ -115,10 +113,10 @@
               "image"
             ],
             "cost": {
-              "input": 0.000003,
-              "output": 0.000015,
-              "cacheRead": 3e-7,
-              "cacheWrite": 0.000003
+              "input": 3e-06,
+              "output": 1.5e-05,
+              "cacheRead": 3e-07,
+              "cacheWrite": 3e-06
             },
             "contextWindow": 900000,
             "maxTokens": 8192
@@ -133,10 +131,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.4e-7,
-              "output": 2.8e-7,
-              "cacheRead": 1.4e-8,
-              "cacheWrite": 1.4e-7
+              "input": 1.4e-07,
+              "output": 2.8e-07,
+              "cacheRead": 1.4e-08,
+              "cacheWrite": 1.4e-07
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -151,10 +149,10 @@
               "image"
             ],
             "cost": {
-              "input": 0.000001,
-              "output": 0.000005,
-              "cacheRead": 1e-7,
-              "cacheWrite": 0.000001
+              "input": 1e-06,
+              "output": 5e-06,
+              "cacheRead": 1e-07,
+              "cacheWrite": 1e-06
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -169,10 +167,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-7,
-              "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
+              "input": 5e-07,
+              "output": 1.5e-06,
+              "cacheRead": 5e-08,
+              "cacheWrite": 5e-07
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -187,10 +185,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-7,
-              "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
+              "input": 5e-07,
+              "output": 1.5e-06,
+              "cacheRead": 5e-08,
+              "cacheWrite": 5e-07
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -205,10 +203,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.5e-7,
-              "output": 8e-7,
-              "cacheRead": 1.5e-8,
-              "cacheWrite": 1.5e-7
+              "input": 1.5e-07,
+              "output": 8e-07,
+              "cacheRead": 1.5e-08,
+              "cacheWrite": 1.5e-07
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -220,7 +218,6 @@
   "agents": {
     "defaults": {
       "bootstrapMaxChars": 32000,
-      "contextInjection": "continuation-skip",
       "model": {
         "primary": "kiro/claude-haiku-4.5"
       },
@@ -244,7 +241,7 @@
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "🦊"
+          "emoji": "\ud83e\udd8a"
         }
       }
     ]
