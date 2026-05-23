@@ -52,24 +52,6 @@
         "api": "anthropic-messages",
         "models": [
           {
-            "id": "auto-kiro",
-            "name": "Claude model via Kiro API",
-            "api": "anthropic-messages",
-            "reasoning": false,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0.000003,
-              "output": 0.000015,
-              "cacheRead": 3e-7,
-              "cacheWrite": 0.000003
-            },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          },
-          {
             "id": "claude-3.7-sonnet",
             "name": "Claude model via Kiro API",
             "api": "anthropic-messages",

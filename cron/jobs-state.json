@@ -17,18 +17,37 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779505360332,
+      "updatedAtMs": 1779509026387,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779507000000,
-        "lastRunAtMs": 1779505200024,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 160308,
+        "nextRunAtMs": 1779510600000,
+        "lastRunAtMs": 1779508800194,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 226193,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested"
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastError": "⚠️ ⏰ Cron: `utr-availability-monitor` failed",
+        "lastDiagnostics": {
+          "summary": "⚠️ ⏰ Cron: `utr-availability-monitor` failed",
+          "entries": [
+            {
+              "ts": 1779509026384,
+              "source": "tool",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron: `utr-availability-monitor` failed"
+            },
+            {
+              "ts": 1779509026386,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron: `utr-availability-monitor` failed"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ ⏰ Cron: `utr-availability-monitor` failed"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -46,34 +65,48 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779501735330,
+      "updatedAtMs": 1779505484332,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779505291923,
-        "lastRunAtMs": 1779501691936,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 43394,
+        "nextRunAtMs": 1779508891923,
+        "lastRunAtMs": 1779505362399,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 121933,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779505362393
+        "lastDiagnostics": {
+          "summary": "cron: job execution timed out (last phase: model-call-started)",
+          "entries": [
+            {
+              "ts": 1779505484332,
+              "source": "cron-setup",
+              "severity": "error",
+              "message": "cron: job execution timed out (last phase: model-call-started)"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron: job execution timed out (last phase: model-call-started)",
+        "lastErrorReason": "timeout",
+        "runningAtMs": 1779509028898
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779501785304,
+      "updatedAtMs": 1779505506986,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779505363383,
-        "lastRunAtMs": 1779501763710,
+        "nextRunAtMs": 1779508963383,
+        "lastRunAtMs": 1779505486409,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 21594,
+        "lastDurationMs": 20577,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
-        "consecutiveSkipped": 0
+        "consecutiveSkipped": 0,
+        "runningAtMs": 1779509028898
       }
     }
   }
