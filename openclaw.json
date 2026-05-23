@@ -539,6 +539,7 @@
     }
   },
   "browser": {
-    "enabled": true
+    "enabled": true,
+    "cdpUrl": "http://10.1.37.177:9222"
   }
 }
