@@ -29,31 +29,6 @@
       "state": {}
     },
     {
-      "id": "f7fd6a53-c747-4e1b-9fed-f32f2d956850",
-      "agentId": "dj",
-      "sessionKey": "agent:dj:dashboard:9fc407e8-f6c3-4d27-864f-c072c2dac181",
-      "name": "utr-availability-monitor",
-      "enabled": true,
-      "createdAtMs": 1778381343054,
-      "schedule": {
-        "kind": "cron",
-        "expr": "*/30 * * * *"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check the Ubiquiti Travel Router availability:\n\n1. Run: curl -s 'https://store.ui.com/us/en/category/wifi-special-devices/products/utr' > /tmp/utr_page.html\n2. Check the output for availability status:\n   - If 'Sold Out' is found in the page: product is SOLD OUT\n   - If 'Add to Cart' is found in the page: product is AVAILABLE\n   - If NEITHER string is found: the curl command may have failed; wait 5 minutes, try the curl again and check again\n3. Read current state from /home/node/.openclaw/workspace/utr_state.json\n4. Compare current availability to last known status\n5. If status changed (available → sold out, or vice versa):\n   - Send Telegram alert to chat ID 8623402151 using TELEGRAM_TOKEN env var\n   - If available: '🚨 *Ubiquiti Travel Router is AVAILABLE!* Check it out: https://store.ui.com/us/en/category/wifi-special-devices/products/utr'\n   - If sold out: '❌ Ubiquiti Travel Router is now SOLD OUT'\n   - Update state file with new status and timestamp\n6. If status hasn't changed, just update the timestamp and exit silently\n\nState file format:\n{\n  \"last_status\": \"available\" or \"sold_out\",\n  \"last_checked\": \"ISO timestamp\"\n}",
-        "lightContext": true,
-        "model": "deepseek-3.2"
-      },
-      "delivery": {
-        "mode": "none"
-      },
-      "deleteAfterRun": false,
-      "state": {}
-    },
-    {
       "id": "6959c6ee-0888-4cc4-bfad-3769120644ce",
       "agentId": "dj",
       "sessionKey": "agent:dj:cron:e8c10b17-70a7-4507-a721-d15cfe22935e",
