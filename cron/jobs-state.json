@@ -31,71 +31,34 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779562905024,
+      "updatedAtMs": 1779566802507,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779566491923,
-        "lastRunAtMs": 1779562891940,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 13084,
+        "nextRunAtMs": 1779570091923,
+        "lastRunAtMs": 1779566776464,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 26043,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastDiagnostics": {
-          "summary": "LLM error api_error: profileArn is required for this request.",
-          "entries": [
-            {
-              "ts": 1779562905023,
-              "source": "tool",
-              "severity": "error",
-              "message": "LLM error api_error: profileArn is required for this request."
-            },
-            {
-              "ts": 1779562905024,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "LLM error api_error: profileArn is required for this request."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "LLM error api_error: profileArn is required for this request.",
-        "runningAtMs": 1779566776450
+        "runningAtMs": 1779570091934
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779562975407,
+      "updatedAtMs": 1779566827046,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779566563383,
-        "lastRunAtMs": 1779562963400,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 12007,
+        "nextRunAtMs": 1779570163383,
+        "lastRunAtMs": 1779566802507,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 24539,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastDiagnostics": {
-          "summary": "LLM error api_error: profileArn is required for this request.",
-          "entries": [
-            {
-              "ts": 1779562975406,
-              "source": "tool",
-              "severity": "error",
-              "message": "LLM error api_error: profileArn is required for this request."
-            },
-            {
-              "ts": 1779562975407,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "LLM error api_error: profileArn is required for this request."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "LLM error api_error: profileArn is required for this request.",
-        "runningAtMs": 1779566776450
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
       }
     }
   }
