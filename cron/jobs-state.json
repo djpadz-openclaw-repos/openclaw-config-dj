@@ -17,14 +17,14 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779519616191,
+      "updatedAtMs": 1779523214875,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779521400000,
-        "lastRunAtMs": 1779519600035,
+        "nextRunAtMs": 1779525000000,
+        "lastRunAtMs": 1779523200034,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 16156,
+        "lastDurationMs": 14841,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
@@ -34,7 +34,7 @@
           "summary": "⚠️ API rate limit reached. Please try again later.",
           "entries": [
             {
-              "ts": 1779519616190,
+              "ts": 1779523214874,
               "source": "agent-run",
               "severity": "error",
               "message": "⚠️ API rate limit reached. Please try again later."
@@ -60,30 +60,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779516589613,
+      "updatedAtMs": 1779519757540,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779519691923,
-        "lastRunAtMs": 1779516526244,
+        "nextRunAtMs": 1779523291923,
+        "lastRunAtMs": 1779519691941,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 63369,
+        "lastDurationMs": 65599,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779519691929
+        "runningAtMs": 1779523291941
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779516609251,
+      "updatedAtMs": 1779519781629,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779519763383,
-        "lastRunAtMs": 1779516589613,
+        "nextRunAtMs": 1779523363383,
+        "lastRunAtMs": 1779519763402,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 19638,
+        "lastDurationMs": 18227,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
