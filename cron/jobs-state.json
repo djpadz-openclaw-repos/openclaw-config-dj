@@ -17,32 +17,18 @@
       }
     },
     "f7fd6a53-c747-4e1b-9fed-f32f2d956850": {
-      "updatedAtMs": 1779544815888,
+      "updatedAtMs": 1779548484324,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\"}}",
       "state": {
-        "nextRunAtMs": 1779546600000,
-        "lastRunAtMs": 1779544800025,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 15863,
+        "nextRunAtMs": 1779550200000,
+        "lastRunAtMs": 1779548400053,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 84271,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
-        "lastFailureNotificationDeliveryStatus": "not-requested",
-        "lastError": "FailoverError: ⚠️ API rate limit reached. Please try again later.",
-        "lastDiagnostics": {
-          "summary": "⚠️ API rate limit reached. Please try again later.",
-          "entries": [
-            {
-              "ts": 1779544815887,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ API rate limit reached. Please try again later."
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ API rate limit reached. Please try again later.",
-        "lastErrorReason": "rate_limit"
+        "lastFailureNotificationDeliveryStatus": "not-requested"
       }
     },
     "6959c6ee-0888-4cc4-bfad-3769120644ce": {
@@ -60,30 +46,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779541350555,
+      "updatedAtMs": 1779544937384,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779544891923,
-        "lastRunAtMs": 1779541309045,
+        "nextRunAtMs": 1779548491923,
+        "lastRunAtMs": 1779544891938,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 41510,
+        "lastDurationMs": 45446,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779544891928
+        "runningAtMs": 1779548491932
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779541381406,
+      "updatedAtMs": 1779544983001,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779544963383,
-        "lastRunAtMs": 1779541363401,
+        "nextRunAtMs": 1779548563383,
+        "lastRunAtMs": 1779544963402,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 18005,
+        "lastDurationMs": 19599,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
