@@ -117,32 +117,6 @@
       },
       "deleteAfterRun": false,
       "state": {}
-    },
-    {
-      "id": "8b29572e-6ac4-4109-b808-f2ad58130277",
-      "agentId": "dj",
-      "sessionKey": "agent:dj:main",
-      "name": "WN4266 Flight Monitor",
-      "description": "Monitor Southwest WN4266 SJC→SAN until landing. Message on Telegram if ETA changes.",
-      "enabled": true,
-      "createdAtMs": 1779576390158,
-      "schedule": {
-        "kind": "every",
-        "everyMs": 300000,
-        "anchorMs": 1779576390158
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Check Southwest flight WN4266 (SJC→SAN, scheduled arrival 16:05 UTC today 2026-05-23). Last known status from FlightAware: en route, ETA 4:26 PM PDT (21 min late), 131 mi to go. Run: curl -s \"https://api.aviationstack.com/v1/flights?access_key=$AVIATIONSTACK_API_KEY&dep_iata=SJC&arr_iata=SAN\" | jq '.data[] | select(.flight.iata == \"WN4266\") | select(.flight_date == \"2026-05-23\")' — Check the current flight_status. If the status has changed to 'landed', send a Telegram message to Dj saying 'WN4266 has landed at SAN' using the message tool (action=send, channel=telegram, target=dj), then remove this cron job using cron(action=remove, jobId=\"8b29572e-6ac4-4109-b808-f2ad58130277\"). If still active, do nothing (NO_REPLY).",
-        "model": "kiro/claude-haiku-4.5",
-        "timeoutSeconds": 60
-      },
-      "delivery": {
-        "mode": "none"
-      },
-      "state": {}
     }
   ]
 }
