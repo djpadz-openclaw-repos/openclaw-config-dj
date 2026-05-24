@@ -31,30 +31,48 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779591729362,
+      "updatedAtMs": 1779596170457,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779595291923,
-        "lastRunAtMs": 1779591691969,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 37393,
+        "nextRunAtMs": 1779598891923,
+        "lastRunAtMs": 1779595292000,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 68942,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779595291932
+        "lastDiagnostics": {
+          "summary": "⚠️ ⏰ Cron failed",
+          "entries": [
+            {
+              "ts": 1779595360939,
+              "source": "tool",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron failed"
+            },
+            {
+              "ts": 1779595360941,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron failed"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ ⏰ Cron failed",
+        "runningAtMs": 1779596173244
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779591784522,
+      "updatedAtMs": 1779595384331,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779595363383,
-        "lastRunAtMs": 1779591763396,
+        "nextRunAtMs": 1779598963383,
+        "lastRunAtMs": 1779595363798,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 21126,
+        "lastDurationMs": 20533,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,

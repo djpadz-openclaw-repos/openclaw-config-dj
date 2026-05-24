@@ -75,7 +75,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "Run the openclaw config sync script:\n\nbash /home/node/.openclaw/workspace/scripts/sync-openclaw-config.sh\n\nReport the output.",
+        "message": "Run the openclaw config sync script:\n\nbash /home/node/.openclaw/workspace/scripts/sync-openclaw-config.sh\n\nReport the output. If there is nothing to commit, that should not be considered a failure.",
         "timeoutSeconds": 120,
         "model": "deepseek-3.2",
         "lightContext": true
