@@ -14,7 +14,6 @@
 ## Project-Specific Memory Index
 
 When working on a project, read its MEMORY.md file first:
-- **CarPlay Gizmo:** `projects/carplay-gizmo/MEMORY.md` (build workflow, recent fixes, message bug)
 - **Email Automation:** `projects/email-automation/MEMORY.md` (features, Kiro endpoints, deployments)
 - **Heru Portal:** `projects/heru/MEMORY.md` (diagnostics, service bus, VF tests)
 - **Media Automation:** `projects/media-automation/MEMORY.md` (Sonarr/Radarr, Telegram webhook)
