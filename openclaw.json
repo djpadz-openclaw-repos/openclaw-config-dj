@@ -32,7 +32,7 @@
     ],
     "controlUi": {
       "allowedOrigins": [
-	"*"
+        "*"
       ],
       "enabled": true
     },
@@ -250,7 +250,7 @@
     "dmScope": "main",
     "reset": {
       "mode": "idle",
-      "idleMinutes": 240
+      "idleMinutes": 43200
     },
     "maintenance": {
       "mode": "enforce",
