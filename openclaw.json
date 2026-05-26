@@ -450,11 +450,10 @@
         },
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
-          "dynamicBankGranularity": [
-            "agent",
-            "channel",
-            "user"
-          ]
+	  "dynamicBankId": false,
+	  "bankId": "dj",
+	  "excludeProviders": ["cron"],
+          "enableKnowledgeTools": true
         }
       },
       "canvas": {
