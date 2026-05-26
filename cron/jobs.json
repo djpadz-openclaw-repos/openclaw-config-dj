@@ -127,23 +127,24 @@
       "enabled": true,
       "createdAtMs": 1779811288445,
       "schedule": {
-        "expr": "0 * * * *",
         "kind": "cron",
-        "staggerMs": 300000,
-        "tz": "America/Los_Angeles"
+        "expr": "0 * * * *",
+        "tz": "America/Los_Angeles",
+        "staggerMs": 300000
       },
       "sessionTarget": "isolated",
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
         "lightContext": true,
-        "message": "bash -c '\nSTATE_FILE=\"$HOME/.openclaw/workspace/.utr-state\"\nURL=\"https://store.ui.com/us/en/category/wifi-special-devices/products/utr\"\n\noutput=$(curl -s \"$URL\" | html2text)\n\nif echo \"$output\" | grep -q \"Add to Cart\"; then\n  status=\"available\"\nelif echo \"$output\" | grep -q \"Sold Out\"; then\n  status=\"sold_out\"\nelse\n  sleep 2\n  output=$(curl -s \"$URL\" | html2text)\n  if echo \"$output\" | grep -q \"Add to Cart\"; then\n    status=\"available\"\n  elif echo \"$output\" | grep -q \"Sold Out\"; then\n    status=\"sold_out\"\n  else\n    exit 0\n  fi\nfi\n\nprev_status=$(cat \"$STATE_FILE\" 2>/dev/null)\n\nif [ \"$status\" != \"$prev_status\" ]; then\n  if [ \"$status\" = \"available\" ]; then\n    echo \"🎉 UTR IS AVAILABLE!\"\n  else\n    echo \"❌ UTR is sold out\"\n  fi\nfi\n\necho \"$status\" > \"$STATE_FILE\"\n'",
+        "message": "_Note: This cronjob needs to run with haiku or better; deepseek will not work._\n\nCheck for availability of the Ubiquiti Travel Router.  Here are the steps:\n\n1. Check the availability state from the last run.\n2. Update the state by checking the output of the following shell command: `curl https://store.ui.com/us/en/category/wifi-special-devices/products/utr | html2text`\n   a. If the output contains `Sold Out`, then the device is sold out.\n   b. If the output contains `Add to Cart`, then the device is available.\n   c. If neither of those conditions exist, then there was probably an error in fetching the page.  Wait five minutes and try again.\n3. If the state has changed, then send a notification.\n4. Update the state so that it can be checked in the next run.",
         "model": "kiro/claude-haiku-4.5",
-        "timeoutSeconds": 60
+        "timeoutSeconds": 390
       },
       "delivery": {
         "mode": "none"
       },
+      "deleteAfterRun": false,
       "state": {}
     }
   ]
