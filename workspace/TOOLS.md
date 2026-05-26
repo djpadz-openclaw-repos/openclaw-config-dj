@@ -30,6 +30,10 @@ settings:
 - **Daily driver:** 2026 Toyota bZ (see `projects/toyota/`)
 - **Toy:** 1969 Austin Healey Sprite — needs new master cylinder
 
+## Home Address
+
+**6919 Camino Amero, San Diego 92111** (Carmel Mountain area)
+
 ## Home Tech
 
 - **UniFi mesh network** — monitors band usage for mesh uplink (2.4 GHz vs 5 GHz)
