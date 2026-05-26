@@ -117,6 +117,34 @@
       },
       "deleteAfterRun": false,
       "state": {}
+    },
+    {
+      "id": "587736e6-c589-4867-9b1e-ac921b4e5fa7",
+      "agentId": "dj",
+      "sessionKey": "agent:dj:dashboard:096dc585-a387-46d6-9bc8-828831a0740e",
+      "name": "UTR Availability Monitor",
+      "description": "Check Ubiquiti Travel Router availability hourly",
+      "enabled": true,
+      "createdAtMs": 1779811288445,
+      "schedule": {
+        "expr": "0 * * * *",
+        "kind": "cron",
+        "staggerMs": 300000,
+        "tz": "America/Los_Angeles"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "lightContext": true,
+        "message": "bash -c '\nSTATE_FILE=\"$HOME/.openclaw/workspace/.utr-state\"\nURL=\"https://store.ui.com/us/en/category/wifi-special-devices/products/utr\"\n\noutput=$(curl -s \"$URL\" | html2text)\n\nif echo \"$output\" | grep -q \"Add to Cart\"; then\n  status=\"available\"\nelif echo \"$output\" | grep -q \"Sold Out\"; then\n  status=\"sold_out\"\nelse\n  sleep 2\n  output=$(curl -s \"$URL\" | html2text)\n  if echo \"$output\" | grep -q \"Add to Cart\"; then\n    status=\"available\"\n  elif echo \"$output\" | grep -q \"Sold Out\"; then\n    status=\"sold_out\"\n  else\n    exit 0\n  fi\nfi\n\nprev_status=$(cat \"$STATE_FILE\" 2>/dev/null)\n\nif [ \"$status\" != \"$prev_status\" ]; then\n  if [ \"$status\" = \"available\" ]; then\n    echo \"🎉 UTR IS AVAILABLE!\"\n  else\n    echo \"❌ UTR is sold out\"\n  fi\nfi\n\necho \"$status\" > \"$STATE_FILE\"\n'",
+        "model": "kiro/claude-haiku-4.5",
+        "timeoutSeconds": 60
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {}
     }
   ]
 }
