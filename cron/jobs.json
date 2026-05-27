@@ -146,6 +146,30 @@
       },
       "deleteAfterRun": false,
       "state": {}
+    },
+    {
+      "id": "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a",
+      "agentId": "dj",
+      "sessionKey": "agent:dj:dashboard:a783f0ef-9bd5-47d6-84ba-33c8d843c28d",
+      "name": "Beverly rate limit check",
+      "description": "Check if Beverly can authenticate after Telegram rate limit expires",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1779898793969,
+      "schedule": {
+        "at": "2026-05-28T03:30:00.000Z",
+        "kind": "at"
+      },
+      "sessionTarget": "session:agent:dj:dashboard:a783f0ef-9bd5-47d6-84ba-33c8d843c28d",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check if Beverly (scambaiter) can authenticate now that the Telegram rate limit has expired. Scale the deployment back to 1 replica and verify the pod starts successfully. Check logs to confirm 'ScamBaiter running' message appears."
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {}
     }
   ]
 }
