@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779850945836,
+      "updatedAtMs": 1779854557701,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779854491923,
-        "lastRunAtMs": 1779850891954,
+        "nextRunAtMs": 1779858091923,
+        "lastRunAtMs": 1779854491982,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 53882,
+        "lastDurationMs": 65719,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779854491934
+        "runningAtMs": 1779858091932
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779850975573,
+      "updatedAtMs": 1779854574616,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779854563383,
-        "lastRunAtMs": 1779850963392,
+        "nextRunAtMs": 1779858163383,
+        "lastRunAtMs": 1779854563401,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 12181,
+        "lastDurationMs": 11215,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,37 +62,18 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1779851076037,
+      "updatedAtMs": 1779854692855,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779854651246,
-        "lastRunAtMs": 1779851051268,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 24769,
+        "nextRunAtMs": 1779858251246,
+        "lastRunAtMs": 1779854651266,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 41589,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastError": "⚠️ ⏰ Cron: `UTR Availability Monitor` failed",
-        "lastDiagnostics": {
-          "summary": "⚠️ ⏰ Cron: `UTR Availability Monitor` failed",
-          "entries": [
-            {
-              "ts": 1779851076035,
-              "source": "tool",
-              "severity": "error",
-              "message": "⚠️ ⏰ Cron: `UTR Availability Monitor` failed"
-            },
-            {
-              "ts": 1779851076037,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ ⏰ Cron: `UTR Availability Monitor` failed"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ ⏰ Cron: `UTR Availability Monitor` failed"
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
       }
     }
   }
