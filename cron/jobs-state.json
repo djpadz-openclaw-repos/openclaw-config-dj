@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779933756150,
+      "updatedAtMs": 1779937345911,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779937291923,
-        "lastRunAtMs": 1779933691950,
+        "nextRunAtMs": 1779940891923,
+        "lastRunAtMs": 1779937291990,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 64200,
+        "lastDurationMs": 53921,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779937291944
+        "runningAtMs": 1779940891931
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779933774478,
+      "updatedAtMs": 1779937378727,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779937363383,
-        "lastRunAtMs": 1779933763408,
+        "nextRunAtMs": 1779940963383,
+        "lastRunAtMs": 1779937363392,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 11070,
+        "lastDurationMs": 15335,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,44 +62,45 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1779933880600,
+      "updatedAtMs": 1779937495652,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779937451246,
-        "lastRunAtMs": 1779933851281,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 29319,
+        "nextRunAtMs": 1779941051246,
+        "lastRunAtMs": 1779937451260,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 44392,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastError": "⚠️ ✉️ Message failed",
-        "lastDiagnostics": {
-          "summary": "⚠️ ✉️ Message failed",
-          "entries": [
-            {
-              "ts": 1779933880599,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ ✉️ Message failed"
-            },
-            {
-              "ts": 1779933880600,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ ✉️ Message failed"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ ✉️ Message failed"
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
       }
     },
     "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a": {
-      "updatedAtMs": 1779898793969,
-      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"at\",\"at\":\"2026-05-28T03:30:00.000Z\"}}",
+      "updatedAtMs": 1779939049994,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":false,\"schedule\":{\"kind\":\"at\",\"at\":\"2026-05-28T03:30:00.000Z\"}}",
       "state": {
-        "nextRunAtMs": 1779939000000
+        "lastRunAtMs": 1779939000026,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 49968,
+        "lastError": "Delivering to Telegram requires target <chatId>",
+        "lastDiagnostics": {
+          "summary": "Delivering to Telegram requires target <chatId>",
+          "entries": [
+            {
+              "ts": 1779939049993,
+              "source": "delivery",
+              "severity": "error",
+              "message": "Delivering to Telegram requires target <chatId>"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "Delivering to Telegram requires target <chatId>",
+        "lastDeliveryStatus": "unknown",
+        "lastFailureNotificationDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "consecutiveSkipped": 0
       }
     }
   }
