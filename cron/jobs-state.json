@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1779944523302,
+      "updatedAtMs": 1779948171530,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779948091923,
-        "lastRunAtMs": 1779944491944,
+        "nextRunAtMs": 1779951691923,
+        "lastRunAtMs": 1779948091952,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 31358,
+        "lastDurationMs": 79578,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1779948091933
+        "runningAtMs": 1779951691940
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1779944575270,
+      "updatedAtMs": 1779948185498,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779948163383,
-        "lastRunAtMs": 1779944563411,
+        "nextRunAtMs": 1779951763383,
+        "lastRunAtMs": 1779948173567,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 11859,
+        "lastDurationMs": 11931,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,37 +62,37 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1779944685946,
+      "updatedAtMs": 1779948296600,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1779948251246,
-        "lastRunAtMs": 1779944651265,
+        "nextRunAtMs": 1779951851246,
+        "lastRunAtMs": 1779948251259,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 34681,
+        "lastDurationMs": 45341,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
+        "consecutiveErrors": 2,
         "consecutiveSkipped": 0,
-        "lastError": "⚠️ ✉️ Message failed",
         "lastDiagnostics": {
-          "summary": "⚠️ ✉️ Message failed",
+          "summary": "⚠️ ⏰ Cron: `text 🚨 UTR Availability Alert: The Ubiquiti Travel Router is now AVAILABLE for purchase! Status changed from Sold Out → Available. Price: $79.00. Check: https://…, mode now` failed",
           "entries": [
             {
-              "ts": 1779944685945,
+              "ts": 1779948296598,
               "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ ✉️ Message failed"
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron: `text 🚨 UTR Availability Alert: The Ubiquiti Travel Router is now AVAILABLE for purchase! Status changed from Sold Out → Available. Price: $79.00. Check: https://…, mode now` failed"
             },
             {
-              "ts": 1779944685946,
+              "ts": 1779948296599,
               "source": "agent-run",
               "severity": "error",
-              "message": "⚠️ ✉️ Message failed"
+              "message": "⚠️ ⏰ Cron: `text 🚨 UTR Availability Alert: The Ubiquiti Travel Router is now AVAILABLE for purchase! Status changed from Sold Out → Available. Price: $79.00. Check: https://…, mode now` failed"
             }
           ]
         },
-        "lastDiagnosticSummary": "⚠️ ✉️ Message failed"
+        "lastDiagnosticSummary": "⚠️ ⏰ Cron: `text 🚨 UTR Availability Alert: The Ubiquiti Travel Router is now AVAILABLE for purchase! Status changed from Sold Out → Available. Price: $79.00. Check: https://…, mode now` failed",
+        "lastError": "⚠️ ⏰ Cron: `text 🚨 UTR Availability Alert: The Ubiquiti Travel Router is now AVAILABLE for purchase! Status changed from Sold Out → Available. Price: $79.00. Check: https://…, mode now` failed"
       }
     },
     "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a": {
