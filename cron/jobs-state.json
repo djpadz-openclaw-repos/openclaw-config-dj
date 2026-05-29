@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1780074130734,
+      "updatedAtMs": 1780077725709,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780077691923,
-        "lastRunAtMs": 1780074091957,
+        "nextRunAtMs": 1780081291923,
+        "lastRunAtMs": 1780077691948,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 38777,
+        "lastDurationMs": 33761,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1780077691933
+        "runningAtMs": 1780081291941
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1780074175432,
+      "updatedAtMs": 1780077776120,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780077763383,
-        "lastRunAtMs": 1780074163402,
+        "nextRunAtMs": 1780081363383,
+        "lastRunAtMs": 1780077763390,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 12030,
+        "lastDurationMs": 12730,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,37 +62,18 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1780074292403,
+      "updatedAtMs": 1780077872991,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780077851246,
-        "lastRunAtMs": 1780074251260,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 41143,
+        "nextRunAtMs": 1780081451246,
+        "lastRunAtMs": 1780077851258,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 21733,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastError": "⚠️ ✉️ Message failed",
-        "lastDiagnostics": {
-          "summary": "⚠️ ✉️ Message failed",
-          "entries": [
-            {
-              "ts": 1780074292401,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ ✉️ Message failed"
-            },
-            {
-              "ts": 1780074292402,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ ✉️ Message failed"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ ✉️ Message failed"
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
       }
     },
     "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a": {
