@@ -230,4 +230,4 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 
 ## External Reference Files
 
-Load as needed: LESSONS.md, DEPLOYMENT.md, MODELS.md, BROWSER.md, INFRASTRUCTURE.md, OPENCLAW.md, INTERESTS.md, BIOGRAPHY.md, PROJECTS.md, projects/CARPLAY_GIZMO.md, projects/HERU.md, projects/FAMOUS_PEERS.md, projects/KIRO_GATEWAY.md, projects/DATADOG_TOOLS.md
+Load as needed: LESSONS.md, DEPLOYMENT.md, MODELS.md, BROWSER.md, INFRASTRUCTURE.md, OPENCLAW.md, INTERESTS.md, BIOGRAPHY.md, PROJECTS.md, projects/CARPLAY_GIZMO.md, projects/HERU.md, projects/FAMOUS_PEERS.md, projects/DATADOG_TOOLS.md
