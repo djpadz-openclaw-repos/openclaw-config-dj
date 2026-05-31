@@ -452,7 +452,7 @@
           "hindsightApiUrl": "http://hindsight:8888",
 	  "dynamicBankId": false,
 	  "bankId": "dj",
-	  "excludeProviders": ["cron"],
+	  "excludeProviders": ["cron", "dashboard"],
           "enableKnowledgeTools": true
         }
       },
