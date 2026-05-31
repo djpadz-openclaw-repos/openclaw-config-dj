@@ -57,6 +57,7 @@ settings:
 - **CLI location:** `~/.openclaw/workspace/skills/dropbox-custom/dropbox-cli.py`
 - **Usage:** `.venv/bin/python dropbox-cli.py <command> <path>`
 - **Commands:** list, upload, download, delete, share
+- **Token:** Use `$DROPBOX_OAUTH2_TOKEN` (not `$DROPBOX_ACCESS_TOKEN` — that one expires)
 
 ## Coding & Deployment Preferences
 
