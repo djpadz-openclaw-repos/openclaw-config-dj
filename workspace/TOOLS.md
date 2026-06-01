@@ -57,7 +57,9 @@ settings:
 - **CLI location:** `~/.openclaw/workspace/skills/dropbox-custom/dropbox-cli.py`
 - **Usage:** `.venv/bin/python dropbox-cli.py <command> <path>`
 - **Commands:** list, upload, download, delete, share
-- **Token:** Use `$DROPBOX_OAUTH2_TOKEN` (not `$DROPBOX_ACCESS_TOKEN` — that one expires)
+- **Auth:** Refresh token flow via 1Password (item: `Dropbox OAuth2`, vault: OpenClaw) — auto-renews, never expires
+- **1Password fields:** app_key, app_secret, refresh_token
+- **Fallback:** `$DROPBOX_OAUTH2_TOKEN` short-lived token (expires ~4h, avoid)
 
 ## Coding & Deployment Preferences
 
