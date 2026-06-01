@@ -24,7 +24,7 @@ These files are loaded on-demand to keep main context lean.
 
 **RULE: For ALL coding work, spawn a subagent with model="kiro/claude-opus-4.6"**
 
-Usage: `sessions_spawn(agentId="dj", model="kiro/claude-opus-4.6", runtime="subagent", task="...")`
+Usage: `sessions_spawn(agentId="main", model="kiro/claude-opus-4.6", runtime="subagent", task="...")`
 
 This includes:
 - Debugging code issues

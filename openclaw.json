@@ -59,10 +59,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -77,10 +77,10 @@
               "image"
             ],
             "cost": {
-              "input": 1e-06,
-              "output": 5e-06,
-              "cacheRead": 1e-07,
-              "cacheWrite": 1e-06
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1e-7,
+              "cacheWrite": 0.000001
             },
             "contextWindow": 120000,
             "maxTokens": 8192
@@ -95,10 +95,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-06,
-              "output": 2.5e-05,
-              "cacheRead": 5e-07,
-              "cacheWrite": 5e-06
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
             },
             "contextWindow": 900000,
             "maxTokens": 8192
@@ -113,10 +113,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 900000,
             "maxTokens": 8192
@@ -131,10 +131,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.4e-07,
-              "output": 2.8e-07,
-              "cacheRead": 1.4e-08,
-              "cacheWrite": 1.4e-07
+              "input": 1.4e-7,
+              "output": 2.8e-7,
+              "cacheRead": 1.4e-8,
+              "cacheWrite": 1.4e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -149,10 +149,10 @@
               "image"
             ],
             "cost": {
-              "input": 1e-06,
-              "output": 5e-06,
-              "cacheRead": 1e-07,
-              "cacheWrite": 1e-06
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1e-7,
+              "cacheWrite": 0.000001
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -167,10 +167,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-07,
-              "output": 1.5e-06,
-              "cacheRead": 5e-08,
-              "cacheWrite": 5e-07
+              "input": 5e-7,
+              "output": 0.0000015,
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -185,10 +185,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-07,
-              "output": 1.5e-06,
-              "cacheRead": 5e-08,
-              "cacheWrite": 5e-07
+              "input": 5e-7,
+              "output": 0.0000015,
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -203,10 +203,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.5e-07,
-              "output": 8e-07,
-              "cacheRead": 1.5e-08,
-              "cacheWrite": 1.5e-07
+              "input": 1.5e-7,
+              "output": 8e-7,
+              "cacheRead": 1.5e-8,
+              "cacheWrite": 1.5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -235,13 +235,13 @@
     },
     "list": [
       {
-        "id": "dj",
+        "id": "main",
         "default": true,
         "name": "Gizmo",
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "\ud83e\udd8a"
+          "emoji": "🦊"
         }
       }
     ]
@@ -258,8 +258,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.5.18",
-    "lastTouchedAt": "2026-05-19T00:04:00.000Z"
+    "lastTouchedVersion": "2026.5.28",
+    "lastTouchedAt": "2026-06-01T06:36:22.810Z"
   },
   "tools": {
     "profile": "full",
@@ -414,8 +414,8 @@
     }
   },
   "wizard": {
-    "lastRunAt": "2026-05-18T23:58:15.699Z",
-    "lastRunVersion": "2026.5.18",
+    "lastRunAt": "2026-06-01T06:36:22.757Z",
+    "lastRunVersion": "2026.5.28",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -450,9 +450,12 @@
         },
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
-	  "dynamicBankId": false,
-	  "bankId": "dj",
-	  "excludeProviders": ["cron", "dashboard"],
+          "dynamicBankId": false,
+          "bankId": "dj",
+          "excludeProviders": [
+            "cron",
+            "dashboard"
+          ],
           "enableKnowledgeTools": true
         }
       },
@@ -526,8 +529,8 @@
         "azure-speech": {
           "apiKey": "${AZURE_TTS_TOKEN}",
           "region": "${AZURE_TTS_REGION}",
-          "voice": "en-US-JennyNeural",
-          "lang": "en-US"
+          "lang": "en-US",
+          "speakerVoice": "en-US-JennyNeural"
         }
       }
     }

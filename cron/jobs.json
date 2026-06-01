@@ -3,7 +3,7 @@
   "jobs": [
     {
       "id": "e8c10b17-70a7-4507-a721-d15cfe22935e",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:dashboard:568ba1ac-363c-472f-8167-d6039e4ec255",
       "name": "Nightly session cleanup",
       "description": "Clean up idle subagents (3+ hours) and direct sessions (1+ day)",
@@ -30,7 +30,7 @@
     },
     {
       "id": "6959c6ee-0888-4cc4-bfad-3769120644ce",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:cron:e8c10b17-70a7-4507-a721-d15cfe22935e",
       "name": "cleanup-old-subagent-sessions",
       "description": "Delete subagent tasks and sessions older than 3 hours with succeeded status",
@@ -59,7 +59,7 @@
     },
     {
       "id": "d4374917-f4dc-431f-a314-50d8bb89abeb",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:dashboard:eaa9de04-2302-4d8e-9a8a-3ae8c6541f74",
       "name": "sync-openclaw-config-hourly",
       "description": "Commit and push openclaw config changes to GitHub every hour",
@@ -88,7 +88,7 @@
     },
     {
       "id": "bcd13b32-8208-40da-9e21-6db6c192e610",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:dashboard:0a559294-1b97-457d-85bf-32ee92ce57c7",
       "name": "Airplane Live Tour Monitor",
       "description": "Check airplanelivetour.com hourly for new tour dates/cities",
@@ -120,7 +120,7 @@
     },
     {
       "id": "587736e6-c589-4867-9b1e-ac921b4e5fa7",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:dashboard:096dc585-a387-46d6-9bc8-828831a0740e",
       "name": "UTR Availability Monitor",
       "description": "Check Ubiquiti Travel Router availability hourly",
@@ -149,7 +149,7 @@
     },
     {
       "id": "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a",
-      "agentId": "dj",
+      "agentId": "main",
       "sessionKey": "agent:dj:dashboard:a783f0ef-9bd5-47d6-84ba-33c8d843c28d",
       "name": "Beverly rate limit check",
       "description": "Check if Beverly can authenticate after Telegram rate limit expires",
