@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1780380121859,
+      "updatedAtMs": 1780383726524,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780383691923,
-        "lastRunAtMs": 1780380091947,
+        "nextRunAtMs": 1780387291923,
+        "lastRunAtMs": 1780383691967,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 29912,
+        "lastDurationMs": 34557,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1780383691941
+        "runningAtMs": 1780387291942
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1780380173249,
+      "updatedAtMs": 1780383774510,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780383763383,
-        "lastRunAtMs": 1780380163446,
+        "nextRunAtMs": 1780387363383,
+        "lastRunAtMs": 1780383763403,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 9803,
+        "lastDurationMs": 11107,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,14 +62,14 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1780380258041,
+      "updatedAtMs": 1780383880852,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780383851246,
-        "lastRunAtMs": 1780380251263,
+        "nextRunAtMs": 1780387451246,
+        "lastRunAtMs": 1780383851270,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 6778,
+        "lastDurationMs": 29582,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
