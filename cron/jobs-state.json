@@ -31,30 +31,30 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1780354921467,
+      "updatedAtMs": 1780358519637,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780358491923,
-        "lastRunAtMs": 1780354892264,
+        "nextRunAtMs": 1780362091923,
+        "lastRunAtMs": 1780358491975,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 29203,
+        "lastDurationMs": 27662,
         "lastDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1780358491930
+        "runningAtMs": 1780362091930
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1780354974948,
+      "updatedAtMs": 1780358573688,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780358563383,
-        "lastRunAtMs": 1780354963401,
+        "nextRunAtMs": 1780362163383,
+        "lastRunAtMs": 1780358563410,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 11547,
+        "lastDurationMs": 10278,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,37 +62,18 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1780355102740,
+      "updatedAtMs": 1780358658212,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780358651246,
-        "lastRunAtMs": 1780355051284,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 51456,
+        "nextRunAtMs": 1780362251246,
+        "lastRunAtMs": 1780358651274,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 6938,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "consecutiveErrors": 1,
-        "consecutiveSkipped": 0,
-        "lastError": "⚠️ ✉️ Message failed",
-        "lastDiagnostics": {
-          "summary": "⚠️ ✉️ Message failed",
-          "entries": [
-            {
-              "ts": 1780355102721,
-              "source": "tool",
-              "severity": "warn",
-              "message": "⚠️ ✉️ Message failed"
-            },
-            {
-              "ts": 1780355102721,
-              "source": "agent-run",
-              "severity": "error",
-              "message": "⚠️ ✉️ Message failed"
-            }
-          ]
-        },
-        "lastDiagnosticSummary": "⚠️ ✉️ Message failed"
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
       }
     },
     "d0bcfb60-cdbc-4bb7-8080-e8ad55b5175a": {
