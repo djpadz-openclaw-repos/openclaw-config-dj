@@ -31,30 +31,48 @@
       }
     },
     "d4374917-f4dc-431f-a314-50d8bb89abeb": {
-      "updatedAtMs": 1780434117466,
+      "updatedAtMs": 1780437735194,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"UTC\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780437691923,
-        "lastRunAtMs": 1780434091961,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 25505,
+        "nextRunAtMs": 1780441291923,
+        "lastRunAtMs": 1780437691980,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 43214,
         "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
+        "consecutiveErrors": 1,
         "consecutiveSkipped": 0,
         "lastFailureNotificationDeliveryStatus": "not-requested",
-        "runningAtMs": 1780437691948
+        "lastDiagnostics": {
+          "summary": "⚠️ ⏰ Cron failed",
+          "entries": [
+            {
+              "ts": 1780437735187,
+              "source": "tool",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron failed"
+            },
+            {
+              "ts": 1780437735187,
+              "source": "agent-run",
+              "severity": "error",
+              "message": "⚠️ ⏰ Cron failed"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ ⏰ Cron failed",
+        "runningAtMs": 1780441291938
       }
     },
     "bcd13b32-8208-40da-9e21-6db6c192e610": {
-      "updatedAtMs": 1780434169980,
+      "updatedAtMs": 1780437768112,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780437763383,
-        "lastRunAtMs": 1780434163421,
+        "nextRunAtMs": 1780441363383,
+        "lastRunAtMs": 1780437763431,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 6559,
+        "lastDurationMs": 4681,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
@@ -62,14 +80,14 @@
       }
     },
     "587736e6-c589-4867-9b1e-ac921b4e5fa7": {
-      "updatedAtMs": 1780434277248,
+      "updatedAtMs": 1780437877191,
       "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 * * * *\",\"tz\":\"America/Los_Angeles\",\"staggerMs\":300000}}",
       "state": {
-        "nextRunAtMs": 1780437851246,
-        "lastRunAtMs": 1780434251265,
+        "nextRunAtMs": 1780441451246,
+        "lastRunAtMs": 1780437851260,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 25983,
+        "lastDurationMs": 25931,
         "lastDeliveryStatus": "not-requested",
         "lastFailureNotificationDeliveryStatus": "not-requested",
         "consecutiveErrors": 0,
