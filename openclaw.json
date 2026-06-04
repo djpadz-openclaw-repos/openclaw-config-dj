@@ -4,9 +4,6 @@
     "file": "~/.openclaw/logs/openclaw-debug.log"
   },
   "gateway": {
-    "remote": {
-      "url": "wss://dj.gw.oc.ctb.padz.net"
-    },
     "http": {
       "endpoints": {
         "chatCompletions": {
