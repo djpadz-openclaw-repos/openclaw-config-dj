@@ -1,8 +1,6 @@
 {
   "triggers": [
-    "openclaw",
-    "claude",
-    "computer"
+    "gizmo"
   ],
-  "updatedAtMs": 1780621111472
+  "updatedAtMs": 1780679696966
 }
