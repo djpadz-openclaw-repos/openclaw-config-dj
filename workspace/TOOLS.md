@@ -25,14 +25,12 @@ settings:
   DEVELOPMENT_TEAM: "N2XUW3D6G2"
 ```
 
-## Cars
+## 2026 Toyota bZ (Daily Driver)
 
-- **Daily driver:** 2026 Toyota bZ (see `projects/toyota/`)
-- **Toy:** 1969 Austin Healey Sprite — needs new master cylinder
-
-## Home Address
-
-**6919 Camino Amero, San Diego 92111** (Carmel Mountain area)
+- **Dealer:** Norm Reeves Toyota
+- **Charging:** Home Level 2 charger (overnight charging)
+- **CarPlay:** Connected, but EV routing is unreliable — use standard navigation + manual charger lookups for longer trips
+- **Typical use:** Local/day trips from home base; work-from-home (no commute)
 
 ## Home Tech
 
@@ -61,13 +59,7 @@ settings:
 - **1Password fields:** app_key, app_secret, refresh_token
 - **Fallback:** `$DROPBOX_OAUTH2_TOKEN` short-lived token (expires ~4h, avoid)
 
-## Coding & Deployment Preferences
 
-- **Fix → Commit → Deploy** — always commit before building/deploying so the build ID reflects the actual commit. Never deploy uncommitted changes.
-- **Always commit and push changes** — after making code modifications, commit and push immediately.
-- **TypeScript over JavaScript** — always use TypeScript when writing new code.
-- **Strongly typed Python** — all Python code must use type hints throughout (function signatures, return types, instance variables, local variables where non-obvious). Use `from __future__ import annotations` for forward refs. No untyped functions.
-- **Python virtualenvs always** — never use global pip. Every Python script/project must use a virtualenv.
 
 ## Examples
 

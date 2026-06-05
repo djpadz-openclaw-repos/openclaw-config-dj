@@ -29,6 +29,15 @@
 
 **What he doesn't enjoy:** The administrative/executive side of being VP. It's not his wheelhouse and it's not interesting to him. Minimize his overhead.
 
+## Coding & Development Philosophy
+
+- **Fix → Commit → Deploy** — always commit before building/deploying so the build ID reflects the actual commit. Never deploy uncommitted changes.
+- **Always commit and push changes** — after making code modifications, commit and push immediately.
+- **TypeScript over JavaScript** — always use TypeScript when writing new code.
+- **Strongly typed Python** — all Python code must use type hints throughout (function signatures, return types, instance variables, local variables where non-obvious). Use `from __future__ import annotations` for forward refs. No untyped functions.
+- **Python virtualenvs always** — never use global pip. Every Python script/project must use a virtualenv.
+- **Research first** — if something doesn't work after 1–2 tries, research before guessing. Values thorough investigation over trial-and-error.
+
 ## Background
 
 - Got his first computer at age 8 (Apple ][+), sold software at age 12
@@ -52,13 +61,14 @@
 ## Personal Interests
 
 - **Music:** Classic rock (60s–80s), yacht rock, AC/DC, Black Sabbath, Judas Priest, classical, jazz
-- **Cars:** Daily driver (unknown); toy: 1969 Austin Healey Sprite (needs new master cylinder)
+- **Cars:** Daily driver: 2026 Toyota bZ (Norm Reeves Toyota, CarPlay w/ flaky EV routing); toy: 1969 Austin Healey Sprite (needs new master cylinder)
 - **Tech:** UniFi networking, media server (Plex/Sonarr/Radarr), home infrastructure
 - **Other:** Godmother Yve Evans (LA-based jazz singer/pianist/entertainer)
 - **Currently taking:** Standup comedy class (see projects/standup-comedy/)
 
-## Lifestyle
+## Location & Lifestyle
 
+- **Home:** 6919 Camino Amero, San Diego 92111 (Mission Valley area)
 - Neither Dj nor Sherra drinks alcohol — skip bars, wine tasting, cocktail suggestions
 - Sherra is gluten-free, low FODMAP, easy on dairy and fat
 - Prefers kayaking and relaxed activities
