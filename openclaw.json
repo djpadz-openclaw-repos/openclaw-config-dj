@@ -4,6 +4,14 @@
     "file": "~/.openclaw/logs/openclaw-debug.log"
   },
   "gateway": {
+    "nodes": {
+      "pairing": {
+        "autoApproveCidrs": [
+          "10.1.37.0/24",
+          "20.163.74.45/32"
+        ]
+      }
+    },
     "http": {
       "endpoints": {
         "chatCompletions": {
@@ -58,7 +66,7 @@
             "cost": {
               "input": 0.000003,
               "output": 0.000015,
-              "cacheRead": 3e-7,
+              "cacheRead": 3E-7,
               "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
@@ -76,7 +84,7 @@
             "cost": {
               "input": 0.000001,
               "output": 0.000005,
-              "cacheRead": 1e-7,
+              "cacheRead": 1E-7,
               "cacheWrite": 0.000001
             },
             "contextWindow": 120000,
@@ -94,7 +102,7 @@
             "cost": {
               "input": 0.000005,
               "output": 0.000025,
-              "cacheRead": 5e-7,
+              "cacheRead": 5E-7,
               "cacheWrite": 0.000005
             },
             "contextWindow": 900000,
@@ -112,7 +120,7 @@
             "cost": {
               "input": 0.000003,
               "output": 0.000015,
-              "cacheRead": 3e-7,
+              "cacheRead": 3E-7,
               "cacheWrite": 0.000003
             },
             "contextWindow": 900000,
@@ -128,10 +136,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.4e-7,
-              "output": 2.8e-7,
-              "cacheRead": 1.4e-8,
-              "cacheWrite": 1.4e-7
+              "input": 1.4E-7,
+              "output": 2.8E-7,
+              "cacheRead": 1.4E-8,
+              "cacheWrite": 1.4E-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -148,7 +156,7 @@
             "cost": {
               "input": 0.000001,
               "output": 0.000005,
-              "cacheRead": 1e-7,
+              "cacheRead": 1E-7,
               "cacheWrite": 0.000001
             },
             "contextWindow": 200000,
@@ -164,10 +172,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-7,
+              "input": 5E-7,
               "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
+              "cacheRead": 5E-8,
+              "cacheWrite": 5E-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -182,10 +190,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-7,
+              "input": 5E-7,
               "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
+              "cacheRead": 5E-8,
+              "cacheWrite": 5E-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -200,10 +208,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.5e-7,
-              "output": 8e-7,
-              "cacheRead": 1.5e-8,
-              "cacheWrite": 1.5e-7
+              "input": 1.5E-7,
+              "output": 8E-7,
+              "cacheRead": 1.5E-8,
+              "cacheWrite": 1.5E-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -277,7 +285,7 @@
       "webhookSecret": "225adab941b1cae28dba4b767e6344d7944fbd1bec9fc0b3a8529b45a8120f3a",
       "webhookPath": "/telegram-webhook",
       "webhookHost": "0.0.0.0",
-      "webhookPort": 18790,
+      "webhookPort": 65534,
       "dmPolicy": "allowlist",
       "botToken": "${TELEGRAM_TOKEN}",
       "allowFrom": [
@@ -424,7 +432,6 @@
       "canvas",
       "file-transfer",
       "hindsight-openclaw",
-      "skill-workshop",
       "telegram",
       "webhooks"
     ],
@@ -443,7 +450,7 @@
       "hindsight-openclaw": {
         "enabled": true,
         "hooks": {
-          "allowConversationAccess": true
+          "allowConversationAccess": false
         },
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
@@ -476,20 +483,6 @@
         "enabled": true,
         "config": {}
       },
-      "skill-workshop": {
-        "enabled": true,
-        "config": {
-          "enabled": true,
-          "autoCapture": true,
-          "approvalPolicy": "pending",
-          "reviewMode": "hybrid",
-          "reviewInterval": 15,
-          "reviewMinToolCalls": 8,
-          "reviewTimeoutMs": 45000,
-          "maxPending": 50,
-          "maxSkillBytes": 40000
-        }
-      },
       "webhooks": {
         "enabled": true,
         "config": {}
@@ -502,11 +495,15 @@
   },
   "commands": {
     "ownerAllowFrom": [
-      "telegram:8623402151"
+      "telegram:8623402151",
+      "openclaw-macos",
+      "openclaw-ios"
     ],
     "allowFrom": {
       "*": [
-        "telegram:8623402151"
+        "telegram:8623402151",
+        "openclaw-macos",
+        "openclaw-ios"
       ]
     }
   },
