@@ -466,7 +466,7 @@
       "canvas": {
         "config": {
           "host": {
-            "enabled": false
+            "enabled": true
           }
         },
         "enabled": true
