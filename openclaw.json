@@ -5,6 +5,10 @@
   },
   "gateway": {
     "nodes": {
+      "allowCommands": [
+        "canvas.a2ui.pushJSONL",
+        "canvas.a2ui.reset"
+      ],
       "pairing": {
         "autoApproveCidrs": [
           "10.1.37.0/24",
