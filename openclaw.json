@@ -222,6 +222,9 @@
           }
         ]
       }
+    },
+    "pricing": {
+      "enabled": true
     }
   },
   "agents": {
@@ -267,8 +270,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.6.6",
-    "lastTouchedAt": "2026-06-13T21:19:08.318Z"
+    "lastTouchedVersion": "2026.6.8",
+    "lastTouchedAt": "2026-06-18T05:47:38.829Z"
   },
   "tools": {
     "profile": "full",
@@ -437,9 +440,13 @@
       "file-transfer",
       "hindsight-openclaw",
       "telegram",
-      "webhooks"
+      "webhooks",
+      "workboard"
     ],
     "entries": {
+      "workboard": {
+        "enabled": true
+      },
       "telegram": {
         "enabled": true
       },
