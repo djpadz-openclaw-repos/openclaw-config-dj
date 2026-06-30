@@ -30,7 +30,7 @@
       "mode": "token",
       "token": "${OPENCLAW_GATEWAY_TOKEN}",
       "rateLimit": {
-        "maxAttempts": 10,
+        "maxAttempts": 50,
         "windowMs": 60000,
         "lockoutMs": 300000,
         "exemptLoopback": true
