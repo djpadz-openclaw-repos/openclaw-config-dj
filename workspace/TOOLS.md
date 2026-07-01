@@ -61,6 +61,16 @@ settings:
 
 
 
+## Google Workspace (gog)
+
+- **Account:** djpadz@gmail.com
+- **Services:** gmail, calendar, drive, docs
+- **Keyring password:** 1Password → OpenClaw vault → "gog - keyring password"
+- **Usage:** Always prefix gog commands with `GOG_KEYRING_PASSWORD=<password>` or export it first
+- **Credentials:** Stored insecurely (no keyring) in `~/.local/share/gogcli/credentials.json`
+- **Example:** `GOG_KEYRING_PASSWORD=*** gog docs create "My Doc" -a djpadz@gmail.com`
+- **Re-auth if needed:** `gog auth add djpadz@gmail.com --services gmail,calendar,drive,docs --remote --step 1`
+
 ## Examples
 
 ```markdown
