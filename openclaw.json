@@ -59,8 +59,134 @@
         "api": "anthropic-messages",
         "models": [
           {
-            "id": "claude-3.7-sonnet",
-            "name": "Claude model via Kiro API",
+            "id": "claude-opus-4.8",
+            "name": "Claude Opus 4.8 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 128000
+          },
+          {
+            "id": "claude-opus-4.7",
+            "name": "Claude Opus 4.7 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-opus-4.6",
+            "name": "Claude Opus 4.6 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-opus-4.5",
+            "name": "Claude Opus 4.5 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-sonnet-5",
+            "name": "Claude Sonnet 5 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-sonnet-4.6",
+            "name": "Claude Sonnet 4.6 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-sonnet-4.5",
+            "name": "Claude Sonnet 4.5 via Kiro API",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "claude-sonnet-4.0",
+            "name": "Claude Sonnet 4.0 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -78,7 +204,7 @@
           },
           {
             "id": "claude-haiku-4.5",
-            "name": "Claude model via Kiro API",
+            "name": "Claude Haiku 4.5 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -91,12 +217,12 @@
               "cacheRead": 1e-7,
               "cacheWrite": 0.000001
             },
-            "contextWindow": 120000,
+            "contextWindow": 200000,
             "maxTokens": 8192
           },
           {
-            "id": "claude-opus-4.6",
-            "name": "Claude model via Kiro API",
+            "id": "minimax-m2.5",
+            "name": "MiniMax M2.5 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -104,17 +230,17 @@
               "image"
             ],
             "cost": {
-              "input": 0.000005,
-              "output": 0.000025,
-              "cacheRead": 5e-7,
-              "cacheWrite": 0.000005
+              "input": 5e-7,
+              "output": 0.0000015,
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
-            "contextWindow": 900000,
+            "contextWindow": 200000,
             "maxTokens": 8192
           },
           {
-            "id": "claude-sonnet-4.6",
-            "name": "Claude model via Kiro API",
+            "id": "glm-5",
+            "name": "GLM-5 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -122,17 +248,17 @@
               "image"
             ],
             "cost": {
-              "input": 0.000003,
-              "output": 0.000015,
-              "cacheRead": 3e-7,
-              "cacheWrite": 0.000003
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1e-7,
+              "cacheWrite": 0.000001
             },
-            "contextWindow": 900000,
+            "contextWindow": 200000,
             "maxTokens": 8192
           },
           {
             "id": "deepseek-3.2",
-            "name": "Claude model via Kiro API",
+            "name": "DeepSeek 3.2 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -145,30 +271,12 @@
               "cacheRead": 1.4e-8,
               "cacheWrite": 1.4e-7
             },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          },
-          {
-            "id": "glm-5",
-            "name": "Claude model via Kiro API",
-            "api": "anthropic-messages",
-            "reasoning": false,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 0.000001,
-              "output": 0.000005,
-              "cacheRead": 1e-7,
-              "cacheWrite": 0.000001
-            },
-            "contextWindow": 200000,
+            "contextWindow": 128000,
             "maxTokens": 8192
           },
           {
             "id": "minimax-m2.1",
-            "name": "Claude model via Kiro API",
+            "name": "MiniMax M2.1 via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -176,35 +284,17 @@
               "image"
             ],
             "cost": {
-              "input": 5e-7,
-              "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
-            },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          },
-          {
-            "id": "minimax-m2.5",
-            "name": "Claude model via Kiro API",
-            "api": "anthropic-messages",
-            "reasoning": false,
-            "input": [
-              "text",
-              "image"
-            ],
-            "cost": {
-              "input": 5e-7,
-              "output": 0.0000015,
-              "cacheRead": 5e-8,
-              "cacheWrite": 5e-7
+              "input": 3e-7,
+              "output": 9e-7,
+              "cacheRead": 3e-8,
+              "cacheWrite": 3e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
           },
           {
             "id": "qwen3-coder-next",
-            "name": "Claude model via Kiro API",
+            "name": "Qwen3 Coder Next via Kiro API",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -217,7 +307,7 @@
               "cacheRead": 1.5e-8,
               "cacheWrite": 1.5e-7
             },
-            "contextWindow": 200000,
+            "contextWindow": 256000,
             "maxTokens": 8192
           }
         ]
@@ -270,8 +360,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.6.8",
-    "lastTouchedAt": "2026-06-18T05:47:38.829Z"
+    "lastTouchedVersion": "2026.6.11",
+    "lastTouchedAt": "2026-07-04T01:45:13.658Z"
   },
   "tools": {
     "profile": "full",
