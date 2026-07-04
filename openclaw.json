@@ -60,7 +60,7 @@
         "models": [
           {
             "id": "claude-opus-4.8",
-            "name": "Claude Opus 4.8 via Kiro API",
+            "name": "Claude Opus 4.8",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -78,7 +78,7 @@
           },
           {
             "id": "claude-opus-4.7",
-            "name": "Claude Opus 4.7 via Kiro API",
+            "name": "Claude Opus 4.7",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -96,7 +96,7 @@
           },
           {
             "id": "claude-opus-4.6",
-            "name": "Claude Opus 4.6 via Kiro API",
+            "name": "Claude Opus 4.6",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -114,7 +114,7 @@
           },
           {
             "id": "claude-opus-4.5",
-            "name": "Claude Opus 4.5 via Kiro API",
+            "name": "Claude Opus 4.5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -132,7 +132,7 @@
           },
           {
             "id": "claude-sonnet-5",
-            "name": "Claude Sonnet 5 via Kiro API",
+            "name": "Claude Sonnet 5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -150,7 +150,7 @@
           },
           {
             "id": "claude-sonnet-4.6",
-            "name": "Claude Sonnet 4.6 via Kiro API",
+            "name": "Claude Sonnet 4.6",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -168,7 +168,7 @@
           },
           {
             "id": "claude-sonnet-4.5",
-            "name": "Claude Sonnet 4.5 via Kiro API",
+            "name": "Claude Sonnet 4.5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -186,7 +186,7 @@
           },
           {
             "id": "claude-sonnet-4.0",
-            "name": "Claude Sonnet 4.0 via Kiro API",
+            "name": "Claude Sonnet 4.0",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -204,7 +204,7 @@
           },
           {
             "id": "claude-haiku-4.5",
-            "name": "Claude Haiku 4.5 via Kiro API",
+            "name": "Claude Haiku 4.5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -222,7 +222,7 @@
           },
           {
             "id": "minimax-m2.5",
-            "name": "MiniMax M2.5 via Kiro API",
+            "name": "MiniMax M2.5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -240,7 +240,7 @@
           },
           {
             "id": "glm-5",
-            "name": "GLM-5 via Kiro API",
+            "name": "GLM-5",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -258,7 +258,7 @@
           },
           {
             "id": "deepseek-3.2",
-            "name": "DeepSeek 3.2 via Kiro API",
+            "name": "DeepSeek 3.2",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -276,7 +276,7 @@
           },
           {
             "id": "minimax-m2.1",
-            "name": "MiniMax M2.1 via Kiro API",
+            "name": "MiniMax M2.1",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
@@ -294,7 +294,7 @@
           },
           {
             "id": "qwen3-coder-next",
-            "name": "Qwen3 Coder Next via Kiro API",
+            "name": "Qwen3 Coder Next",
             "api": "anthropic-messages",
             "reasoning": false,
             "input": [
