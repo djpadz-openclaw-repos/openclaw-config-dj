@@ -48,7 +48,7 @@
     "allowRealIpFallback": true
   },
   "models": {
-    "mode": "merge",
+    "mode": "replace",
     "providers": {
       "kiro": {
         "baseUrl": "http://kiro-gateway.kiro-gateway.svc.cluster.local:9000",
@@ -333,7 +333,12 @@
       "compaction": {
         "mode": "safeguard"
       },
-      "userTimezone": "America/Los_Angeles"
+      "userTimezone": "America/Los_Angeles",
+      "models": {
+        "kiro/*": {},
+        "anthropic/claude-opus-4-8": {},
+        "kiro/claude-haiku-4.5": {}
+      }
     },
     "list": [
       {
@@ -361,7 +366,7 @@
   },
   "meta": {
     "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-04T01:45:13.658Z"
+    "lastTouchedAt": "2026-07-04T02:10:54.667Z"
   },
   "tools": {
     "profile": "full",
