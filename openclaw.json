@@ -642,6 +642,6 @@
   },
   "browser": {
     "enabled": true,
-    "cdpUrl": "http://10.1.37.177:9222"
+    "cdpUrl": "http://127.0.0.1:9222"
   }
 }
