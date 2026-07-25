@@ -172,6 +172,27 @@ Both are necessary. Deleting files without cleaning the database leaves orphaned
 - Cron jobs: `lightContext: true`, model: `kiro/claude-haiku-4.5`
 - Code: TypeScript, strongly-typed Python, Python virtualenvs always
 
+## Browser Setup (Jul 25, 2026)
+
+**Working config:** Local headless Chrome on `127.0.0.1:9222`
+- Config file: `/home/node/.openclaw/openclaw.json` has `"browser": {"enabled": true, "cdpUrl": "http://127.0.0.1:9222"}`
+- Startup: `/home/node/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome --headless=new --remote-debugging-port=9222 --no-sandbox --disable-gpu --disable-dev-shm-usage`
+- Verify with: `curl http://127.0.0.1:9222/json/version`
+- If browser tool times out: check if Chrome process exists, restart with command above
+- **Key lesson:** Config changes to `openclaw.json` require full process restart to reload (not just restart signals)
+
+## Kiro Model Monitor (Jul 25, 2026)
+
+Monitors https://kiro.dev/docs/models/ and keeps openclaw.json model catalog in sync, with a human approval gate.
+- **Location:** `workspace/projects/kiro-model-monitor/` (stdlib-only Python, uv venv)
+- **Drive it:** `./run.sh notify` (check + report), `./run.sh status`, `./run.sh apply` (writes openclaw.json + commits/pushes to main)
+- **Approval flow:** daily cron 9am Pacific runs `notify` → if changes, messages Dj via Telegram → Dj says "approve models" → I run `./run.sh apply`
+- **On demand:** Dj can ask "check for Kiro model updates" anytime
+- **Kiro is the ONLY model source.** Anything not available through Kiro is superfluous. The `kiro-gateway /v1/models` endpoint (auth: KIRO_GATEWAY_TOKEN) is the authoritative source of *usable* models; the docs page is just human-readable metadata + "coming soon" heads-up. The monitor's PRIMARY signal is gateway-vs-config gap, not docs changes.
+- **Key design:** costs NOT scraped (docs only show relative multiplier). Real USD costs come from `workspace/models-pricing.json` (hand-maintained, git-tracked); genuinely-new models get a placeholder cost flagged "COST REVIEW NEEDED". Auto (router) excluded from auto-add. Only gateway-live models auto-added; announced-but-not-live (e.g. GPT-5.6 tiers, Opus 5) held back.
+- **ID normalization:** gateway `claude-sonnet-4` == config `claude-sonnet-4.0` (trailing `.0` stripped for equivalence) to avoid false gaps. Config allowlist may legitimately exceed the gateway's advertised list (e.g. claude-opus-4.8, claude-sonnet-5 are usable but not advertised) — shown as FYI only, never nagged.
+- Cron job id: b7f53654-1330-43ab-ab3e-84d1ced55a9d
+
 ## Infrastructure URLs (Critical — Survive Memory Consolidation)
 
 - **OpenClaw Docs:** https://docs.openclaw.ai/ (primary reference for OpenClaw behavior, commands, config, architecture)
