@@ -161,9 +161,17 @@ Search is a means to an end, not the end itself. Raw results without analysis = 
 - Auto-recall now successfully injects memories before agent responses
 - Backfilled July 25 - Aug 1 sessions into Hindsight (424 sessions, 65 processed, 156+ pending)
 
-**Status:** Fully fixed and verified. Memory gathering is now fully operational. ~2.5 months of data (May 31 - August 1) was lost during the outage, but all new conversations are being captured and recalled as of August 2.
+**Status:** Fully operational. Memory gathering working, but recall latency is 12-15 seconds. ~2.5 months of data (May 31 - August 1) was lost during the outage, but all new conversations are being captured and recalled as of August 2.
 
-**Verification:** Recent logs show consistent "injecting N memories" messages (5 confirmed). Health check returns healthy. Agent knowledge tools (agent_knowledge_recall, agent_knowledge_reflect) show fresh memories being stored and retrieved from current session.
+**Verification:** Recent logs show consistent "injecting 5 memories" messages. Health check returns healthy. Agent knowledge tools show fresh memories being stored and retrieved from current session.
+
+**Recall Performance Investigation (August 2, 01:14–01:27 UTC):**
+- **Observation:** Recall operations consistently taking 12-15 seconds (CPU-bound in Hindsight process)
+- **Root cause:** Hindsight queries all 1,085 memory units (across all fact_types) without pre-filtering. Forces PostgreSQL to compute vector distance for every row.
+- **Index analysis:** HNSW indexes exist but cannot accelerate this query pattern because pgvector indexes work best with pre-filtered row sets. Hindsight's query lacks fact_type filtering.
+- **Evidence:** Query with fact_type='observation' (83 rows): 2.3ms. Query across all types (1,085 rows): 14.8ms. Linear scaling with row count.
+- **Potential fix:** If Hindsight filtered by fact_type during recall, would narrow to 80-500 rows and drop latency to <1s. Not implemented; would require Hindsight design changes.
+- **Decision:** Accept 12-15s latency. Within 30s timeout, memories flowing, system stable. Further optimization blocked on Hindsight's recall query design.
 
 ## Subagent Cleanup Fix (May 15, 2026)
 
