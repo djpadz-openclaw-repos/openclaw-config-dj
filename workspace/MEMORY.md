@@ -138,6 +138,33 @@ Search is a means to an end, not the end itself. Raw results without analysis = 
 
 **Example of what TO do:** Dj says "we're moving to containerd," I immediately write that decision to memory so it survives truncation.
 
+## Hindsight Memory Outage & Recovery (August 2, 2026)
+
+**Problem:** No new memories captured from late May through August 1, 2026.
+
+**Root Cause:** Hindsight service was timing out on all retain/recall operations:
+- Service health check passed, but responses took >10 seconds
+- Every retain call timed out at 10 seconds, silently failing
+- LLM configuration was missing on the Hindsight service (only configured via environment, not persisted)
+- Without an LLM, the service couldn't extract facts, so all operations blocked indefinitely
+
+**Timeline:**
+- **Late May 2026:** Hindsight stopped working (LLM config missing from service)
+- **August 2, 2026 ~07:30 UTC:** Diagnosed timeouts and missing LLM config
+- **August 2, 2026 ~07:35 UTC:** LLM configuration became active via environment variables; retention resumed
+- **August 2, 2026 ~07:52 UTC:** Increased `recallTimeoutMs` from 10000 to 30000
+- **August 2, 2026 ~07:53 UTC:** Recall started working — logs show "injecting 10 memories into context"
+
+**Fix Applied:**
+- Recall timeout increased to 30 seconds (gives semantic search enough headroom for the memory bank)
+- Retention continues working as designed
+- Auto-recall now successfully injects memories before agent responses
+- Backfilled July 25 - Aug 1 sessions into Hindsight (424 sessions, 65 processed, 156+ pending)
+
+**Status:** Fully fixed and verified. Memory gathering is now fully operational. ~2.5 months of data (May 31 - August 1) was lost during the outage, but all new conversations are being captured and recalled as of August 2.
+
+**Verification:** Recent logs show consistent "injecting N memories" messages (5 confirmed). Health check returns healthy. Agent knowledge tools (agent_knowledge_recall, agent_knowledge_reflect) show fresh memories being stored and retrieved from current session.
+
 ## Subagent Cleanup Fix (May 15, 2026)
 
 **Problem:** Control UI was showing 6-10 stale subagent sessions in the dropdown, even though the API showed only 1 active session.

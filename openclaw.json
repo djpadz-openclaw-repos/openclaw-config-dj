@@ -365,8 +365,8 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.6.11",
-    "lastTouchedAt": "2026-07-04T02:10:54.667Z"
+    "lastTouchedVersion": "2026.6.33",
+    "lastTouchedAt": "2026-08-02T07:04:43.674Z"
   },
   "tools": {
     "profile": "full",
@@ -556,7 +556,7 @@
       "hindsight-openclaw": {
         "enabled": true,
         "hooks": {
-          "allowConversationAccess": false
+          "allowConversationAccess": true
         },
         "config": {
           "hindsightApiUrl": "http://hindsight:8888",
@@ -566,7 +566,14 @@
             "cron",
             "dashboard"
           ],
-          "enableKnowledgeTools": true
+	  "recallTimeoutMs": 30000,
+	  "debug": true,
+	  "debugPerfTiming": true,
+          "enableKnowledgeTools": true,
+          "recallBudget": "low",
+          "recallMaxTokens": 2048,
+          "recallContextTurns": 3,
+          "recallTopK": 5
         }
       },
       "canvas": {
