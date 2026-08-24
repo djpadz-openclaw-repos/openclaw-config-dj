@@ -136,21 +136,22 @@ You have a complete mail server deployment package. Here's what each script does
      migrate "$(cat /root/mail-migration-master.pass)" /var/lib/mail-migration
    ```
    Re-run periodically (cron, see mail-server-migration-cron-setup.sh) to catch changes
-   until cutover; `--resume` state per mailbox makes each run incremental.
+   until cutover; imapsync is incremental by default (compares both sides each run,
+   copies only new/changed messages — no resume-state file needed).
 
-2. **Verify user mailboxes**
+3. **Verify user mailboxes**
    - Have users log in with their mail client
    - Check folder counts match expectations
    - Verify Sieve filters are active
 
-3. **Set up automated backups** (cron)
+4. **Set up automated backups** (cron)
    ```bash
    # Add to crontab
    0 2 * * * /root/mail-server-backup.sh backup /backups
    0 * * * * /root/mail-server-monitor.sh admin@padz.net
    ```
 
-4. **Decommission OMS** (after 48-72 hours verification)
+5. **Decommission OMS** (after 48-72 hours verification)
 
 ---
 
