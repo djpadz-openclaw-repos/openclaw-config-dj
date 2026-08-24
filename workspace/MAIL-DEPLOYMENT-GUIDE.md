@@ -47,6 +47,13 @@ You have a complete mail server deployment package. Here's what each script does
    - Includes managesieve plugin so users can edit the Sieve rules migrated from OMS
    - VERIFY on box: config key names (`imap_host`/`smtp_host`) against shipped `config/defaults.inc.php`
 
+9. **mail-server-rehash-passwords.py** + **mail-server-rehash-SETUP.md** — transparent hash upgrade
+   - Migrated OMS hashes are weak (MD5-CRYPT / SSHA1), only accepted via `auth_allow_weak_schemes = yes`
+   - Post-login script rehashes each user to a strong scheme on their next login (uses the plaintext Dovecot has post-auth)
+   - Follow SETUP.md exactly — passdb `userdb_plain_pass` field, `userdb prefetch`, post-login service, and the execv-chain requirement
+   - STEP 0 in SETUP.md is a go/no-go: verify `{SSHA512}` format with `doveadm pw -t` before deploying, or shell out to `doveadm pw`
+   - Once all active users have logged in once, remove the post-login service AND `auth_allow_weak_schemes`
+
 ---
 
 ## Deployment Flow
@@ -122,7 +129,7 @@ All scripts use these defaults:
 | Setting | Value |
 |---------|-------|
 | Mail user | vmail (UID 5000) |
-| Mail home | /var/mail/vhosts |
+| Mail home | /mail/vhosts |
 | Database | SQLite at /var/lib/postfixadmin/postfixadmin.db |
 | SSL | Let's Encrypt (auto-renews) |
 | SMTP | Port 25 (inbound), 587 (submission) |
@@ -145,12 +152,12 @@ sqlite3 /var/lib/postfixadmin/postfixadmin.db \
 # Add user
 sqlite3 /var/lib/postfixadmin/postfixadmin.db \
   "INSERT INTO mailbox (username, local_part, domain, password, maildir, active) \
-   VALUES ('user@newdomain.com', 'user', 'newdomain.com', '{SSHA}...hash...', '/var/mail/vhosts/newdomain.com/user', 1);"
+   VALUES ('user@newdomain.com', 'user', 'newdomain.com', '{SSHA}...hash...', '/mail/vhosts/newdomain.com/user', 1);"
 
 # Create maildir
-mkdir -p /var/mail/vhosts/newdomain.com/user/{cur,new,tmp}
-chown -R 5000:5000 /var/mail/vhosts/newdomain.com/user
-chmod 750 /var/mail/vhosts/newdomain.com/user
+mkdir -p /mail/vhosts/newdomain.com/user/{cur,new,tmp}
+chown -R 5000:5000 /mail/vhosts/newdomain.com/user
+chmod 750 /mail/vhosts/newdomain.com/user
 ```
 
 ### Check mail queue
@@ -178,10 +185,10 @@ netstat -an | grep ESTABLISHED | grep -E ':143|:993|:995'
 
 ```bash
 # Check if user has sieve scripts
-ls -la /var/mail/vhosts/<domain>/<user>/sieve/
+ls -la /mail/vhosts/<domain>/<user>/sieve/
 
 # Test Sieve syntax
-sievec /var/mail/vhosts/<domain>/<user>/sieve/rule-1.sieve
+sievec /mail/vhosts/<domain>/<user>/sieve/rule-1.sieve
 ```
 
 ---
@@ -211,7 +218,7 @@ doveconf
 journalctl -u dovecot -n 50
 
 # Common issue: missing maildir
-ls -la /var/mail/vhosts/
+ls -la /mail/vhosts/
 ```
 
 ### Mail not delivering
@@ -222,7 +229,7 @@ sqlite3 /var/lib/postfixadmin/postfixadmin.db \
   "SELECT * FROM mailbox WHERE username='user@domain.com';"
 
 # Check maildir exists and has correct permissions
-ls -la /var/mail/vhosts/<domain>/<user>
+ls -la /mail/vhosts/<domain>/<user>
 
 # Check Postfix logs
 tail -f /var/log/mail.log | grep user@domain.com
@@ -251,7 +258,7 @@ sqlite3 /var/lib/postfixadmin/postfixadmin.db \
 doveconf | grep sieve
 
 # Check script syntax
-sievec /var/mail/vhosts/<domain>/<user>/sieve/rule-1.sieve
+sievec /mail/vhosts/<domain>/<user>/sieve/rule-1.sieve
 
 # Check Dovecot logs
 journalctl -u dovecot -n 50 | grep sieve
@@ -360,7 +367,7 @@ postqueue -p | tail -1
 ### Monitor disk usage
 
 ```bash
-df -h /var/mail/vhosts
+df -h /mail/vhosts
 ```
 
 ---
