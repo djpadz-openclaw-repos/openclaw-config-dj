@@ -11,11 +11,14 @@ You have a complete mail server deployment package. Here's what each script does
    - Takes ~5-10 minutes
    - Creates database, installs all services, configures SSL
 
-2. **mail-server-bulk-import.sh** — Imports your CSVs into the database
-   - Runs as root
+2. **mail-server-bulk-import.py** — Imports your CSVs into the database
+   - Runs as root: `sudo python3 mail-server-bulk-import.py <csv_dir>`
    - Reads: domains.csv, users.csv, aliases.csv, sieve-scripts/
    - Creates maildir directories with proper permissions
-   - Populates SQLite database
+   - Populates SQLite database via parameterized SQL
+   - **Replaces the old .sh version**, which broke on apostrophes (xargs) and
+     quoted multi-destination aliases (IFS split). Python csv + sqlite3 handles
+     both. Stdlib-only, no venv needed. Guards against an unbuilt schema.
 
 3. **mail-server-test.sh** — Validates everything works
    - Run as regular user
@@ -36,6 +39,13 @@ You have a complete mail server deployment package. Here's what each script does
 
 7. **ldif-to-postfixadmin.py** — Converts OMS LDIF to CSVs
    - Usage: `python3 ldif-to-postfixadmin.py export.ldif output_dir/`
+
+8. **mail-server-roundcube.sh** — Roundcube webmail (1.6.x)
+   - Usage: `sudo bash mail-server-roundcube.sh webmail.padz.net admin@padz.net`
+   - SQLite prefs DB, nginx vhost, IMAP/SMTP/ManageSieve wiring to local Dovecot/Postfix
+   - Users log in with full email + mail password; authenticates against Dovecot IMAP
+   - Includes managesieve plugin so users can edit the Sieve rules migrated from OMS
+   - VERIFY on box: config key names (`imap_host`/`smtp_host`) against shipped `config/defaults.inc.php`
 
 ---
 

@@ -17,8 +17,13 @@
 - Migrating Oracle Messaging Server → Postfix + Dovecot + PostfixAdmin (SQLite backend) on a Contabo VPS.
 - Mailstore ~250 GB, planning growth to 1 TB. VPS sizing: 4 vCPU / 8 GB RAM / 2.5-3 TB disk.
 - User owns DNS; certs via Let's Encrypt/certbot; 2-4 hr maintenance window acceptable.
+- **Hostname split** (Aug 24): PostfixAdmin on `pfa.newmail.ctb.padz.net`, Roundcube on `webmail.newmail.ctb.padz.net`, mail/MX/IMAP cert on the mail FQDN. Separate origins for admin vs webmail.
+- **certbot plugin gotcha**: main deploy Phase 2 uses `--standalone` (fine — runs before nginx exists on first run, skipped on re-runs via `if [ ! -f ]`). But webmail/PFA add-on certs must use `--nginx` (nginx already running holds port 80; standalone would fail to bind). Fixed roundcube script to use `--nginx`.
 - OMS exports as LDIF (iPlanet/SunONE schema). Parser: `ldif-to-postfixadmin.py`. Key attrs: `uid`, domain from DN (`o=domain,o=amroot`), `userPassword` (SSHA/SHA1, base64), `mailEquivalentAddress` + `mailAlternateAddress` (aliases, multivalued), `mailSieveRuleSource` (base64 Sieve, multivalued), `mailUserStatus`.
-- Deploy package in workspace: `mail-server-deploy.sh`, `-bulk-import.sh`, `-test.sh`, `-backup.sh`, `-monitor.sh`, `-migrate.sh` (all-mailbox incremental imapsync, resume state), `-migration-cron-setup.sh`, `MAIL-DEPLOYMENT-GUIDE.md`.
+- **parse_dn() filters org-level noise**: skips `o=amroot` and any `o=` value without a dot (internal org units like `o=marketing`). A no-dot level before the real domain (`o=internal,o=padz.net`) doesn't shadow it — loop walks to the real domain. Single chokepoint feeding domains/users/aliases, so filter applies everywhere.
+- Deploy package in workspace: `mail-server-deploy.sh`, `-bulk-import.py` (Python; replaced fragile `-bulk-import.sh`), `-test.sh`, `-backup.sh`, `-monitor.sh`, `-migrate.sh` (all-mailbox incremental imapsync, resume state), `-migration-cron-setup.sh`, `-roundcube.sh` (webmail), `MAIL-DEPLOYMENT-GUIDE.md`.
+- **Bulk import is now Python** (`mail-server-bulk-import.py`, stdlib csv+sqlite3, run as root). The bash version broke on: (1) apostrophes in names via `xargs` (`O'Brien`), (2) SQL string interpolation on apostrophes, (3) quoted multi-destination aliases (`"a@x, b@x"`) via `IFS=,` split. Python fixes all three with csv.DictReader + parameterized SQL. Verified against those exact inputs. Guards with `SELECT 1 FROM mailbox` (schema must exist first).
+- **Webmail: Roundcube 1.6.x** (still the go-to). Own SQLite prefs DB (separate from PostfixAdmin auth DB); authenticates against Dovecot IMAP. managesieve plugin (port 4190) gives users a GUI for the migrated OMS Sieve rules. RC config key names shifted across versions — verify `imap_host`/`smtp_host` against shipped `config/defaults.inc.php` on the box.
 - Migration strategy: imapsync incremental every 4h to keep in sync until cutover. IMAP UIDVALIDITY changes on cutover are unavoidable — clients re-sync; can't preserve OMS UUIDs natively.
 - SSHA1 hashes usable in Dovecot as-is for go-live; plan to rotate to stronger scheme later.
 
@@ -36,6 +41,26 @@
 - **`mail_location` split into two settings**: `mail_driver = maildir` + `mail_path = /path/...`. The old `mail_location = maildir:/path` form is gone in 2.4.
 - **Postfix SASL socket wiring**: Postfix `smtpd_sasl_path = private/auth` resolves to `/var/spool/postfix/private/auth`; the Dovecot listener MUST live in a `service auth {}` block (not `service managesieve`), or submission on 587 won't authenticate.
 - Upgrade doc: https://doc.dovecot.org/main/installation/upgrade/2.3-to-2.4.html ; converter: https://dovecot.org/upgrader/
+
+#### Postfix SQLite map gotcha (CONFIRMED via postfix check, Aug 2026)
+- **Postfix SQLite driver uses `dbpath =`**, NOT the MySQL-style `hosts =` / `dbname =`. Wrong keys => `postfix check` warns "unused parameter: hosts/dbname" and the lookup silently fails (Postfix ignores the whole connection config). Map file needs only `dbpath` + `query`.
+- Verify maps resolve: `postmap -q "padz.net" sqlite:/etc/postfix/sqlite-virtual-mailbox-domains.cf` (returns 1), `-maps.cf` returns maildir, `-alias-maps.cf` returns goto target.
+
+#### PostfixAdmin deploy gotchas (CONFIRMED, Aug 2026)
+- **Docroot is `public/`**: PostfixAdmin 3.2+ moved public-facing files into `public/`. nginx `root` must point at `.../postfixadmin/public`, not the repo root.
+- **`templates_c/` not shipped** in the git repo — must `mkdir -p` it and make it group-writable (Smarty cache), or chmod fails with "No such file or directory".
+- **PHP-FPM socket is version-specific** (`/run/php/php8.3-fpm.sock`), not the bare `/run/php/php-fpm.sock`. Detect with `find /run/php -name 'php*-fpm.sock'` or nginx 502s.
+- **First-run is `/setup.php`** (set setup password, create admin, then DELETE setup.php). Login after setup is at web root `/`, NOT `/admin`.
+- **git clone ships source WITHOUT vendored deps** — must run `composer install --no-dev --optimize-autoloader` in the repo dir or it errors on `vendor/autoload.php` missing. Deploy script now does this (guarded).
+- **DB schema is owned by PostfixAdmin**: do NOT hand-roll domain/mailbox/alias tables. Let setup.php build the schema in an empty SQLite DB, THEN inspect `.schema` and align bulk-import + Postfix/Dovecot queries to the real column names. `config.local.php` (repo root, not public/): `$CONF['configured']=true; database_type='sqlite'; database_name='/var/lib/postfixadmin/postfixadmin.db';`.
+- **Schema reconciliation (Aug 24)**: PostfixAdmin's real column names matched my hand-rolled ones (standard names). mailbox cols: username(full email, PK), local_part, domain, password, name, maildir, quota, active. alias: address(PK), goto, domain, active, description. domain: domain(PK), description, aliases, mailboxes, maxquota, quota, transport, backupmx, active.
+- **maildir column = RELATIVE path with trailing slash** (`domain/user/`), PostfixAdmin convention. Dovecot ignores it (computes physical path from mail_path template); Postfix LMTP only uses it to confirm recipient exists. Bulk-import fixed to write relative form.
+- **Imported `{SSHA}` hashes stored verbatim** via direct SQL (PostfixAdmin's `encrypt` setting only applies to UI-set passwords). Dovecot auto-detects `{SSHA}` scheme prefix at auth — login works.
+- **domain.aliases/mailboxes are per-domain LIMIT columns**; import leaves them at default 0. If UI refuses to add mailboxes later, `0` means "none allowed" in this version — set limits via Edit Domain. Bulk SQL insert bypasses the check regardless.
+- **Self-aliases**: PostfixAdmin UI models each mailbox with a self-referencing alias (address=goto=user@domain); bulk import doesn't create these. Delivery still works (mailbox in virtual_mailbox_maps); UI may show mailboxes as alias-less (cosmetic).
+- **Deploy script Phase 3 fixed (Aug 24)**: removed the hand-rolled schema (had bogus `id`/`maxaliases`/`maxmailboxes` cols that don't exist in real PostfixAdmin schema). Now just creates empty DB (`sqlite3 db "VACUUM;"`) owned by www-data:www-data, parent dir 750, file 640 — setup.php builds real schema. bulk-import.sh now guards with `SELECT 1 FROM mailbox` and errors if schema absent (run setup.php first).
+- **nginx needs `location / { try_files $uri $uri/ /index.php; }`** for routing.
+- Idempotency: keep clone in `if [ ! -d ]` but permissions/mkdir OUTSIDE it, or re-runs skip the fixups.
 - **`userdb static` wraps uid/gid/home in a `fields { }` block** in 2.4: `userdb static { fields { uid=... gid=... home=... } }`. Bare `uid =` throws "Unknown setting." Alternative: drop the userdb block entirely and set global `mail_uid`/`mail_gid`/`mail_home` (simpler for single-UID setups).
 - **LESSON:** Guessed the 2.4 passdb fix twice and burned Dj's time before RTFM. For version-specific config syntax, search/read the official docs FIRST, don't iterate on guesses.
 
