@@ -172,3 +172,26 @@ Now you're on strong hashes only, weak schemes disabled.
 - Webmail (Roundcube) logs in via IMAP with plaintext, so those logins trigger it too.
 - Users who never log in keep their old hash; they simply won't authenticate once
   weak schemes are disabled — expected, handle via a reset for stragglers.
+
+## ⚠️ MASTER-USER / MIGRATION INTERACTION (critical)
+The PROXYAUTH migration authenticates to Dovecot as a **master user**
+(`--user2 "realuser*migrate"`, see mail-server-migrate.sh + the `passwd.masterusers`
+passdb in mail-server-deploy.sh). During such a login Dovecot sets `USER` to the
+REAL user but the plaintext it exposes is the **master** password, not the user's.
+
+Without a guard, this post-login script would overwrite EVERY migrated user's stored
+hash with a hash of the master password on each 4-hourly sync — silent, mass
+credential corruption that only surfaces at cutover when nobody can log in.
+
+The script guards against this two ways (both in mail-server-rehash-passwords.py):
+1. **Fast skip** on master-user env vars (`MASTER_USER`/`AUTH_MASTER_USER`/`ORIG_USER`).
+   Names vary by build, so this alone is not trusted.
+2. **Verify-before-write (the real safety net)**: before rehashing, it runs
+   `doveadm pw -t <stored_hash> -p <plaintext>` and only proceeds if the plaintext
+   actually matches the user's CURRENT stored hash. The master password will never
+   verify against a user's weak migrated hash, so migration logins never rehash.
+   Fails closed (skip) on any error.
+
+**Do not remove either guard while the migration master user exists.** They can go
+away only after both the migration is fully cut over (master passdb removed) AND
+weak-scheme cleanup is done.
