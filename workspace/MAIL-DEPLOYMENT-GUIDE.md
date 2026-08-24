@@ -44,6 +44,24 @@ You have a complete mail server deployment package. Here's what each script does
 
 7. **ldif-to-postfixadmin.py** — Converts OMS LDIF to CSVs
    - Usage: `python3 ldif-to-postfixadmin.py export.ldif output_dir/`
+   - Handles users (uid= entries), their aliases, and Sieve rules
+   - Handles **distribution groups / mailing lists** (iPlanet `inetMailGroup` /
+     `groupOfUniqueNames` entries): each group address (`mail` + `mailAlternateAddress`)
+     becomes a multi-destination alias whose `goto` is the member list. Members come
+     from `uniqueMember` (internal DNs resolved to uid@domain) + `mgrpRFC822MailMember`
+     (external addresses). Inactive groups (`inetMailGroupStatus`) import as active=0.
+   - LDIF decoding is driven by the `::` base64 marker, not value length (the old
+     length>40 guess corrupted long plain values like DNs and names).
+   - **User resolution has fallbacks** so an unusual DN layout doesn't silently drop
+     mailboxes: if the DN lacks `uid=` or a dotted `o=domain`, it falls back to the
+     `uid` attribute and the local/domain parts of the `mail` address (gated to real
+     mail-user objectClasses). Domains are derived from the RESOLVED records, so
+     recovered users always get a domain entry. Unresolvable mail-user-like entries
+     print a WARN instead of vanishing.
+   - **Diagnostic:** if the imported count looks low, run
+     `python3 ldif-diagnose.py export.ldif` — it categorizes every entry by RDN type
+     and objectClass and shows exactly which would be dropped and why (no passwords
+     or message content printed).
 
 8. **mail-server-roundcube.sh** — Roundcube webmail (1.6.x)
    - Usage: `sudo bash mail-server-roundcube.sh webmail.padz.net admin@padz.net`
