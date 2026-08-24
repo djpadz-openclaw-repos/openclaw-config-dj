@@ -13,6 +13,32 @@
 
 ## Project-Specific Memory Index
 
+### Mail Migration (OMS → Postfix/Dovecot), started Aug 2026
+- Migrating Oracle Messaging Server → Postfix + Dovecot + PostfixAdmin (SQLite backend) on a Contabo VPS.
+- Mailstore ~250 GB, planning growth to 1 TB. VPS sizing: 4 vCPU / 8 GB RAM / 2.5-3 TB disk.
+- User owns DNS; certs via Let's Encrypt/certbot; 2-4 hr maintenance window acceptable.
+- OMS exports as LDIF (iPlanet/SunONE schema). Parser: `ldif-to-postfixadmin.py`. Key attrs: `uid`, domain from DN (`o=domain,o=amroot`), `userPassword` (SSHA/SHA1, base64), `mailEquivalentAddress` + `mailAlternateAddress` (aliases, multivalued), `mailSieveRuleSource` (base64 Sieve, multivalued), `mailUserStatus`.
+- Deploy package in workspace: `mail-server-deploy.sh`, `-bulk-import.sh`, `-test.sh`, `-backup.sh`, `-monitor.sh`, `-migrate.sh` (all-mailbox incremental imapsync, resume state), `-migration-cron-setup.sh`, `MAIL-DEPLOYMENT-GUIDE.md`.
+- Migration strategy: imapsync incremental every 4h to keep in sync until cutover. IMAP UIDVALIDITY changes on cutover are unavoidable — clients re-sync; can't preserve OMS UUIDs natively.
+- SSHA1 hashes usable in Dovecot as-is for go-live; plan to rotate to stronger scheme later.
+
+#### Dovecot 2.4 config gotchas (CONFIRMED via doc.dovecot.org, Aug 2026)
+- **passdb/userdb section name IS the driver**: `passdb sql { }`, not `passdb { driver = sql }`. Bare block → "missing section name" fatal.
+- **SQL driver key is `sql_driver`** (+ `query`), NOT `driver`/`args`. `query =` auto-expands to `passdb_sql_query` only when section name matches driver. **SQLite connection path is `sqlite_path`** (dedicated setting), NOT the old `connect =` DSN string — `connect` throws "Unknown setting" in 2.4. (MySQL/Postgres may still use connect-style DSN; SQLite does not.)
+- **One-letter `%` vars REMOVED**: `%u`→`%{user}`, `%d`→`%{user | domain}`, `%n`→`%{user | username}`.
+- **`plugin { }` section removed** — settings are global. Sieve uses named `sieve_script personal {}` / `sieve_script global { sieve_script_type = global }` blocks.
+- **`$var` refs need `$SET:` prefix**; `mail_plugins` is now a boollist: `mail_plugins { sieve = yes }` not `= $mail_plugins sieve`.
+- **`dovecot_config_version` + `dovecot_storage_version` REQUIRED** as first settings in dovecot.conf, or 2.4 won't start.
+- **Package name is `dovecot-managesieved`** (with trailing 'd'), NOT `dovecot-managesieve`. The daemon package differs from the older name.
+- **`ssl_protocols` exclusion-list form deprecated** (since 2.3) — use `ssl_min_protocol = TLSv1.2`.
+- **`ssl_cert`/`ssl_key` renamed** to `ssl_server_cert_file`/`ssl_server_key_file` in 2.4; the old `< /path` file-read prefix syntax is gone — give the path directly.
+- **`disable_plaintext_auth` removed** — replaced by `auth_allow_cleartext` (inverted boolean). Old `disable_plaintext_auth = no` == new `auth_allow_cleartext = yes`. Deploy script uses `auth_allow_cleartext = no` (safer, since ssl = required).
+- **`mail_location` split into two settings**: `mail_driver = maildir` + `mail_path = /path/...`. The old `mail_location = maildir:/path` form is gone in 2.4.
+- **Postfix SASL socket wiring**: Postfix `smtpd_sasl_path = private/auth` resolves to `/var/spool/postfix/private/auth`; the Dovecot listener MUST live in a `service auth {}` block (not `service managesieve`), or submission on 587 won't authenticate.
+- Upgrade doc: https://doc.dovecot.org/main/installation/upgrade/2.3-to-2.4.html ; converter: https://dovecot.org/upgrader/
+- **`userdb static` wraps uid/gid/home in a `fields { }` block** in 2.4: `userdb static { fields { uid=... gid=... home=... } }`. Bare `uid =` throws "Unknown setting." Alternative: drop the userdb block entirely and set global `mail_uid`/`mail_gid`/`mail_home` (simpler for single-UID setups).
+- **LESSON:** Guessed the 2.4 passdb fix twice and burned Dj's time before RTFM. For version-specific config syntax, search/read the official docs FIRST, don't iterate on guesses.
+
 When working on a project, read its MEMORY.md file first:
 - **Email Automation:** `projects/email-automation/MEMORY.md` (features, Kiro endpoints, deployments)
 - **Heru Portal:** `projects/heru/MEMORY.md` (diagnostics, service bus, VF tests)
