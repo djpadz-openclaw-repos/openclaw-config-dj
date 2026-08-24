@@ -57,6 +57,17 @@ passdb sql {
 }
 ```
 
+**SECURITY — plaintext in logs (the real risk, NOT injection):**
+SQL injection is NOT a concern here: Dovecot's SQL driver auto-escapes `%{}`
+expansions (verified on-box — an `ab'cd` password expands to `ab''cd` before
+hitting SQL). The actual exposure is that `userdb_plain_pass` carries the
+CLEARTEXT password through the auth pipeline. If auth debug logging is ever on
+while this is live, plaintext passwords land in the logs. So:
+- Keep `auth_verbose_passwords` and `auth_debug` / auth verbose logging OFF in prod.
+- Treat this whole mechanism as TEMPORARY — it is removed entirely at STEP 6
+  once all users are rehashed. Don't leave `userdb_plain_pass` in the query
+  longer than the migration window needs.
+
 ## STEP 2 — add a prefetch userdb
 
 The prefetch userdb reads fields the passdb already returned (the plain pass),
@@ -80,20 +91,37 @@ userdb static {
 
 ## STEP 3 — post-login service
 
-Add to `/etc/dovecot/conf.d/10-master.conf` (or a new conf.d file):
+Add to `/etc/dovecot/conf.d/10-master.conf` (or a new conf.d file).
+
+Dovecot 2.4 syntax: there is NO `protocol imap { postlogin = ... }` setting (that
+was 2.3 and throws "Unknown setting: postlogin"). Instead, override the imap
+service's `executable` to append a post-login socket NAME, then define a service
+with a matching `unix_listener` of that same name. The link is by name match.
 
 ```
+service imap {
+  # append the post-login socket name; imap does a post-login lookup on it
+  executable = imap imap-postlogin
+}
+
 service imap-postlogin {
   executable = script-login /usr/local/bin/mail-server-rehash-passwords.py
   user = vmail
+  group = www-data
   unix_listener imap-postlogin {
   }
 }
-
-protocol imap {
-  postlogin = imap-postlogin
-}
 ```
+
+**CRITICAL — `group = www-data` is required, not optional.** Dovecot sets only
+the service's uid + PRIMARY gid on setuid; it does NOT apply the user's
+supplementary groups from /etc/group. So even after `usermod -aG www-data vmail`
+(and a restart), the post-login process still can't read the www-data-owned DB
+unless the group is named explicitly here. Symptom if omitted: login works but
+hash never flips; script logs `OperationalError: unable to open database file`.
+
+For POP3 users, mirror it: `service pop3 { executable = pop3 pop3-postlogin }`
+plus a matching `service pop3-postlogin { ... unix_listener pop3-postlogin {} }`.
 
 Install the script:
 ```bash
