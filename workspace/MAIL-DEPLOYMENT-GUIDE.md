@@ -370,6 +370,39 @@ sievec /mail/vhosts/<domain>/<user>/sieve/rule-1.sieve
 journalctl -u dovecot -n 50 | grep sieve
 ```
 
+### Per-user quotas not enforced / wrong limit
+
+Per-user limit comes from the `mailbox.quota` column (bytes). How it reaches
+Dovecot depends on which userdb chain is live:
+
+- **Base deploy (no rehash):** a standalone `userdb sql` block returns
+  `quota_storage_size` directly.
+- **After rehash add-on (prefetch + static):** the limit rides on the passdb
+  query as `userdb_quota_storage_size` and prefetch feeds it to the quota
+  plugin. This is what the live box runs (VERIFIED Aug 26). If you re-apply or
+  edit the rehash config, keep that column in the passdb query or every mailbox
+  silently falls back to the global default. See mail-server-rehash-SETUP.md.
+
+```bash
+# Confirm the limit resolves per-user (should show quota_storage_size)
+doveadm user user@domain.com
+
+# Live usage vs limit
+doveadm quota get -u user@domain.com
+# Recompute authoritative usage if it looks off
+doveadm quota recalc -u user@domain.com
+
+# Plugin actually loaded?
+doveconf -n | grep -iE 'quota|mail_plugins'
+```
+
+**2.4 gotchas (both hit + fixed Aug 26):**
+- `quota_vsizes` was REMOVED in 2.4 (count backend uses virtual sizes by
+  default). Setting it => fatal "Unknown setting: quota_vsizes". Do not add it.
+- An explicit `quota_storage_grace = 10%` (or `10%%`) was rejected as
+  "Invalid size" on 2.4.4. Leave the `quota "User quota" { }` root empty to use
+  the default grace, or verify the accepted 2.4 size format before setting it.
+
 ### SSL certificate issues
 
 ```bash

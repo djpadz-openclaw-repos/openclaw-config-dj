@@ -52,10 +52,20 @@ Edit `/etc/dovecot/conf.d/10-sqlite.conf`, add the field to the passdb query:
 passdb sql {
   sql_driver = sqlite
   sqlite_path = /var/lib/postfixadmin/postfixadmin.db
-  query = SELECT password, '%{password}' AS userdb_plain_pass \
+  query = SELECT password, '%{password}' AS userdb_plain_pass, \
+          CASE WHEN quota > 0 THEN quota || 'B' ELSE '0' END AS userdb_quota_storage_size \
           FROM mailbox WHERE username = '%{user}' AND active = '1'
 }
 ```
+
+**QUOTA rides through this query (do NOT drop it):** the base deploy enforces
+quota via a standalone `userdb sql` block. Rehash REPLACES the userdb chain with
+`prefetch` + `static` (STEP 2), which removes that standalone quota lookup. So the
+per-user limit MUST be carried here as `userdb_quota_storage_size` (bytes; `|| 'B'`
+makes it explicit, 0 => unlimited) — prefetch then feeds it to the quota plugin,
+exactly like `userdb_plain_pass`. Omit it and every mailbox silently reverts to
+the global default. VERIFIED on box Aug 26. Unlike `userdb_plain_pass`, this field
+is NOT removed at STEP 6 — quota stays after rehash cleanup.
 
 **SECURITY — plaintext in logs (the real risk, NOT injection):**
 SQL injection is NOT a concern here: Dovecot's SQL driver auto-escapes `%{}`
@@ -70,9 +80,11 @@ while this is live, plaintext passwords land in the logs. So:
 
 ## STEP 2 — add a prefetch userdb
 
-The prefetch userdb reads fields the passdb already returned (the plain pass),
-making it available to the post-login script as $PLAIN_PASS. Keep the existing
-`userdb static` too — Postfix/LMTP delivery needs it to resolve the mailbox.
+The prefetch userdb reads fields the passdb already returned (the plain pass
+AND `userdb_quota_storage_size` from STEP 1), making the plain pass available to
+the post-login script as $PLAIN_PASS and feeding the quota limit to the quota
+plugin. Keep the existing `userdb static` too — Postfix/LMTP delivery needs it to
+resolve the mailbox (uid/gid/home).
 
 Add BEFORE the existing `userdb static` block:
 
@@ -160,7 +172,12 @@ sqlite3 /var/lib/postfixadmin/postfixadmin.db \
 ```
 When that returns empty:
 1. Remove the imap-postlogin service + protocol imap postlogin line
-2. Remove `userdb prefetch` and the `userdb_plain_pass` field from the passdb query
+2. Remove ONLY the `userdb_plain_pass` field from the passdb query. Do NOT remove
+   `userdb prefetch` and do NOT remove `userdb_quota_storage_size` — quota now
+   rides through prefetch (see STEP 1). Removing prefetch would drop every user's
+   quota back to the global default. Keep prefetch + static + the quota field.
+   (Alternatively, if you want to retire prefetch entirely, first move quota back
+   to a standalone `userdb sql` block as in the base deploy script.)
 3. Remove `auth_allow_weak_schemes = yes`
 4. `systemctl restart dovecot`
 
