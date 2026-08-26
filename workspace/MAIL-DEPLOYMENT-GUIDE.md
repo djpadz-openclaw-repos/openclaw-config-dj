@@ -112,9 +112,20 @@ You have a complete mail server deployment package. Here's what each script does
 2. **Import all data**
    ```bash
    ssh root@<VPS_IP>
-   # Run setup.php in PostfixAdmin first to build the schema, then:
+   # 1. Run setup.php in PostfixAdmin first to build the schema.
+   # 2. Make the mailbox username case-insensitive (Dovecot dislikes mixed-case
+   #    mailbox names). The importer downcases everything it writes, but set the
+   #    collation too so anything added later (UI, manual SQL) stays consistent:
+   sqlite3 /var/lib/postfixadmin/postfixadmin.db \
+     "UPDATE mailbox SET username = lower(username), local_part = lower(local_part), domain = lower(domain);"
+   # (If you want the column itself NOCASE, that requires a table rebuild — see
+   #  the "Mailbox case sensitivity" note under Key Configuration below.)
+   # 3. Import:
    python3 mail-server-bulk-import.py /root/csv-import
    ```
+   The importer now (a) downcases username/local_part/domain/maildir/paths, and
+   (b) creates the per-mailbox self-alias (`address == goto == user@domain`) that
+   Postfix requires for virtual delivery. Both were originally applied by hand.
 
 3. **Run tests**
    ```bash
@@ -188,6 +199,50 @@ All scripts use these defaults:
 | POP3 | Port 995 (SSL), 110 (starttls) |
 | Sieve | Port 4190 (ManageSieve) |
 | PostfixAdmin | HTTPS on port 443 |
+
+### Mailbox case sensitivity (learned the hard way)
+
+Dovecot does NOT like mixed-case mailbox names. Two things keep the DB, the
+filesystem, and Dovecot in agreement:
+
+1. **The importer downcases** `username`, `local_part`, `domain`, the maildir
+   value, and the physical path. So a fresh import is already all-lowercase.
+
+2. **Make the `username` column collation NOCASE** as a safety net for anything
+   added later (PostfixAdmin UI, manual SQL). SQLite can't `ALTER` a column's
+   collation in place — it needs a table rebuild. After `setup.php` builds the
+   schema and BEFORE importing:
+
+   ```sql
+   -- One-time, on the empty schema. Rebuilds mailbox with NOCASE username.
+   ALTER TABLE mailbox RENAME TO mailbox_old;
+   CREATE TABLE mailbox (
+     username     TEXT COLLATE NOCASE PRIMARY KEY,
+     password     TEXT,
+     name         TEXT,
+     maildir      TEXT,
+     quota        INTEGER,
+     local_part   TEXT,
+     domain       TEXT,
+     created      TIMESTAMP,
+     modified     TIMESTAMP,
+     active       INTEGER
+   );
+   INSERT INTO mailbox SELECT * FROM mailbox_old;
+   DROP TABLE mailbox_old;
+   ```
+   Verify the real column set with `.schema mailbox` first and match it exactly
+   (PostfixAdmin's schema can vary by version). If a rebuild is more than you
+   want, the plain `UPDATE ... SET username = lower(username)` in Day 2 step 2
+   is enough as long as the importer stays the only writer.
+
+### Per-mailbox self-alias (required for delivery)
+
+Postfix virtual delivery needs an alias row for each mailbox pointing to itself
+(`address == goto == user@domain`) — the same row PostfixAdmin's UI creates per
+mailbox. Example row: `tracy_work@warriordoc.com | tracy_work@warriordoc.com |
+warriordoc.com | ... | 1`. The importer now creates these automatically; before
+that fix they had to be added by hand.
 
 ---
 
