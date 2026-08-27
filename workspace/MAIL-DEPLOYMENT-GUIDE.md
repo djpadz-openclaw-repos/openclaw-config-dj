@@ -403,6 +403,29 @@ doveconf -n | grep -iE 'quota|mail_plugins'
   "Invalid size" on 2.4.4. Leave the `quota "User quota" { }` root empty to use
   the default grace, or verify the accepted 2.4 size format before setting it.
 
+### doveadm -A fails: "userdb list: User listing returned failure"
+
+Any `doveadm -A` (all-users) command — `expunge -A`, bulk quota recalc, etc. —
+needs a userdb that can ENUMERATE users. `userdb prefetch` (login-time only) and
+`userdb static` (constant fields, no listing) both cannot list, so `-A` fails.
+Single-user commands (`doveadm expunge -u user@domain ...`) still work.
+
+Fix: a userdb with an `iterate_query`. In the base deploy the standalone
+`userdb sql` block already carries it; after the rehash add-on (prefetch+static),
+add a trailing `userdb sql` block whose only job is iteration (STEP 2b in
+mail-server-rehash-SETUP.md).
+
+```bash
+# Confirm iteration works (lists active users):
+doveadm user '*'
+```
+
+**CRITICAL when adding the iteration userdb to a multi-userdb chain:** its
+per-user `query` MUST return the SAME field set as the rest of the chain
+(uid/gid/home + quota_storage_size). Dovecot merges userdb fields at login; if
+the iteration block's query omits `quota_storage_size`, the merge drops the
+per-user limit and every mailbox reverts to unlimited. Caught + fixed Aug 27.
+
 ### SSL certificate issues
 
 ```bash

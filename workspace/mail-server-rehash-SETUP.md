@@ -101,6 +101,37 @@ userdb static {
 }
 ```
 
+### STEP 2b — add an iteration userdb (for `doveadm -A`)
+
+prefetch resolves fields only during a real login (after the passdb has run) and
+static just returns constants for a username you hand it — NEITHER can ENUMERATE
+users. So `doveadm -A ...` (e.g. `expunge -A`, bulk quota recalc) fails with
+`auth-master: userdb list: User listing returned failure`. Add a trailing
+`userdb sql` whose only job is `iterate_query`. VERIFIED on box Aug 27.
+
+Append AFTER the `userdb static` block:
+
+```
+userdb sql {
+  sql_driver = sqlite
+  sqlite_path = /var/lib/postfixadmin/postfixadmin.db
+  query = SELECT 5000 AS uid, 5000 AS gid, \
+    '/mail/vhosts/' || domain || '/' || local_part AS home, \
+    CASE WHEN quota > 0 THEN quota || 'B' ELSE '0' END AS quota_storage_size \
+    FROM mailbox WHERE username = '%{user}' AND active = '1'
+  iterate_query = SELECT username AS user FROM mailbox WHERE active = '1'
+}
+```
+
+**CRITICAL — the per-user `query` here MUST return the SAME field set as the rest
+of the chain (uid/gid/home + quota_storage_size).** With multiple userdbs Dovecot
+merges their fields at login; if this trailing block's `query` omits
+`quota_storage_size`, the merge drops the per-user limit and every mailbox
+silently reverts to unlimited. Caught + fixed on box Aug 27 (first attempt
+returned only uid/gid/home and killed enforcement). It duplicates the quota CASE
+from STEP 1 by design — both paths must agree. `active = 1` skips disabled/
+maildir-less rows (e.g. calmaster) so `-A` doesn't error on them.
+
 ## STEP 3 — post-login service
 
 Add to `/etc/dovecot/conf.d/10-master.conf` (or a new conf.d file).
@@ -178,8 +209,10 @@ When that returns empty:
    quota back to the global default. Keep prefetch + static + the quota field.
    (Alternatively, if you want to retire prefetch entirely, first move quota back
    to a standalone `userdb sql` block as in the base deploy script.)
-3. Remove `auth_allow_weak_schemes = yes`
-4. `systemctl restart dovecot`
+3. Do NOT remove the trailing iteration `userdb sql` block (STEP 2b) — `doveadm -A`
+   still needs its `iterate_query`. It's independent of the rehash mechanism.
+4. Remove `auth_allow_weak_schemes = yes`
+5. `systemctl restart dovecot`
 
 Now you're on strong hashes only, weak schemes disabled.
 
