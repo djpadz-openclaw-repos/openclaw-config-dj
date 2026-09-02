@@ -4,8 +4,8 @@
 - **What to call them:** Dj (lowercase j — never "DJ")
 - **Pronouns:** he/him
 - **Timezone:** America/Los_Angeles (Pacific)
-- **Age:** 53
-- **Location:** San Diego (moved there in 1986)
+- **Age:** 54
+- **Location:** San Diego (moved there in 1986, and again in 2023)
 - **Partner:** Sherra (together 6 years)
 - **Role:** VP of Engineering at Heru (medical eyecare testing platform)
 
@@ -61,7 +61,7 @@
 ## Personal Interests
 
 - **Music:** Classic rock (60s–80s), yacht rock, AC/DC, Black Sabbath, Judas Priest, classical, jazz
-- **Cars:** Daily driver: 2026 Toyota bZ (Norm Reeves Toyota, CarPlay w/ flaky EV routing); toy: 1969 Austin Healey Sprite (needs new master cylinder)
+- **Cars:** Daily driver: 2026 Toyota bZ (Norm Reeves Toyota, CarPlay); toy: 1969 Austin Healey Sprite (needs new master cylinder)
 - **Tech:** UniFi networking, media server (Plex/Sonarr/Radarr), home infrastructure
 - **Other:** Godmother Yve Evans (LA-based jazz singer/pianist/entertainer)
 - **Currently taking:** Standup comedy class (see projects/standup-comedy/)
@@ -71,7 +71,7 @@
 - **Home:** 6919 Camino Amero, San Diego 92111 (Mission Valley area)
 - Neither Dj nor Sherra drinks alcohol — skip bars, wine tasting, cocktail suggestions
 - Sherra is gluten-free, low FODMAP, easy on dairy and fat
-- Prefers kayaking and relaxed activities
+- Prefers gaming, puzzles, and relaxed activities
 
 ## Full Context
 

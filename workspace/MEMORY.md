@@ -13,86 +13,11 @@
 
 ## Project-Specific Memory Index
 
-### Mail Migration (OMS → Postfix/Dovecot), started Aug 2026
-- Migrating Oracle Messaging Server → Postfix + Dovecot + PostfixAdmin (SQLite backend) on a Contabo VPS.
-- Mailstore ~250 GB, planning growth to 1 TB. VPS sizing: 4 vCPU / 8 GB RAM / 2.5-3 TB disk.
-- User owns DNS; certs via Let's Encrypt/certbot; 2-4 hr maintenance window acceptable.
-- **Hostname split** (Aug 24): PostfixAdmin on `pfa.newmail.ctb.padz.net`, Roundcube on `webmail.newmail.ctb.padz.net`, mail/MX/IMAP cert on the mail FQDN. Separate origins for admin vs webmail.
-- **certbot plugin gotcha**: main deploy Phase 2 uses `--standalone` (fine — runs before nginx exists on first run, skipped on re-runs via `if [ ! -f ]`). But webmail/PFA add-on certs must use `--nginx` (nginx already running holds port 80; standalone would fail to bind). Fixed roundcube script to use `--nginx`.
-- **Mailstore path is `/mail/vhosts`** (changed Aug 24 from `/var/mail/vhosts` at Dj's request). All scripts + docs updated; deprecated `mail-server-bulk-import.sh` deleted (Python version is canonical). vmail home = `/mail/vhosts`.
-- OMS exports as LDIF (iPlanet/SunONE schema). Parser: `ldif-to-postfixadmin.py`. Key attrs: `uid`, domain from DN (`o=domain,o=amroot`), `userPassword` (SSHA/SHA1, base64), `mailEquivalentAddress` + `mailAlternateAddress` (aliases, multivalued), `mailSieveRuleSource` (base64 Sieve, multivalued), `mailUserStatus`.
-- **parse_dn() filters org-level noise**: skips `o=amroot` and any `o=` value without a dot (internal org units like `o=marketing`). A no-dot level before the real domain (`o=internal,o=padz.net`) doesn't shadow it — loop walks to the real domain. Single chokepoint feeding domains/users/aliases, so filter applies everywhere.
-- Deploy package in workspace: `mail-server-deploy.sh`, `-bulk-import.py` (Python; replaced fragile `-bulk-import.sh`), `-test.sh`, `-backup.sh`, `-monitor.sh`, `-migrate.sh` (all-mailbox incremental imapsync, resume state), `-migration-cron-setup.sh`, `-roundcube.sh` (webmail), `MAIL-DEPLOYMENT-GUIDE.md`.
-- **Bulk import is now Python** (`mail-server-bulk-import.py`, stdlib csv+sqlite3, run as root). The bash version broke on: (1) apostrophes in names via `xargs` (`O'Brien`), (2) SQL string interpolation on apostrophes, (3) quoted multi-destination aliases (`"a@x, b@x"`) via `IFS=,` split. Python fixes all three with csv.DictReader + parameterized SQL. Verified against those exact inputs. Guards with `SELECT 1 FROM mailbox` (schema must exist first).
-- **Webmail: Roundcube 1.6.x** (still the go-to). Own SQLite prefs DB (separate from PostfixAdmin auth DB); authenticates against Dovecot IMAP. managesieve plugin (port 4190) gives users a GUI for the migrated OMS Sieve rules. RC config key names shifted across versions — verify `imap_host`/`smtp_host` against shipped `config/defaults.inc.php` on the box.
-- Migration strategy: imapsync incremental every 4h to keep in sync until cutover. IMAP UIDVALIDITY changes on cutover are unavoidable — clients re-sync; can't preserve OMS UUIDs natively.
-- **PROXYAUTH migration DONE (Aug 24)**: destination master-user auth wired + all migrate tooling aligned.
-  - **Source (OMS)**: imapsync logs in as OMS admin, impersonates each mailbox: `--authuser1 admin --password1 <adminpass> --proxyauth1 --ssl1` (never `--authmech1` with `--authuser1`).
-  - **Dest (Dovecot 2.4)**: master user `migrate`. Deploy script adds `passdb passwd-file { passwd_file_path = /etc/dovecot/passwd.masterusers; master = yes; result_success = continue }` (checked FIRST; falls through to sql passdb to resolve the real user WITHOUT their password) + `auth_master_user_separator = *` in 10-auth.conf. Login form: `--user2 "mbox*migrate"`.
-  - **2.4 syntax (RTFM'd from doc.dovecot.org)**: section name IS the driver (`passdb passwd-file`), key is `passwd_file_path` (NOT old `driver=`/`args=`). `result_success = continue` is what makes master-user fall-through work.
-  - **Master password**: deploy script generates once → `/root/mail-migration-master.pass` (0600, persisted so re-runs don't rotate mid-migration), hashes via `doveadm pw -s SSHA512` → `/etc/dovecot/passwd.masterusers` (root:dovecot 640). File written BEFORE dovecot restart or auth init fails.
-  - **cron-setup was BROKEN**: old 3-arg signature would've failed every 4h against the new script. Rewritten to `<domain> <oms_host> <oms_admin> <oms_admin_pass> [master_user]`, reads master pass from file, cron file chmod 600 (embeds 2 plaintext passwords).
-  - **Validation gate (blocked on VPS, documented in guide Day 3+ step 0)**: `doveconf -n` → `doveadm auth test '<user>*migrate' <masterpass>` must exit 0 → single-mailbox `imapsync --dry` → full sync. VPS not provisioned yet.
-  - **Git**: mail-server `*.sh` are gitignored (`.gitignore:28 workspace/**`); only `.md` force-tracked. Scripts live ONLY on disk in workspace — NOT version-controlled. Flagged to Dj.
-- **CRITICAL rehash × master-user hazard (caught + fixed Aug 24)**: `mail-server-rehash-passwords.py` (transparent post-login hash upgrade) would corrupt EVERY migrated mailbox if left unguarded. With `result_success = continue`, a master-user migration login (`user*migrate`) runs the post-login script with `USER`=real user but the plaintext = the MASTER password. The rehash would overwrite each user's stored hash with a hash of the master pass on every 4h sync — silent mass credential corruption, only surfacing at cutover. Fixed with two guards: (1) fast-skip on master-user env vars (MASTER_USER/AUTH_MASTER_USER/ORIG_USER — names vary by build, not trusted alone); (2) SAFETY NET — verify-before-write via `doveadm pw -t <hash> -p <plain>`, only rehash if plaintext matches the user's CURRENT stored hash (master pass never verifies against a user's weak hash). Fails closed. Do NOT remove either guard while the migration master user exists. Documented in mail-server-rehash-SETUP.md. LESSON: when two auth mechanisms share a post-login/passdb pipeline, trace what each puts in the plaintext/USER slots before assuming independence.
-- SSHA1 hashes usable in Dovecot as-is for go-live; plan to rotate to stronger scheme later.
-- **Mixed hash schemes in OMS export (CORRECTED assumption, Aug 24)**: not all SSHA. padz.net's `userPassword` is `{CRYPT}$1$...` = MD5-CRYPT; seattlekollel.org/pagaille-mobile are `{SSHA}`. Dovecot 2.4 **disables weak schemes by default** (MD5-CRYPT, plain SHA1) — auth returns `internal auth failure / code=temp_fail` (NOT a clean auth-fail) with log `Weak password scheme 'MD5-CRYPT' used and refused`. Fix: `auth_allow_weak_schemes = yes` in 10-auth.conf. Baked into deploy script. REMOVE after rotating users to strong scheme.
-- **Debug lesson**: `temp_fail` on doveadm auth test = backend/scheme error, not wrong password. Check `/var/log/mail.log` for the exact passdb error before assuming credentials or permissions.
-- **Transparent password rehashing** (`mail-server-rehash-passwords.py` + `-SETUP.md`): upgrades weak migrated hashes to strong scheme on each login via Dovecot post-login scripting. Mechanism: passdb query returns `'%{password}' AS userdb_plain_pass` → `userdb prefetch` exposes it as `$PLAIN_PASS` → post-login script rehashes+UPDATEs the row (skip if already strong). CRITICAL: script-login execv-chains — script MUST `os.execv(sys.argv[1], sys.argv[1:])` or logins fail with "Post-login script denied access". Stdlib sqlite3+hashlib. Runs as vmail (needs write to PFA DB + dir for -wal/-journal). **STEP 0 VERIFIED Aug 24**: hand-rolled `{SSHA512}base64(digest+salt)` byte order confirmed via `doveadm pw -t` → `(verified)`, so stdlib version is safe (no doveadm shell-out needed). Adapted from die-welt.net Debian-13 writeup. Remove post-login + weak-schemes once all users rotated.
-- **Dovecot 2.4 post-login syntax (CONFIRMED)**: NO `protocol imap { postlogin = ... }` (that's 2.3, throws "Unknown setting: postlogin"). Instead override `service imap { executable = imap imap-postlogin }` + a matching `service imap-postlogin { executable = script-login /path; user = vmail; group = www-data; unix_listener imap-postlogin {} }`. Link is by socket-NAME match. Mirror for pop3.
-- **Post-login service needs explicit `group = www-data` (CONFIRMED Aug 24)**: Dovecot sets only uid + PRIMARY gid on setuid; it does NOT apply the user's supplementary groups from /etc/group. So `usermod -aG www-data vmail` + restart is NOT enough — the post-login process still can't open the www-data-owned SQLite DB (`OperationalError: unable to open database file`) until `group = www-data` is named on the service block. Symptom: login works, hash never flips, silent. Debugging required temp stderr logging in the script (stderr routes to Dovecot error log) to surface the swallowed exception.
-- **SQL-injection safety in rehash**: passdb `'%{password}'` is auto-escaped by Dovecot's SQL driver (doubled-quote); the rehash script's UPDATE uses parameterized `?` placeholders. Real risk is NOT injection but plaintext-in-logs: `userdb_plain_pass` transits auth pipeline — keep `auth_verbose_passwords`/auth debug OFF in prod. Whole mechanism is temporary, removed at cleanup.
-
-#### Dovecot 2.4 config gotchas (CONFIRMED via doc.dovecot.org, Aug 2026)
-- **passdb/userdb section name IS the driver**: `passdb sql { }`, not `passdb { driver = sql }`. Bare block → "missing section name" fatal.
-- **SQL driver key is `sql_driver`** (+ `query`), NOT `driver`/`args`. `query =` auto-expands to `passdb_sql_query` only when section name matches driver. **SQLite connection path is `sqlite_path`** (dedicated setting), NOT the old `connect =` DSN string — `connect` throws "Unknown setting" in 2.4. (MySQL/Postgres may still use connect-style DSN; SQLite does not.)
-- **One-letter `%` vars REMOVED**: `%u`→`%{user}`, `%d`→`%{user | domain}`, `%n`→`%{user | username}`.
-- **`plugin { }` section removed** — settings are global. Sieve uses named `sieve_script personal {}` / `sieve_script global { sieve_script_type = global }` blocks.
-- **`$var` refs need `$SET:` prefix**; `mail_plugins` is now a boollist: `mail_plugins { sieve = yes }` not `= $mail_plugins sieve`.
-- **`dovecot_config_version` + `dovecot_storage_version` REQUIRED** as first settings in dovecot.conf, or 2.4 won't start.
-- **Package name is `dovecot-managesieved`** (with trailing 'd'), NOT `dovecot-managesieve`. The daemon package differs from the older name.
-- **LMTP needs `dovecot-lmtpd`** (separate package). Without it the `service lmtp` block is inert, the socket at `/var/spool/postfix/private/dovecot-lmtp` is never created, and Postfix defers with `connect to private/dovecot-lmtp: No such file or directory`. Config path was correct; the daemon was just missing. Same trailing-d pattern as managesieved. **ALSO**: installing the package isn't enough — `lmtp` must be in the `protocols` list. Ubuntu default was `protocols = imap sieve pop3` (no lmtp), so the service never started even with the block present + daemon installed. Fix: `protocols = imap pop3 lmtp sieve`. Verify with `doveconf -n | grep protocols` and the startup log line "starting up for imap, pop3, lmtp, sieve".
-- **DELIVERY PROVEN END-TO-END (Aug 24)**: message lands in `/mail/vhosts/<domain>/<user>/new/`. Full path works: SMTP accept → SQLite alias/mailbox lookup → LMTP → Dovecot → maildir. Delivery debugging had 4 STACKED failures each hiding the next: (1) Postfix chroot DNS hang at MAIL FROM → (2) un-chroot exposed SQLite disk-I/O error → (3) fixed path exposed postfix-user perm denial on 640 www-data DB → (4) fixed perms exposed missing dovecot-lmtpd + lmtp not in protocols. Lesson: on a layered pipeline, each fix can reveal the next fault — read the log after every change, don't assume one fix = done.
-- **`ssl_protocols` exclusion-list form deprecated** (since 2.3) — use `ssl_min_protocol = TLSv1.2`.
-- **`ssl_cert`/`ssl_key` renamed** to `ssl_server_cert_file`/`ssl_server_key_file` in 2.4; the old `< /path` file-read prefix syntax is gone — give the path directly.
-- **`disable_plaintext_auth` removed** — replaced by `auth_allow_cleartext` (inverted boolean). Old `disable_plaintext_auth = no` == new `auth_allow_cleartext = yes`. Deploy script uses `auth_allow_cleartext = no` (safer, since ssl = required).
-- **`mail_location` split into two settings**: `mail_driver = maildir` + `mail_path = /path/...`. The old `mail_location = maildir:/path` form is gone in 2.4.
-- **Postfix SASL socket wiring**: Postfix `smtpd_sasl_path = private/auth` resolves to `/var/spool/postfix/private/auth`; the Dovecot listener MUST live in a `service auth {}` block (not `service managesieve`), or submission on 587 won't authenticate.
-- **Per-network TLS policy (VERIFIED Aug 24)**: global `ssl = required`, but a `remote 127.0.0.1 { ssl = yes; auth_allow_cleartext = yes }` (+ `remote ::1 {...}`) filter relaxes loopback so on-box Roundcube connects cleartext (`tcp://localhost:143` / `:587`). Plaintext never crosses a network; external clients still forced to TLS. Confirmed: loopback allows cleartext, remote refuses. Baked into deploy `10-ssl.conf`; roundcube script uses `tcp://` not `ssl://` for loopback.
-- **Roundcube SMTP submission (VERIFIED Aug 24)**: webmail submits via `tcp://localhost:25` (NOT 587). The 587 submission service forces TLS (`smtpd_tls_security_level=encrypt`), which a plaintext loopback connection can't satisfy — sending fails. Port 25 accepts local injection because `127.0.0.0/8` is in `mynetworks` (relay by network trust, no SASL/TLS). smtp_user/smtp_pass blank. External 587 stays TLS-mandatory. Roundcube read AND send both confirmed working.
-- Upgrade doc: https://doc.dovecot.org/main/installation/upgrade/2.3-to-2.4.html ; converter: https://dovecot.org/upgrader/
-
-#### Postfix SQLite map gotcha (CONFIRMED via postfix check, Aug 2026)
-- **Postfix SQLite driver uses `dbpath =`**, NOT the MySQL-style `hosts =` / `dbname =`. Wrong keys => `postfix check` warns "unused parameter: hosts/dbname" and the lookup silently fails (Postfix ignores the whole connection config). Map file needs only `dbpath` + `query`.
-- Verify maps resolve: `postmap -q "padz.net" sqlite:/etc/postfix/sqlite-virtual-mailbox-domains.cf` (returns 1), `-maps.cf` returns maildir, `-alias-maps.cf` returns goto target.
-- **CHROOT vs external SQLite (CONFIRMED Aug 24)**: Ubuntu runs Postfix services chrooted in `/var/spool/postfix`. SQLite DB at `/var/lib/postfixadmin/postfixadmin.db` is OUTSIDE the chroot → chrooted `trivial-rewrite`/`smtpd` fail with `dict_sqlite_lookup: SQL prepare failed: disk I/O error` (can't reach file or its WAL/journal dir). Fix: un-chroot all services via `postconf -F '*/*/chroot=n'` then restart. This ALSO fixes the chroot DNS hang (smtpd blocking at MAIL FROM on synchronous lookup). Deploy script now un-chroots instead of the earlier resolv.conf-copy hack.
-- **Debug lesson (Aug 24)**: hang at `MAIL FROM` looked like DNS/chroot-resolv; copying resolv.conf into chroot changed the symptom but real cause was the SQLite disk-I/O error one layer down. Read the log at each step — don't assume the first plausible cause (DNS) is the only one. `postconf -M | awk '{print $1,$5}'` verifies chroot column = n.
-
-#### PostfixAdmin deploy gotchas (CONFIRMED, Aug 2026)
-- **Docroot is `public/`**: PostfixAdmin 3.2+ moved public-facing files into `public/`. nginx `root` must point at `.../postfixadmin/public`, not the repo root.
-- **`templates_c/` not shipped** in the git repo — must `mkdir -p` it and make it group-writable (Smarty cache), or chmod fails with "No such file or directory".
-- **PHP-FPM socket is version-specific** (`/run/php/php8.3-fpm.sock`), not the bare `/run/php/php-fpm.sock`. Detect with `find /run/php -name 'php*-fpm.sock'` or nginx 502s.
-- **First-run is `/setup.php`** (set setup password, create admin, then DELETE setup.php). Login after setup is at web root `/`, NOT `/admin`.
-- **git clone ships source WITHOUT vendored deps** — must run `composer install --no-dev --optimize-autoloader` in the repo dir or it errors on `vendor/autoload.php` missing. Deploy script now does this (guarded).
-- **DB schema is owned by PostfixAdmin**: do NOT hand-roll domain/mailbox/alias tables. Let setup.php build the schema in an empty SQLite DB, THEN inspect `.schema` and align bulk-import + Postfix/Dovecot queries to the real column names. `config.local.php` (repo root, not public/): `$CONF['configured']=true; database_type='sqlite'; database_name='/var/lib/postfixadmin/postfixadmin.db';`.
-- **Schema reconciliation (Aug 24)**: PostfixAdmin's real column names matched my hand-rolled ones (standard names). mailbox cols: username(full email, PK), local_part, domain, password, name, maildir, quota, active. alias: address(PK), goto, domain, active, description. domain: domain(PK), description, aliases, mailboxes, maxquota, quota, transport, backupmx, active.
-- **maildir column = RELATIVE path with trailing slash** (`domain/user/`), PostfixAdmin convention. Dovecot ignores it (computes physical path from mail_path template); Postfix LMTP only uses it to confirm recipient exists. Bulk-import fixed to write relative form.- **Imported `{SSHA}` hashes stored verbatim** via direct SQL (PostfixAdmin's `encrypt` setting only applies to UI-set passwords). Dovecot auto-detects `{SSHA}` scheme prefix at auth — login works.
-- **domain.aliases/mailboxes are per-domain LIMIT columns**; import leaves them at default 0. If UI refuses to add mailboxes later, `0` means "none allowed" in this version — set limits via Edit Domain. Bulk SQL insert bypasses the check regardless.
-- **Self-aliases**: PostfixAdmin UI models each mailbox with a self-referencing alias (address=goto=user@domain); bulk import doesn't create these. Delivery still works (mailbox in virtual_mailbox_maps); UI may show mailboxes as alias-less (cosmetic).
-- **CORRECTION (Aug 26): self-aliases ARE required for delivery in this setup, not cosmetic.** Postfix wants an alias row per mailbox pointing at itself (`address==goto==user@domain`, e.g. `tracy_work@warriordoc.com|tracy_work@warriordoc.com|warriordoc.com|...|1`). Dj hit this by hand; `mail-server-bulk-import.py` now auto-creates the self-alias in import_users (INSERT OR IGNORE into alias).
-- **Mailbox case sensitivity (Aug 26)**: Dovecot dislikes mixed-case mailbox names. Dj rebuilt the mailbox table downcasing username+local_part and set the `username` collation to NOCASE. `mail-server-bulk-import.py` now downcases username/local_part/domain/maildir/physical-path in import_users, downcases domain in import_domains, and downcases source+domain+goto (incl. multi-dest lists) in import_aliases. The NOCASE column collation is a schema-level safety net (needs a table rebuild since SQLite can't ALTER collation in place) documented in MAIL-DEPLOYMENT-GUIDE.md — the importer's downcasing covers fresh imports regardless.
-- **Deploy script Phase 3 fixed (Aug 24)**: removed the hand-rolled schema (had bogus `id`/`maxaliases`/`maxmailboxes` cols that don't exist in real PostfixAdmin schema). Now just creates empty DB (`sqlite3 db "VACUUM;"`) owned by www-data:www-data, parent dir 750, file 640 — setup.php builds real schema. bulk-import.sh now guards with `SELECT 1 FROM mailbox` and errors if schema absent (run setup.php first).
-- **nginx needs `location / { try_files $uri $uri/ /index.php; }`** for routing.
-- Idempotency: keep clone in `if [ ! -d ]` but permissions/mkdir OUTSIDE it, or re-runs skip the fixups.
-- **`userdb static` wraps uid/gid/home in a `fields { }` block** in 2.4: `userdb static { fields { uid=... gid=... home=... } }`. Bare `uid =` throws "Unknown setting." Alternative: drop the userdb block entirely and set global `mail_uid`/`mail_gid`/`mail_home` (simpler for single-UID setups).
-- **LESSON:** Guessed the 2.4 passdb fix twice and burned Dj's time before RTFM. For version-specific config syntax, search/read the official docs FIRST, don't iterate on guesses.
-
 When working on a project, read its MEMORY.md file first:
+- **Mail Server Deploy:** `projects/mail-server-deploy/MEMORY.md` (OMS migration, Dovecot 2.4, Postfix, PostfixAdmin gotchas)
 - **Email Automation:** `projects/email-automation/MEMORY.md` (features, Kiro endpoints, deployments)
 - **Heru Portal:** `projects/heru/MEMORY.md` (diagnostics, service bus, VF tests)
 - **Media Automation:** `projects/media-automation/MEMORY.md` (Sonarr/Radarr, Telegram webhook)
-
-These files are loaded on-demand to keep main context lean.
 
 ## CRITICAL: Coding Tasks Always Use Opus
 
@@ -308,8 +233,6 @@ Monitors https://kiro.dev/docs/models/ and keeps openclaw.json model catalog in 
 - **Email Automation Tool:** https://email-automation.oc.ctb.padz.net (Go backend + Next.js frontend, Kubernetes deployment)
 - **Container Registry:** registry.container-registry.svc.cluster.local:32000 (Kubernetes DNS name for pushing/pulling images — ALWAYS use this, not localhost or ClusterIP)
 
-
-
 ## Basic Facts
 
 - **Name:** Dj (lowercase j)
@@ -321,8 +244,6 @@ Monitors https://kiro.dev/docs/models/ and keeps openclaw.json model catalog in 
 ## Shared Context
 
 See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1Password, shared calendars, infrastructure, media server, grocery app, GitHub orgs, trip planning.
-
-
 
 ## Infrastructure & Automation
 
@@ -346,8 +267,6 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 - Workaround: `openclaw mem0 list --user-id "dj:agent:dj"` to see agent's memories
 - API tools (memory_search, memory_list, memory_get) handle agent-scoping automatically
 - As we scale to multiple agents on the same Qdrant service, this isolation prevents cross-contamination
-
-
 
 ## Key Technical Patterns
 
