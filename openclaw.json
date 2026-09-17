@@ -534,18 +534,6 @@
     "accessMode": "full"
   },
   "plugins": {
-    "allow": [
-      "azure-speech",
-      "brave",
-      "browser",
-      "canvas",
-      "file-transfer",
-      "hindsight-openclaw",
-      "telegram",
-      "webhooks",
-      "workboard",
-      "anthropic"
-    ],
     "entries": {
       "workboard": {
         "enabled": true
@@ -610,6 +598,9 @@
       },
       "anthropic": {
         "enabled": true
+      },
+      "device-pair": {
+	      "enabled": true
       }
     },
     "slots": {
@@ -647,6 +638,9 @@
       "allowedHostnames": [
         "hindsight"
       ]
+    },
+    "extensionRelay": {
+	    "allowLegacyAuth": false
     }
   },
   "update": {
