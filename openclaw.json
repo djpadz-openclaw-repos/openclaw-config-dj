@@ -529,7 +529,9 @@
     "lastRunAt": "2026-09-17T04:25:54.954Z",
     "lastRunVersion": "2026.9.1",
     "lastRunCommand": "doctor",
-    "lastRunMode": "local"
+    "lastRunMode": "local",
+    "securityAcknowledgedAt": "2026-09-17T04:44:44.892Z",
+    "accessMode": "full"
   },
   "plugins": {
     "allow": [
@@ -660,5 +662,9 @@
         "speakerVoice": "en-US-JennyNeural"
       }
     }
+  },
+  "telemetry": {
+    "enabled": false,
+    "consentedAt": "2026-09-17T04:44:47.172Z"
   }
 }
