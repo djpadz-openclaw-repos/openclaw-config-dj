@@ -5,14 +5,16 @@
   },
   "gateway": {
     "nodes": {
-      "allowCommands": [
-        "canvas.a2ui.pushJSONL",
-        "canvas.a2ui.reset"
-      ],
       "pairing": {
         "autoApproveCidrs": [
           "10.1.37.0/24",
           "20.163.74.45/32"
+        ]
+      },
+      "commands": {
+        "allow": [
+          "canvas.a2ui.pushJSONL",
+          "canvas.a2ui.reset"
         ]
       }
     },
@@ -68,10 +70,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-06,
-              "output": 2.5e-05,
-              "cacheRead": 5e-07,
-              "cacheWrite": 5e-06
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
             },
             "contextWindow": 1000000,
             "maxTokens": 128000
@@ -86,10 +88,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-06,
-              "output": 2.5e-05,
-              "cacheRead": 5e-07,
-              "cacheWrite": 5e-06
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
             },
             "contextWindow": 1000000,
             "maxTokens": 8192
@@ -104,10 +106,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-06,
-              "output": 2.5e-05,
-              "cacheRead": 5e-07,
-              "cacheWrite": 5e-06
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
             },
             "contextWindow": 1000000,
             "maxTokens": 8192
@@ -122,10 +124,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-06,
-              "output": 2.5e-05,
-              "cacheRead": 5e-07,
-              "cacheWrite": 5e-06
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.000005
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -140,10 +142,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 1000000,
             "maxTokens": 8192
@@ -158,10 +160,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 1000000,
             "maxTokens": 8192
@@ -176,10 +178,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -194,10 +196,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-06,
-              "output": 1.5e-05,
-              "cacheRead": 3e-07,
-              "cacheWrite": 3e-06
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.000003
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -212,10 +214,10 @@
               "image"
             ],
             "cost": {
-              "input": 1e-06,
-              "output": 5e-06,
-              "cacheRead": 1e-07,
-              "cacheWrite": 1e-06
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1e-7,
+              "cacheWrite": 0.000001
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -230,10 +232,10 @@
               "image"
             ],
             "cost": {
-              "input": 5e-07,
-              "output": 1.5e-06,
-              "cacheRead": 5e-08,
-              "cacheWrite": 5e-07
+              "input": 5e-7,
+              "output": 0.0000015,
+              "cacheRead": 5e-8,
+              "cacheWrite": 5e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -248,10 +250,10 @@
               "image"
             ],
             "cost": {
-              "input": 1e-06,
-              "output": 5e-06,
-              "cacheRead": 1e-07,
-              "cacheWrite": 1e-06
+              "input": 0.000001,
+              "output": 0.000005,
+              "cacheRead": 1e-7,
+              "cacheWrite": 0.000001
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -266,10 +268,10 @@
               "image"
             ],
             "cost": {
-              "input": 1.4e-07,
-              "output": 2.8e-07,
-              "cacheRead": 1.4e-08,
-              "cacheWrite": 1.4e-07
+              "input": 1.4e-7,
+              "output": 2.8e-7,
+              "cacheRead": 1.4e-8,
+              "cacheWrite": 1.4e-7
             },
             "contextWindow": 128000,
             "maxTokens": 8192
@@ -284,10 +286,10 @@
               "image"
             ],
             "cost": {
-              "input": 3e-07,
-              "output": 9e-07,
-              "cacheRead": 3e-08,
-              "cacheWrite": 3e-07
+              "input": 3e-7,
+              "output": 9e-7,
+              "cacheRead": 3e-8,
+              "cacheWrite": 3e-7
             },
             "contextWindow": 200000,
             "maxTokens": 8192
@@ -302,19 +304,16 @@
               "image"
             ],
             "cost": {
-              "input": 1.5e-07,
-              "output": 8e-07,
-              "cacheRead": 1.5e-08,
-              "cacheWrite": 1.5e-07
+              "input": 1.5e-7,
+              "output": 8e-7,
+              "cacheRead": 1.5e-8,
+              "cacheWrite": 1.5e-7
             },
             "contextWindow": 256000,
             "maxTokens": 8192
           }
         ]
       }
-    },
-    "pricing": {
-      "enabled": true
     }
   },
   "agents": {
@@ -336,22 +335,26 @@
       "userTimezone": "America/Los_Angeles",
       "models": {
         "kiro/*": {},
-        "anthropic/claude-opus-4-8": {},
         "kiro/claude-haiku-4.5": {}
+      },
+      "modelPolicy": {
+        "allow": [
+          "kiro/*",
+          "anthropic/claude-opus-4-8",
+          "kiro/claude-haiku-4.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "main",
-        "default": true,
+    "entries": {
+      "main": {
         "name": "Gizmo",
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "\ud83e\udd8a"
+          "emoji": "🦊"
         }
       }
-    ]
+    }
   },
   "session": {
     "dmScope": "main",
@@ -365,8 +368,10 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.6.33",
-    "lastTouchedAt": "2026-08-02T07:04:43.674Z"
+    "lastTouchedVersion": "2026.9.1",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "tools": {
     "profile": "full",
@@ -521,8 +526,8 @@
     }
   },
   "wizard": {
-    "lastRunAt": "2026-06-01T06:36:22.757Z",
-    "lastRunVersion": "2026.5.28",
+    "lastRunAt": "2026-09-17T04:25:54.954Z",
+    "lastRunVersion": "2026.9.1",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -536,7 +541,8 @@
       "hindsight-openclaw",
       "telegram",
       "webhooks",
-      "workboard"
+      "workboard",
+      "anthropic"
     ],
     "entries": {
       "workboard": {
@@ -599,12 +605,14 @@
       "webhooks": {
         "enabled": true,
         "config": {}
+      },
+      "anthropic": {
+        "enabled": true
       }
     },
     "slots": {
       "memory": "hindsight-openclaw"
-    },
-    "bundledDiscovery": "allowlist"
+    }
   },
   "commands": {
     "ownerAllowFrom": [
@@ -623,38 +631,34 @@
   "messages": {
     "queue": {
       "mode": "steer",
-      "debounceMs": 500,
       "cap": 20,
       "drop": "summarize"
     },
     "groupChat": {
       "visibleReplies": "automatic"
-    },
-    "tts": {
-      "provider": "azure-speech",
-      "providers": {
-        "azure-speech": {
-          "apiKey": "${AZURE_TTS_TOKEN}",
-          "region": "${AZURE_TTS_REGION}",
-          "lang": "en-US",
-          "speakerVoice": "en-US-JennyNeural"
-        }
-      }
-    }
-  },
-  "ui": {
-    "assistant": {
-      "name": "Gizmo"
     }
   },
   "browser": {
     "enabled": true,
     "cdpUrl": "http://127.0.0.1:9222",
     "ssrfPolicy": {
-      "allowedHostnames": ["hindsight"]
+      "allowedHostnames": [
+        "hindsight"
+      ]
     }
   },
   "update": {
     "channel": "extended-stable"
+  },
+  "tts": {
+    "provider": "azure-speech",
+    "providers": {
+      "azure-speech": {
+        "apiKey": "${AZURE_TTS_TOKEN}",
+        "region": "${AZURE_TTS_REGION}",
+        "lang": "en-US",
+        "speakerVoice": "en-US-JennyNeural"
+      }
+    }
   }
 }
