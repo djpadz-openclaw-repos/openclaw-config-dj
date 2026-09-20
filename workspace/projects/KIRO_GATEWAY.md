@@ -65,7 +65,6 @@ client = Anthropic(
 ## Integration Points
 
 - **Email automation:** Uses account-specific tokens for email classification
-- **ScamBaiter:** Uses account-specific tokens for Beverly responses
 - **Cron jobs:** Route through Kiro with appropriate account context
 - **Scripts:** All Python/TypeScript scripts use Kiro instead of direct Anthropic API
 
