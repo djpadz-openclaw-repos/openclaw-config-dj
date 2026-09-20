@@ -4,6 +4,7 @@
     "file": "~/.openclaw/logs/openclaw-debug.log"
   },
   "gateway": {
+    "publicOrigin": "https://dj.gw.oc.ctb.padz.net",
     "nodes": {
       "pairing": {
         "autoApproveCidrs": [
