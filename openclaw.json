@@ -31,7 +31,11 @@
     "bind": "lan",
     "auth": {
       "mode": "token",
-      "token": "${OPENCLAW_GATEWAY_TOKEN}",
+      "token": {
+        "source": "env",
+        "provider": "default",
+        "id": "OPENCLAW_GATEWAY_TOKEN"
+      },
       "rateLimit": {
         "maxAttempts": 50,
         "windowMs": 60000,
@@ -369,9 +373,10 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.9.2",
+    "lastTouchedVersion": "2026.9.5",
     "migrations": {
-      "modelPolicyAllowlist": true
+      "modelPolicyAllowlist": true,
+      "utilityModelSeparation": true
     }
   },
   "tools": {
@@ -390,7 +395,7 @@
     "telegram": {
       "enabled": true,
       "webhookUrl": "https://dj.gw.oc.ctb.padz.net/telegram-webhook",
-      "webhookSecret": "225adab941b1cae28dba4b767e6344d7944fbd1bec9fc0b3a8529b45a8120f3a",
+      "webhookSecret": "${TELEGRAM_WEBHOOK_SECRET}",
       "webhookPath": "/telegram-webhook",
       "webhookHost": "0.0.0.0",
       "webhookPort": 65534,
@@ -645,7 +650,9 @@
     },
     "extensionRelay": {
       "allowLegacyAuth": false
-    }
+    },
+    "evaluateEnabled": true,
+    "headless": true
   },
   "update": {
     "channel": "extended-stable"
