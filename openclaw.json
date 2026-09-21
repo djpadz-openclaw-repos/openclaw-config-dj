@@ -362,7 +362,7 @@
     }
   },
   "session": {
-    "dmScope": "main",
+    "dmScope": "per-channel-peer",
     "reset": {
       "mode": "idle",
       "idleMinutes": 43200
