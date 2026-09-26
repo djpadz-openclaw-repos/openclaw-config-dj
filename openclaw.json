@@ -15,7 +15,9 @@
       "commands": {
         "allow": [
           "canvas.a2ui.pushJSONL",
-          "canvas.a2ui.reset"
+          "canvas.a2ui.reset",
+          "system.run",
+          "system.run.prepare"
         ]
       }
     },
@@ -602,14 +604,32 @@
         "enabled": true,
         "config": {}
       },
-      "anthropic": {
-        "enabled": true
-      },
       "device-pair": {
         "enabled": true
       },
       "imap": {
         "enabled": true
+      },
+      "codex": {
+        "config": {
+          "sessionCatalog": {
+            "enabled": false
+          }
+        }
+      },
+      "anthropic": {
+        "enabled": false,
+        "config": {
+          "sessionCatalog": {
+            "enabled": false
+          }
+        }
+      },
+      "openai": {
+        "enabled": false
+      },
+      "alibaba": {
+        "enabled": false
       }
     },
     "slots": {
