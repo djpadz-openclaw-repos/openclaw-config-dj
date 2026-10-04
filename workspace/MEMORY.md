@@ -303,3 +303,11 @@ See ~/.openclaw-shared/SHARED.md for household info, development conventions, 1P
 ## External Reference Files
 
 Load as needed: LESSONS.md, DEPLOYMENT.md, MODELS.md, BROWSER.md, INFRASTRUCTURE.md, OPENCLAW.md, INTERESTS.md, BIOGRAPHY.md, PROJECTS.md, projects/CARPLAY_GIZMO.md, projects/HERU.md, projects/FAMOUS_PEERS.md, projects/DATADOG_TOOLS.md
+
+## Hindsight Auto-Retain Broken Since Sep 19 (diagnosed Oct 4, 2026)
+
+- **Symptom:** last doc write to bank `dj` = 2026-09-19 17:53 UTC; recall/consolidation/health all fine, so it looked healthy. No log line at all on retain (silent).
+- **Root cause = upstream plugin bug**, not our config/server: vectorize-io/hindsight issues #4537, #4721, #4828 (open; plugin 0.13.0 `latest` still has it). OpenClaw re-evaluates the plugin module per registry load (each cron run etc.), but `service.start()` runs once at gateway boot. Newest instance's `agent_end` -> `runRetain()` -> `retainLifecycleIsCurrent()` needs module-level `serviceAbortController` non-null (set only in `service.start`, dist/index.js ~L1709) -> returns silently. Recall survives via a lazy-init fallback (log: "waitForReady called before service.start()").
+- **Why it began Sep 19-20:** plugin upgraded 0.10.0 -> 0.12.0 (0.10.0 has no lifecycle guard). Installed dir: `~/.openclaw/npm/projects/vectorize-io-hindsight-openclaw-c23cf52a67__openclaw-generation__g-9841c4ce4188339e/`.
+- **Fix options:** (a) local patch of the guard at dist/index.js L2238 so an unstarted instance (controller null && serviceGeneration===0) counts as current; lost on plugin reinstall/upgrade; (b) pin back to 0.10.0 (verify compat with API 0.10.2 + `hooks.allowConversationAccess`); (c) wait for upstream. After fixing: backfill Sep 19 -> now with `hindsight-openclaw-backfill --dry-run` first (supports --resume/--checkpoint).
+- Excluded providers `cron`,`dashboard` are intentional (not part of the bug).
