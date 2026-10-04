@@ -215,6 +215,26 @@ Both are necessary. Deleting files without cleaning the database leaves orphaned
 - If browser tool times out: check if Chrome process exists, restart with command above
 - **Key lesson:** Config changes to `openclaw.json` require full process restart to reload (not just restart signals)
 
+## Model Picker / Catalog (Oct 4, 2026)
+
+- **`models.mode: "replace"` with empty `models.providers` = empty catalog** → model picker shows nothing (`openclaw models list` says "No models found") even though `/model claude-cli/...` still works. Fix: `models.mode: "merge"` (hot-reloads).
+- The picker shows catalog rows filtered by `modelPolicy.allow`; `agents.defaults.models` keys must match catalog IDs exactly (e.g. `claude-cli/claude-haiku-4-5`, not the dated `-20251001` ID).
+- `openclaw models list` reads the gateway's catalog — `OPENCLAW_CONFIG_PATH` scratch configs don't affect it, so test against the live config.
+- Claude CLI models confirmed working: opus-5-5, opus-5, opus-4-8, opus-4-7, opus-4-6, sonnet-5-5, sonnet-5, sonnet-4-6, haiku-4-5. Not usable: fable-5/5-1 (needs usage credits), mythos-5.
+
+## Hindsight Recall Latency Fix (Oct 4, 2026)
+
+- **Cause of slow turns:** auto-recall blocked `before_prompt_build` for 11–14s every turn, before the claude-cli process even spawned. Trace showed the bank's **cross-encoder reranker** = 3.7–8.7s of a ~4–9s recall (retrieval itself ~0.1s). CPU-bound, varies with load.
+- **Fix:** `PATCH http://hindsight:8888/v1/default/banks/dj/config` with `{"updates":{"enable_reranking":false}}` → recall ~0.3s. Relevance did not visibly degrade (reranked results were equally off-topic).
+- **Revert:** same PATCH with `"enable_reranking": true`.
+- **Separate issue (unfixed):** bank has 75 observations, last consolidation 2026-05-28, `pending_consolidation` 1225, 18 failed. Plugin recalls `observation` type by default, so recent (post-May) memories never surface in auto-recall. Fixing consolidation is the real relevance fix.
+- **Hindsight infra (audit Oct 4, 2026):** v0.10.2, deployment `hindsight` in ns `openclaw` on the **microk8s** cluster. Embedded Postgres (pg0) on 1Gi hostpath PVC `hindsight-data` (~318MB), local CPU embeddings (bge-small) + reranker (MiniLM, now off), LLM = **`claude-code` provider, model `claude-haiku-4-5`** (switched Oct 4 2026 after Kiro was removed; auth = `CLAUDE_CODE_OAUTH_TOKEN` from `claude setup-token`, in secret `hindsight-secrets`; model name must be undotted `claude-haiku-4-5`, the Kiro-style `claude-haiku-4.5` fails). Image is `:latest` + pullPolicy Always, no resource limits, no probes. API :8888 unauthenticated in-cluster; control plane :9999 via ingress `hs.oc.ctb.padz.net` (basic auth).
+- **DANGER: default `kubectl` context is `k8s` = Heru AKS (2020now/prod/stg), NOT where OpenClaw/Hindsight run.** Always pass `--context microk8s -n openclaw` explicitly; never switch the default.
+- **retain_mission set on bank `dj` (Oct 4, 2026):** text in `projects/hindsight/retain_mission.txt`. Keeps durable facts (preferences/rules, decisions+why, technical root causes/gotchas, project status, personal context); skips assistant play-by-play, transient ops state/IDs, greetings, memory-system meta-talk, individual creative drafts. A/B tested on scratch banks: control kept noise (cron IDs, "Gizmo searched…"), mission kept only durable facts. Applies to FUTURE retains only; existing ~1,400 memories untouched. Revert: PATCH `/v1/default/banks/dj/config` `{"updates":{"retain_mission":null}}`. Another bank `sherra` exists (untouched).
+- **Retain is slow via claude-code provider:** one extraction took ~2 min (each LLM call spawns a `claude` process). Fine for background retain; matters for consolidation of 1,225 pending memories.
+- **Found broken:** consolidation stuck since 2026-05-28 (orphaned `processing` op owned by dead pod `hindsight-75c5f8bfbb-6dsv4`, blocks the pending one; 1,225 memories unconsolidated); no memory writes since 2026-09-19 (cause not found; plugin logs show "missing stable message provider" retain skips on some sessions); nightly `openclaw-backup` cronjob does NOT cover Hindsight's Postgres.
+- Debug aids: `trace:true` on the recall request gives per-phase timings; plugin logs `perf: before_prompt_build hook_total=...` in openclaw-debug.log.
+
 ## Kiro Model Monitor (Jul 25, 2026)
 
 Monitors https://kiro.dev/docs/models/ and keeps openclaw.json model catalog in sync, with a human approval gate.
