@@ -73,6 +73,14 @@
 - Sherra is gluten-free, low FODMAP, easy on dairy and fat
 - Prefers gaming, puzzles, and relaxed activities
 
+## Political Values (stated by Dj, Oct 5 2026)
+
+- Definitely left-wing, especially on social issues; a little more fiscally conservative (prefers reserves/accountability over open-ended spending).
+- Strong church-state separation: believes any church that becomes politically involved should lose its nonprofit/tax-exempt status.
+- Pro-choice. Pro death penalty (stated Oct 5 2026; relevant to Governor/AG-type races, not on this year's ballot as a measure).
+- Individuals with more wealth than they could spend in a lifetime should put it toward social programs and helping the less fortunate (stated Oct 5 2026, in the context of Prop 40). Open question: whether he means this as a moral duty or as something the state should compel.
+- Use these when he asks "what's a sensible vote": apply his stated values, flag where social-left and fiscal-prudence pull apart, don't assume a straight party line.
+
 ## Full Context
 
 See MEMORY.md for detailed long-term memory, including work context, infrastructure notes, and operating principles.
