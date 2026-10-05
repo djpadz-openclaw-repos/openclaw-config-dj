@@ -266,7 +266,7 @@
         "enabled": false
       },
       "peekaboo": {
-        "enabled": false
+        "enabled": true
       },
       "songsee": {
         "enabled": false
