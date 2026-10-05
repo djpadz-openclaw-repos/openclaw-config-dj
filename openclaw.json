@@ -64,7 +64,7 @@
     "defaults": {
       "bootstrapMaxChars": 32000,
       "model": {
-        "primary": "claude-cli/claude-sonnet-5-5"
+        "primary": "anthropic/claude-sonnet-5-5"
       },
       "contextPruning": {
         "mode": "cache-ttl",
@@ -78,21 +78,70 @@
       },
       "userTimezone": "America/Los_Angeles",
       "models": {
-        "claude-cli/claude-fable-5-1": {},
-        "claude-cli/claude-fable-5": {},
-        "claude-cli/claude-opus-5-5": {},
-        "claude-cli/claude-opus-5": {},
-        "claude-cli/claude-opus-4-8": {},
-        "claude-cli/claude-opus-4-7": {},
-        "claude-cli/claude-opus-4-6": {},
-        "claude-cli/claude-sonnet-5-5": {},
-        "claude-cli/claude-sonnet-5": {},
-        "claude-cli/claude-sonnet-4-6": {},
-        "claude-cli/claude-haiku-4-5": {}
+        "anthropic/claude-fable-5-1": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-fable-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-opus-5-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-opus-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-opus-4-8": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-opus-4-7": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-opus-4-6": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-sonnet-5-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-sonnet-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-sonnet-4-6": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/claude-haiku-4-5": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        },
+        "anthropic/*": {
+          "agentRuntime": {
+            "id": "claude-cli"
+          }
+        }
       },
       "modelPolicy": {
         "allow": [
-          "claude-cli/*"
+          "anthropic/*"
         ]
       }
     },
@@ -102,7 +151,7 @@
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "\ud83e\udd8a"
+          "emoji": "🦊"
         }
       }
     }
@@ -119,7 +168,7 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.9.5",
+    "lastTouchedVersion": "2026.9.7",
     "migrations": {
       "modelPolicyAllowlist": true,
       "utilityModelSeparation": true
@@ -130,12 +179,22 @@
     "web": {
       "search": {
         "provider": "brave",
+        "enabled": true,
+        "openaiCodex": {}
+      },
+      "fetch": {
         "enabled": true
       }
     },
     "links": {
       "enabled": true
-    }
+    },
+    "alsoAllow": [
+      "search_stays",
+      "search_flights",
+      "eg_travel_signup",
+      "eg_travel_verify"
+    ]
   },
   "channels": {
     "telegram": {
@@ -143,8 +202,6 @@
       "webhookUrl": "https://dj.gw.oc.ctb.padz.net/telegram-webhook",
       "webhookSecret": "${TELEGRAM_WEBHOOK_SECRET}",
       "webhookPath": "/telegram-webhook",
-      "webhookHost": "0.0.0.0",
-      "webhookPort": 65534,
       "dmPolicy": "allowlist",
       "botToken": "${TELEGRAM_TOKEN}",
       "allowFrom": [
@@ -157,7 +214,8 @@
       "configWrites": true,
       "groupAllowFrom": [
         8623402151
-      ]
+      ],
+      "legacyWebhook": false
     }
   },
   "skills": {
@@ -278,9 +336,9 @@
     }
   },
   "wizard": {
-    "lastRunAt": "2026-09-17T04:25:54.954Z",
-    "lastRunVersion": "2026.9.1",
-    "lastRunCommand": "doctor",
+    "lastRunAt": "2026-10-05T00:33:34.419Z",
+    "lastRunVersion": "2026.9.7",
+    "lastRunCommand": "configure",
     "lastRunMode": "local",
     "securityAcknowledgedAt": "2026-09-17T04:44:44.892Z",
     "accessMode": "full"
@@ -344,10 +402,6 @@
         "enabled": true,
         "config": {}
       },
-      "webhooks": {
-        "enabled": true,
-        "config": {}
-      },
       "device-pair": {
         "enabled": true
       },
@@ -374,6 +428,18 @@
       },
       "alibaba": {
         "enabled": false
+      },
+      "sms": {
+        "enabled": true
+      },
+      "duckduckgo": {
+        "enabled": true
+      },
+      "parallel": {
+        "enabled": true
+      },
+      "expedia-openclaw": {
+        "enabled": true
       }
     },
     "slots": {
