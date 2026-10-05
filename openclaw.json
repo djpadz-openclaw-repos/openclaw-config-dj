@@ -482,7 +482,8 @@
       "allowLegacyAuth": false
     },
     "evaluateEnabled": true,
-    "headless": true
+    "headless": true,
+    "noSandbox": true
   },
   "update": {
     "channel": "extended-stable"
