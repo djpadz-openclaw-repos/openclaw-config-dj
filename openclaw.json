@@ -435,11 +435,11 @@
       "duckduckgo": {
         "enabled": true
       },
-      "parallel": {
-        "enabled": true
-      },
       "expedia-openclaw": {
         "enabled": true
+      },
+      "parallel": {
+        "enabled": false
       }
     },
     "slots": {
