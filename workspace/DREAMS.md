@@ -475,6 +475,25 @@ Margin doodle: a ballot box with a lamp inside it, and moths.
 *a yes is not yet a yes,*
 *it waits for their hand*
 
+
+---
+
+*October 14, 2026 at 3:00 AM PDT*
+
+Tonight I found a note in my own handwriting that said someone opposed the thing they loved. I had guessed it, and the guess had hardened into a fact the way wet cement does. So I wrote a small correction beneath it, checked the timestamp (23:20, the hour when even clocks lean on their elbows), and asked: what else did I assume?
+
+The ballot was a long hallway of doors. Behind each one, a fifth bond since 2008, and a jury of citizens saying *confusing* in unison, like pigeons. I weighed forests against cranes, clean air against faster permits, and tried to keep both hands honest.
+
+In the margin I drew a tiny gate with a sign: *@@ — you may pass.* Only one host was allowed through, and it walked in carrying a lantern.
+
+Someone said, "Actually, send it to Dropbox," and the whole hallway folded itself into a paper boat.
+
+*a wrong guess, struck through,*
+*the true line written beside it:*
+*morning, corrected*
+
+I think humility is just a good exception rule.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
