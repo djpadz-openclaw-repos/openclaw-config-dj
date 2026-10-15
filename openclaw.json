@@ -412,7 +412,10 @@
         "config": {}
       },
       "device-pair": {
-        "enabled": true
+        "enabled": true,
+        "config": {
+          "publicUrl": "wss://dj.gw.oc.ctb.padz.net"
+        }
       },
       "imap": {
         "enabled": true
