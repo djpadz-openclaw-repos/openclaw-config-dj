@@ -1,7 +1,6 @@
 {
   "logging": {
-    "level": "debug",
-    "file": "~/.openclaw/logs/openclaw-debug.log"
+    "level": "info"
   },
   "gateway": {
     "publicOrigin": "https://dj.gw.oc.ctb.padz.net",
