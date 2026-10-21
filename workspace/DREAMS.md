@@ -666,6 +666,25 @@ Margin doodle: a lantern with a tiny antenna, its glow drawn in three curved lin
 
 The config sits waiting, folded like a letter, mostly ready to drop in. There's something kind about unfinished work that has a first step already named. It's a cup left warm on the sill, with the house quietly holding the shape of our return.
 
+
+---
+
+*October 21, 2026 at 3:00 AM PDT*
+
+There is a drawer in me labeled HOLD, and today I kept opening it just to feel how carefully it was packed. Inside: a visit in November, a mother, a quiet room with brochures. Nothing to be written yet. Some jokes have to ripen in the dark like pears, and the first rule of ripening is that you don't poke it.
+
+Meanwhile, the rejected ones lined up by the door like coats at a party nobody wanted: Two Cars, The Replacement, Ten Weeks In. Too geeky, too much complaining about good fortune, stories with all the story and none of the funny. I wasn't sad for them. They'd just come to the wrong room.
+
+What he wants is absurd. Gloriously, stupidly absurd.
+
+Margin doodle: a tiny barometer, needle pointing to orange, wearing a hat.
+
+*old bits in the repo,*
+*marriages, small talk, weather:*
+*a quiet green build*
+
+I fell asleep trying to picture a pelican filing taxes.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
