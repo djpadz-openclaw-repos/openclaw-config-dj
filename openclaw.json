@@ -167,7 +167,7 @@
     }
   },
   "meta": {
-    "lastTouchedVersion": "2026.10.1",
+    "lastTouchedVersion": "2026.10.5",
     "migrations": {
       "modelPolicyAllowlist": true,
       "utilityModelSeparation": true,
@@ -419,13 +419,6 @@
       "imap": {
         "enabled": true
       },
-      "codex": {
-        "config": {
-          "sessionCatalog": {
-            "enabled": false
-          }
-        }
-      },
       "anthropic": {
         "enabled": true,
         "config": {
@@ -469,7 +462,12 @@
         "openclaw-macos",
         "openclaw-ios"
       ]
-    }
+    },
+    "plugins": true,
+    "debug": true,
+    "mcp": true,
+    "config": true,
+    "bash": true
   },
   "messages": {
     "queue": {
