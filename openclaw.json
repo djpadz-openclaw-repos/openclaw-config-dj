@@ -430,7 +430,7 @@
         "enabled": true,
         "config": {
           "sessionCatalog": {
-            "enabled": false
+            "enabled": true
           }
         }
       },
