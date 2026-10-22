@@ -151,7 +151,20 @@
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
           "emoji": "🦊"
-        }
+        },
+        "models": {
+          "anthropic/claude-opus-5-5": {
+            "agentRuntime": {
+              "id": "claude-cli"
+            }
+          },
+          "anthropic/claude-sonnet-5-5": {
+            "agentRuntime": {
+              "id": "claude-cli"
+            }
+          }
+        },
+        "model": "anthropic/claude-sonnet-5-5"
       }
     }
   },
@@ -511,5 +524,13 @@
   "telemetry": {
     "enabled": false,
     "consentedAt": "2026-09-17T04:44:47.172Z"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:manual": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
   }
 }
