@@ -3,7 +3,7 @@
     "level": "info"
   },
   "gateway": {
-    "publicOrigin": "https://dj.gw.oc.ctb.padz.net",
+    "publicOrigin": "https://oc.padz.app",
     "nodes": {
       "pairing": {
         "autoApproveCidrs": [
@@ -29,31 +29,50 @@
     },
     "mode": "local",
     "port": 18789,
-    "bind": "lan",
+    "bind": "loopback",
     "auth": {
-      "mode": "token",
-      "token": {
+      "mode": "trusted-proxy",
+      "password": {
         "source": "env",
         "provider": "default",
-        "id": "OPENCLAW_GATEWAY_TOKEN"
+        "id": "OPENCLAW_GATEWAY_PASSWORD"
       },
-      "rateLimit": {
-        "maxAttempts": 50,
-        "windowMs": 60000,
-        "lockoutMs": 300000,
-        "exemptLoopback": true
+      "identityScopes": {
+        "djpadz@padz.net": [
+          "operator.admin"
+        ],
+        "94z82nj9dm@privaterelay.appleid.com": [
+          "operator.admin"
+        ]
+      },
+      "trustedProxy": {
+        "userHeader": "cf-access-authenticated-user-email",
+        "requiredHeaders": [
+          "cf-access-jwt-assertion"
+        ],
+        "allowLoopback": true,
+        "allowUsers": [
+          "djpadz@padz.net",
+          "94z82nj9dm@privaterelay.appleid.com"
+        ],
+        "deviceAutoApprove": {
+          "enabled": true,
+          "scopes": [
+            "operator.read",
+            "operator.write",
+            "operator.approvals",
+            "operator.questions"
+          ]
+        }
       }
     },
     "trustedProxies": [
-      "10.0.0.0/8"
+      "127.0.0.1",
+      "::1"
     ],
     "controlUi": {
-      "allowedOrigins": [
-        "*"
-      ],
       "enabled": true
-    },
-    "allowRealIpFallback": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -150,7 +169,7 @@
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "🦊"
+          "emoji": "\ud83e\udd8a"
         },
         "models": {
           "anthropic/claude-opus-5-5": {
@@ -220,9 +239,6 @@
   "channels": {
     "telegram": {
       "enabled": true,
-      "webhookUrl": "https://dj.gw.oc.ctb.padz.net/telegram-webhook",
-      "webhookSecret": "${TELEGRAM_WEBHOOK_SECRET}",
-      "webhookPath": "/telegram-webhook",
       "dmPolicy": "allowlist",
       "botToken": "${TELEGRAM_TOKEN}",
       "allowFrom": [
@@ -235,8 +251,7 @@
       "configWrites": true,
       "groupAllowFrom": [
         8623402151
-      ],
-      "legacyWebhook": false
+      ]
     }
   },
   "skills": {
@@ -426,7 +441,7 @@
       "device-pair": {
         "enabled": true,
         "config": {
-          "publicUrl": "wss://dj.gw.oc.ctb.padz.net"
+          "publicUrl": "wss://oc.padz.app"
         }
       },
       "imap": {
@@ -530,6 +545,13 @@
       "anthropic:manual": {
         "provider": "anthropic",
         "mode": "token"
+      }
+    }
+  },
+  "secrets": {
+    "providers": {
+      "default": {
+        "source": "env"
       }
     }
   }
