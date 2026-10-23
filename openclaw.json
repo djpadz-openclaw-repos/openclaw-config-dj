@@ -451,7 +451,7 @@
         "enabled": true,
         "config": {
           "sessionCatalog": {
-            "enabled": true
+            "enabled": false
           }
         }
       },
@@ -472,6 +472,13 @@
       },
       "parallel": {
         "enabled": false
+      },
+      "codex": {
+        "config": {
+          "sessionCatalog": {
+            "enabled": false
+          }
+        }
       }
     },
     "slots": {
