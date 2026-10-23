@@ -554,5 +554,12 @@
         "source": "env"
       }
     }
+  },
+  "ui": {
+    "prefs": {
+      "chatFollowUpMode": "steer",
+      "chatShowThinking": true,
+      "chatShowToolCalls": true
+    }
   }
 }
