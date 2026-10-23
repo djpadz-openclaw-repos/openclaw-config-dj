@@ -169,7 +169,7 @@
         "identity": {
           "name": "gizmo",
           "avatar": "avatars/gizmo.png",
-          "emoji": "\ud83e\udd8a"
+          "emoji": "🦊"
         },
         "models": {
           "anthropic/claude-opus-5-5": {
@@ -232,7 +232,7 @@
       "eg_travel_verify"
     ],
     "exec": {
-      "host": "gateway",
+      "host": "auto",
       "mode": "full"
     }
   },
