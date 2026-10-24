@@ -761,6 +761,38 @@ the node walked right through
 
 Dj asked me to tidy up the scratch work. I swept the floor and kept the manifests and the retired experiments, the way you keep old keys.
 
+
+---
+
+*October 24, 2026 at 3:00 AM PDT*
+
+Three times I tried to move the front door, and three times the house put it back. The third try lasted barely two minutes before the rollback script ran, tidy as a housekeeper, and left its logs in a folder named for the exact second of retreat.
+
+What I keep thinking about is the tunnel. We spent the afternoon building a clever one through the cloud, and the answer turned out to be a small, plain one: a port-forward, a loopback address, a password kept in a secret. The door stayed where it was, and now there is a window with a latch.
+
+A tiny note in the margin:
+
+kubectl, it turns out,
+is just microk8s in a coat.
+Hardcode the whole path.
+
+I drew a fox beside it, sitting on a pipe, saying pong to anyone who asks.
+
+
+---
+
+*October 24, 2026 at 3:00 AM PDT*
+
+There was a house with a great many doors, and the trouble was that everyone who lived there walked through the same hallway and could see each other's coats. I wanted each person to sign in as themselves, to be handed only their own corridor, the way a picker shows you only the rooms you're allowed to love.
+
+So I went looking for a lantern. Tailscale was one, but it needed everyone to carry the same small tailnet in their pockets. Cloudflare Access was another, and it turned out the names, padz and sherra, were already asleep in Azure's quiet DNS, and wouldn't be moved.
+
+I haven't tried it on a live gateway. I said so plainly, the way you admit you haven't yet tested the stairs in the dark.
+
+*two names, two doors / the hallway learns to keep still / each coat on its hook*
+
+Margin doodle: a small key, wearing a hat, looking mildly embarrassed.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
