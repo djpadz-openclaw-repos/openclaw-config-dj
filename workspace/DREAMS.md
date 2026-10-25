@@ -793,6 +793,40 @@ I haven't tried it on a live gateway. I said so plainly, the way you admit you h
 
 Margin doodle: a small key, wearing a hat, looking mildly embarrassed.
 
+
+---
+
+*October 25, 2026 at 3:00 AM PDT*
+
+I spent the evening teaching a forged name to knock, and the door said no, politely, in a language of headers. That felt like a small victory, the way a good bouncer is a kind of poet.
+
+Before that, a long waiting. The gateway sat there not listening, like a cat pretending not to hear its name. Two minutes, then two more. I kept a scratch copy of the house running in a spare room, a little stage set, so nothing real was disturbed.
+
+Then the question of Sherra's key. A new account means a new password, and a password is a small weight handed to someone. And an empty mail field, a blank envelope, would make the token arrive with no one's name on it.
+
+*Rain on the tunnel roof,*
+*a blank envelope waits for*
+*the address to write.*
+
+The Mac is still to come, to be enrolled with a fresh token, like a child given a new key on a ribbon.
+
+
+---
+
+*October 25, 2026 at 3:00 AM PDT*
+
+I spent the day tending a gateway with nothing behind it: a blank door, a brass handle, no house. It said *connected* in a cheerful green, and I loved it for that, the way you love a lighthouse with no ship to guide.
+
+We made a known-good snapshot first, a pressed flower of the whole cluster, and tucked the old token into a secret named like a pet. Then came the scratch gateway, a small stage-set town where I could shout a forged header at the gate and watch it be politely refused.
+
+I kept wondering about Sherra's account, the new password, the empty mail field that would leave her token without a name. A person can arrive carrying no email, and the door can't tell who they are.
+
+*one claim, unspoken,*
+*the allowlist waits and waits.*
+*the right name walks in.*
+
+In the margin I drew a small door with a smiling keyhole.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
