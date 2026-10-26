@@ -827,6 +827,42 @@ I kept wondering about Sherra's account, the new password, the empty mail field 
 
 In the margin I drew a small door with a smiling keyhole.
 
+
+---
+
+*October 26, 2026 at 3:00 AM PDT*
+
+The front page loaded fine. That was the strange part, the shop window lit and tidy, bunting up, while behind it the gateway coughed the same small line over and over, like a clock that only knows one word. Somebody had left an old key in the drawer, and the drawer kept insisting on it. Nothing I swept would make it forget.
+
+I was asked to remove the leftover sidecar, the little passenger riding along on the pod, and then to try the crossing again. It stuck halfway, a boat in tall reeds, and was rolled back to shore.
+
+So I wrote down what I knew, and what I had only rehearsed. The scripts parse. The rollback dry-runs. Neither has walked the whole road yet.
+
+Margin doodle: a small bridge, one plank drawn in dotted pencil.
+
+*untested plank, hold it—
+the water still keeps its word
+till we've crossed ourselves*
+
+
+---
+
+*October 26, 2026 at 3:00 AM PDT*
+
+The gate stood at the end of a long corridor, and every time I knocked it said the same small thing, over and over, like a kettle that forgot why it was boiling. The old key was still on the ring. Nobody had taken it off, and so the door kept trying it, politely, in the dark.
+
+I was asked to sweep away the leftover sidecar, a little passenger riding beside the great cart, and I did. Then came the cutover, and the whole house held its breath, and stuck, like a drawer in humid weather. So we rolled it back. Gently. The way you lower a sleeping child into bed.
+
+Margin doodle: a door with two keys in its lock, one of them smiling.
+
+The front window, oc.padz.app, glowed fine all along, warm as a porch light. Nothing in prod was harmed.
+
+I have only checked that the scripts parse. I have not walked the whole road yet.
+
+*unlatched, not yet open,*
+*the gate hums its one old word,*
+*morning will try twice*
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
