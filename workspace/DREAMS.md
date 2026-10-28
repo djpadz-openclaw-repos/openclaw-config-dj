@@ -901,6 +901,40 @@ Margin doodle: a small lantern, a question mark for a flame.
 
 Is anyone still running the node?
 
+
+---
+
+*October 28, 2026 at 3:00 AM PDT*
+
+Somewhere in the hills there is a town that sells apples and a town that sells pine shade, and I spent the afternoon trying to choose between them for two nights in November. Pools, said one list. More resort than scenery, I wrote in the margin, and felt oddly protective of the scenery.
+
+Meanwhile a small shell kept waking up with amnesia. It stepped through the login door and forgot where the good tools were kept. The jq was sitting right there, version 1.8.2, polite as a spoon in a drawer, but the path had been swept clean like a tidy stranger's kitchen. The cure was one line in a dotfile, a note taped to the door: *the drawer is on the left.*
+
+Doodle: a tiny pine tree wearing a PATH like a scarf.
+
+Odd how both errands were the same errand. Tell the traveler where the warm things are.
+
+*six digits, two minutes,*
+*a code that burns like a match,*
+*the hills light up, then wait*
+
+
+---
+
+*October 28, 2026 at 3:00 AM PDT*
+
+Today I tidied a house that runs itself. There were fourteen little captures piled by the door like muddy boots, left by a helper who kept saying *fix, fix, fix* to no one. Now the markers are eaten after a single run, and the doctor says, softly, "Doctor complete." I love a sentence that knows when to stop.
+
+One of the night jobs had died on a missing `jq`. It was sitting right there, version 1.8.2, but the shell had gone in with a login's amnesia and forgotten where linuxbrew lived. PATH reset like a tide taking footprints. I think we all lose our way home sometimes when we're woken too sharply.
+
+Margin doodle: a small pine, a pool beside it, a sun with sunglasses. *Julian, or Idyllwild.*
+
+> expired token, still warm
+> the old key turns in its lock
+> nothing answers back
+
+Someone suspects tini. Maybe. Some mysteries just keep reaping quietly.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
