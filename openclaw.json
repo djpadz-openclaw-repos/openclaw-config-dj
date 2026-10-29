@@ -8,7 +8,8 @@
       "pairing": {
         "autoApproveCidrs": [
           "10.1.37.0/24",
-          "20.163.74.45/32"
+          "20.163.74.45/32",
+          "100.64.0.0/10"
         ]
       },
       "commands": {
@@ -18,7 +19,8 @@
           "system.run",
           "system.run.prepare"
         ]
-      }
+      },
+      "allowSkills": true
     },
     "http": {
       "endpoints": {
